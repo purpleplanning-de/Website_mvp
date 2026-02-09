@@ -1,0 +1,6 @@
+export const VALID_CODES = {
+  WELCOME10: 0.10,
+  BALANCE15: 0.15,
+  CEO20: 0.20,
+  CREATOR15: 0.15,
+};
