@@ -61,9 +61,12 @@ export default function Navbar() {
 
         {/* Logo */}
         <div className="flex-1 text-center">
-          <div onClick={() => navigate('/')} className={logoStyle}>
-            PurplePlanning
-          </div>
+          <img
+            src={`${import.meta.env.BASE_URL}logo.png`}
+            alt="Purple Planning"
+            onClick={() => navigate('/')}
+            className="h-12 cursor-pointer inline-block hover:scale-105 transition-transform"
+          />
         </div>
 
         {/* Right actions */}

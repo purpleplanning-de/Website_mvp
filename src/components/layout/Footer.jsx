@@ -12,9 +12,12 @@ export default function Footer() {
 
   return (
     <footer className={`py-12 border-t text-center ${darkMode ? 'border-white/10' : 'border-purple-50'}`}>
-      <div onClick={() => navigate('/')} className={`${logoStyle} mb-8`}>
-        PurplePlanning
-      </div>
+      <img
+        src={`${import.meta.env.BASE_URL}logo.png`}
+        alt="Purple Planning"
+        onClick={() => navigate('/')}
+        className="h-16 cursor-pointer inline-block hover:scale-105 transition-transform mb-8"
+      />
       <p
         style={fontSans}
         className="text-[10px] uppercase tracking-widest opacity-30 font-bold mb-8 text-center"
