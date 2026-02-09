@@ -10,7 +10,7 @@ import { UserProvider } from './contexts/UserContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/Website_mvp">
       <ThemeProvider>
         <LanguageProvider>
           <CartProvider>
