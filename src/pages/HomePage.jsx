@@ -39,35 +39,35 @@ export default function HomePage() {
   }`;
 
   const actionButtonStyle =
-    'w-full bg-purple-600 text-white py-4 md:py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer text-sm md:text-base';
+    'bg-purple-600 text-white py-4 md:py-5 px-10 md:px-14 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
     <div className="animate-in fade-in duration-1000">
       {/* Hero Quote */}
-      <header className="max-w-5xl mx-auto px-6 text-center mt-8 md:mt-16 mb-10 md:mb-14">
-        <div className="mb-8 md:mb-10">
+      <header className="max-w-4xl mx-auto px-8 text-center mt-10 md:mt-20 mb-14 md:mb-20">
+        <div className="mb-10 md:mb-14">
           <p
             style={fontSerif}
             className={`text-xl md:text-2xl lg:text-3xl italic font-light leading-relaxed ${
-              darkMode ? 'text-white/70' : 'text-gray-600'
+              darkMode ? 'text-white/60' : 'text-gray-500'
             }`}
           >
             {t('home', 'quote')}
           </p>
-          <div className="mt-4 flex justify-center items-center gap-4">
-            <div className={`h-px w-10 ${darkMode ? 'bg-white/15' : 'bg-purple-300/40'}`} />
+          <div className="mt-5 flex justify-center items-center gap-5">
+            <div className={`h-px w-12 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
             <p
               style={fontSans}
-              className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-40"
+              className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-35"
             >
               Antoine de Saint-Exupéry
             </p>
-            <div className={`h-px w-10 ${darkMode ? 'bg-white/15' : 'bg-purple-300/40'}`} />
+            <div className={`h-px w-12 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
           </div>
         </div>
         <h1
           style={fontSerif}
-          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tight ${textMain}`}
+          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight ${textMain}`}
         >
           {t('home', 'hero')[0]} <br />
           <span className={`${textMuted} italic`}>{t('home', 'hero')[1]}</span>
@@ -75,32 +75,32 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 mb-16 md:mb-24">
+      <section className="max-w-6xl mx-auto px-6 md:px-10 mb-24 md:mb-36">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
-            className="w-full h-[300px] md:h-[500px] lg:h-[550px] object-cover transition-transform duration-[4s] group-hover:scale-105"
+            className="w-full h-[320px] md:h-[520px] lg:h-[580px] object-cover transition-transform duration-[5s] group-hover:scale-105"
             alt="Hero Landschaft Schweden"
           />
           <div
             className={`absolute inset-0 bg-gradient-to-t ${
-              darkMode ? 'from-[#1a0b2e]' : 'from-purple-950/30'
+              darkMode ? 'from-[#1a0b2e]/80' : 'from-purple-950/20'
             } via-transparent to-transparent`}
           />
         </div>
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-3xl mx-auto px-6 text-center mb-20 md:mb-28">
+      <section className="max-w-2xl mx-auto px-8 text-center mb-28 md:mb-40">
         <h2
           style={fontSerif}
-          className={`text-3xl md:text-5xl italic leading-tight mb-6 ${textMain}`}
+          className={`text-3xl md:text-5xl italic leading-tight mb-8 ${textMain}`}
         >
           {t('home', 'pause')}
         </h2>
         <p
           style={fontSans}
-          className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto ${
+          className={`font-light text-base md:text-lg italic leading-relaxed mb-10 max-w-xl mx-auto ${
             darkMode ? 'text-gray-400' : 'text-gray-500'
           }`}
         >
@@ -115,61 +115,61 @@ export default function HomePage() {
 
       {/* Manifest Section */}
       <section
-        className={`section-spacing mb-20 md:mb-28 ${
-          darkMode ? 'bg-white/[0.03] border-y border-white/5' : 'bg-purple-50/40'
+        className={`section-spacing mb-28 md:mb-40 ${
+          darkMode ? 'bg-white/[0.02] border-y border-white/[0.04]' : 'bg-purple-50/30'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14 md:mb-16">
+        <div className="max-w-6xl mx-auto px-8 md:px-12">
+          <div className="text-center mb-16 md:mb-20">
             <h2 style={fontSerif} className={`text-3xl md:text-5xl italic mb-5 ${textMain}`}>
               Nicht noch ein <span className="text-purple-600">To-Do.</span>
             </h2>
             <p
-              className={`max-w-xl mx-auto text-base md:text-lg font-light ${
+              className={`max-w-lg mx-auto text-base md:text-lg font-light ${
                 darkMode ? 'text-gray-400' : 'text-gray-500'
               }`}
             >
               Wir bauen Werkzeuge für deine Identität.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {MANIFEST_CARDS.map((item, i) => {
               const Icon = item.icon;
               return (
                 <div
                   key={i}
-                  className={`p-8 md:p-10 rounded-3xl md:rounded-[2rem] border hover:-translate-y-2 transition-all duration-500 cursor-default ${cardBg}`}
+                  className={`card-hover p-9 md:p-11 rounded-3xl md:rounded-[2rem] border cursor-default ${cardBg}`}
                 >
                   <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 ${
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-7 ${
                       darkMode
-                        ? 'bg-purple-900/50 text-purple-300'
-                        : 'bg-purple-100 text-purple-600'
+                        ? 'bg-purple-900/40 text-purple-300'
+                        : 'bg-purple-50 text-purple-500'
                     }`}
                   >
-                    <Icon size={22} />
+                    <Icon size={22} strokeWidth={1.5} />
                   </div>
-                  <h3 style={fontSerif} className="text-xl md:text-2xl italic mb-3">
+                  <h3 style={fontSerif} className="text-xl md:text-2xl italic mb-4">
                     {item.title}
                   </h3>
                   <p
-                    className={`font-light leading-relaxed mb-6 text-sm md:text-base ${
+                    className={`font-light leading-relaxed mb-7 text-sm md:text-[15px] ${
                       darkMode ? 'text-gray-400' : 'text-gray-500'
                     }`}
                   >
                     {item.text}
                   </p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-500">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-500/80">
                     {item.persona}
                   </p>
                 </div>
               );
             })}
           </div>
-          <div className="text-center mt-14">
+          <div className="text-center mt-16 md:mt-20">
             <button
               onClick={() => navigate('/bundle')}
-              className={`${actionButtonStyle} max-w-sm mx-auto`}
+              className={actionButtonStyle}
             >
               Finde dein System <ArrowRight size={18} />
             </button>
@@ -178,9 +178,9 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products */}
-      <section className="max-w-7xl mx-auto px-6 pb-20 md:pb-28">
-        <div className="text-center mb-14">
-          <h3 style={fontSerif} className={`text-3xl md:text-4xl italic mb-3 ${textMain}`}>
+      <section className="max-w-6xl mx-auto px-8 md:px-12 pb-28 md:pb-40">
+        <div className="text-center mb-16 md:mb-20">
+          <h3 style={fontSerif} className={`text-3xl md:text-4xl italic mb-4 ${textMain}`}>
             {t('home', 'popular')}
           </h3>
           <p
@@ -191,12 +191,12 @@ export default function HomePage() {
             Die Favoriten unserer Community
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 text-left">
           {products.slice(0, 3).map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
-        <div className="mt-14 md:mt-16">
+        <div className="text-center mt-16 md:mt-20">
           <button onClick={() => navigate('/shop')} className={linkButtonStyle}>
             Alle Produkte ansehen{' '}
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

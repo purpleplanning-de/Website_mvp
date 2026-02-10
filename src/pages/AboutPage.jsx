@@ -35,39 +35,39 @@ export default function AboutPage() {
   const navigate = useNavigate();
   const { darkMode, cardBg, borderColor } = useTheme();
 
-  const linkButtonStyle = `text-[10px] uppercase tracking-[0.5em] font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
+  const linkButtonStyle = `text-[10px] uppercase tracking-[0.4em] font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-800 hover:text-white'
       : 'text-purple-700 border-purple-100 hover:text-purple-400'
   }`;
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+    <div className="max-w-6xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000">
       {/* Header */}
-      <header className="text-center mb-16">
+      <header className="text-center mb-20 md:mb-28">
         <div
           style={fontSans}
-          className={`inline-block px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 mx-auto ${
+          className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 mx-auto ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
           Von Berlin nach Borås
         </div>
-        <h2 style={fontSerif} className="text-6xl italic leading-tight text-center">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight text-center">
           Hinter den <span className="text-purple-600">Linien</span>.
         </h2>
       </header>
 
       {/* Story + Image */}
-      <div className="grid md:grid-cols-2 gap-20 items-start mb-24 text-left">
+      <div className="grid md:grid-cols-2 gap-16 md:gap-20 items-start mb-28 md:mb-36 text-left">
         <div
           style={fontSans}
-          className={`space-y-8 leading-relaxed text-lg font-light text-left ${
+          className={`space-y-8 leading-relaxed text-base md:text-lg font-light text-left ${
             darkMode ? 'text-gray-400' : 'text-gray-500'
           }`}
         >
-          <div className="space-y-6 text-left">
-            <h3 style={fontSerif} className="text-3xl text-purple-600 italic">
+          <div className="space-y-7 text-left">
+            <h3 style={fontSerif} className="text-2xl md:text-3xl text-purple-600 italic">
               Warum wir nicht mehr rennen.
             </h3>
             <p>
@@ -90,14 +90,14 @@ export default function AboutPage() {
               Wer bist du, wenn du nicht arbeitest?
             </p>
             <div
-              className={`p-6 rounded-2xl border mt-8 ${
+              className={`p-7 rounded-2xl border mt-10 ${
                 darkMode
-                  ? 'bg-purple-900/20 border-purple-800'
-                  : 'bg-purple-50/50 border-purple-100'
+                  ? 'bg-purple-900/20 border-purple-800/40'
+                  : 'bg-purple-50/40 border-purple-100/60'
               }`}
             >
               <p
-                className={`italic text-sm mb-4 ${
+                className={`italic text-sm mb-5 leading-relaxed ${
                   darkMode ? 'text-purple-300' : 'text-purple-900'
                 }`}
               >
@@ -110,8 +110,8 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-        <div className="relative pt-12">
-          <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl grayscale-[10%]">
+        <div className="relative pt-8 md:pt-12">
+          <div className="aspect-[4/5] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden shadow-2xl grayscale-[10%]">
             <img
               src={getImg('1517842645767-c639042777db')}
               className="w-full h-full object-cover"
@@ -122,7 +122,7 @@ export default function AboutPage() {
       </div>
 
       {/* Team Cards */}
-      <div className="grid md:grid-cols-2 gap-12 mb-16">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-14 mb-28 md:mb-36">
         {[
           {
             name: 'Michelle',
@@ -144,18 +144,18 @@ export default function AboutPage() {
           return (
             <div
               key={person.name}
-              className={`p-10 rounded-[2.5rem] border shadow-sm flex flex-col items-center text-center ${cardBg}`}
+              className={`card-hover-subtle p-10 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border flex flex-col items-center text-center ${cardBg}`}
             >
               <div
-                className={`aspect-square w-full rounded-3xl mb-8 flex items-center justify-center ${
-                  darkMode ? 'bg-white/10 text-white' : 'bg-purple-50 text-purple-200'
+                className={`aspect-square w-full rounded-2xl md:rounded-3xl mb-8 flex items-center justify-center ${
+                  darkMode ? 'bg-white/[0.06] text-white/60' : 'bg-purple-50/60 text-purple-200'
                 }`}
               >
                 <Icon size={48} strokeWidth={1} />
               </div>
               <div
-                className={`p-2 rounded-xl w-fit mb-4 text-purple-600 ${
-                  darkMode ? 'bg-white/10' : 'bg-purple-50'
+                className={`p-2.5 rounded-xl w-fit mb-5 text-purple-500 ${
+                  darkMode ? 'bg-white/[0.06]' : 'bg-purple-50'
                 }`}
               >
                 <AccentIcon size={20} />
@@ -163,7 +163,7 @@ export default function AboutPage() {
               <h4 style={fontSerif} className="text-3xl mb-4 italic">
                 {person.name}
               </h4>
-              <p style={fontSans} className="text-sm opacity-60 italic leading-relaxed mb-6">
+              <p style={fontSans} className="text-sm opacity-50 italic leading-relaxed">
                 {person.quote}
               </p>
             </div>
@@ -172,17 +172,17 @@ export default function AboutPage() {
       </div>
 
       {/* Social Media */}
-      <div className="mb-24">
-        <h4 style={fontSerif} className="text-3xl italic mb-12 text-center">
+      <div className="mb-28 md:mb-36">
+        <h4 style={fontSerif} className="text-3xl italic mb-14 text-center">
           Verbinde dich
         </h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {SOCIAL_LINKS.map((social, i) => {
             const Icon = social.icon;
             return (
               <div
                 key={i}
-                className={`p-6 rounded-[2rem] border flex flex-col items-center justify-center gap-4 hover:scale-105 transition-transform cursor-pointer ${cardBg}`}
+                className={`card-hover-subtle p-7 rounded-[1.5rem] md:rounded-[2rem] border flex flex-col items-center justify-center gap-4 cursor-pointer ${cardBg}`}
               >
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center ${social.bg} ${social.color}`}
@@ -199,32 +199,32 @@ export default function AboutPage() {
       </div>
 
       {/* Dreams */}
-      <div className={`pt-24 border-t ${borderColor}`}>
-        <h4 style={fontSerif} className="text-3xl italic mb-12 text-center">
+      <div className={`pt-20 md:pt-28 border-t ${borderColor}`}>
+        <h4 style={fontSerif} className="text-3xl italic mb-14 text-center">
           Was wir noch träumen
         </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {DREAMS.map((p, i) => {
             const Icon = p.icon;
             return (
               <div
                 key={i}
-                className={`p-4 rounded-[1.5rem] border flex flex-col justify-between aspect-square group hover:shadow-xl hover:-translate-y-1 transition-all text-left shadow-sm ${cardBg}`}
+                className={`card-hover-subtle p-6 rounded-[1.5rem] border flex flex-col justify-between aspect-square group text-left ${cardBg}`}
               >
                 <div
-                  className={`p-2 rounded-xl w-fit shadow-sm text-purple-600 group-hover:scale-110 transition-transform ${
-                    darkMode ? 'bg-white/10' : 'bg-white/80'
+                  className={`p-2.5 rounded-xl w-fit text-purple-500 ${
+                    darkMode ? 'bg-white/[0.06]' : 'bg-purple-50/80'
                   }`}
                 >
                   <Icon size={18} />
                 </div>
                 <div className="text-left mt-2">
-                  <h5 style={fontSerif} className="text-lg italic mb-1 leading-tight">
+                  <h5 style={fontSerif} className="text-lg italic mb-1.5 leading-tight">
                     {p.t}
                   </h5>
                   <p
                     style={fontSans}
-                    className="text-[10px] opacity-60 leading-tight font-light mt-1"
+                    className="text-[10px] opacity-50 leading-tight font-light mt-1"
                   >
                     {p.desc}
                   </p>

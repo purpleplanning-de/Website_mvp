@@ -8,19 +8,19 @@ export default function Footer() {
 
   return (
     <footer
-      className={`py-16 md:py-20 border-t text-center ${
-        darkMode ? 'border-white/5 bg-[#1a0b2e]' : 'border-purple-50 bg-[#faf9f6]'
+      className={`py-20 md:py-28 border-t text-center ${
+        darkMode ? 'border-white/[0.04] bg-[#1a0b2e]' : 'border-purple-50/60 bg-[#faf9f6]'
       }`}
     >
       <img
         src={`${import.meta.env.BASE_URL}logo.png`}
         alt="Purple Planning"
         onClick={() => navigate('/')}
-        className="h-20 cursor-pointer inline-block hover:scale-105 transition-transform mb-10 drop-shadow-sm"
+        className="h-20 cursor-pointer inline-block hover:scale-105 transition-transform mb-12 drop-shadow-sm"
       />
       <div
         style={fontSans}
-        className="flex justify-center gap-10 text-[11px] font-semibold uppercase tracking-[0.15em] opacity-40 mb-10"
+        className="flex justify-center gap-10 md:gap-12 text-[11px] font-semibold uppercase tracking-[0.15em] opacity-35 mb-12"
       >
         <button
           onClick={() => navigate('/shop')}
@@ -41,10 +41,10 @@ export default function Footer() {
           Blog
         </button>
       </div>
-      <div className={`w-16 h-px mx-auto mb-8 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
+      <div className={`w-16 h-px mx-auto mb-10 ${darkMode ? 'bg-white/[0.06]' : 'bg-purple-200/40'}`} />
       <div
         style={fontSans}
-        className="flex justify-center gap-8 text-[10px] font-medium uppercase tracking-widest opacity-30 mb-4"
+        className="flex justify-center gap-8 text-[10px] font-medium uppercase tracking-widest opacity-25 mb-5"
       >
         <button
           onClick={() => navigate('/impressum')}
@@ -61,7 +61,7 @@ export default function Footer() {
       </div>
       <p
         style={fontSans}
-        className="text-[10px] uppercase tracking-widest opacity-20 font-medium"
+        className="text-[10px] uppercase tracking-widest opacity-15 font-medium"
       >
         &copy; {new Date().getFullYear()} Studio PurplePlanning
       </p>

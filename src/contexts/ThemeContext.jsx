@@ -12,9 +12,9 @@ export function ThemeProvider({ children }) {
     const textMain = darkMode ? 'text-[#e9d5ff]' : 'text-gray-900';
     const textMuted = darkMode ? 'text-[#a78bfa]' : 'text-purple-600';
     const cardBg = darkMode
-      ? 'bg-[#2e1d46] border-[#4c1d95]'
-      : 'bg-white border-purple-200 shadow-sm';
-    const borderColor = darkMode ? 'border-white/10' : 'border-purple-200';
+      ? 'bg-[#2e1d46]/80 border-white/[0.06]'
+      : 'bg-white border-purple-100/60';
+    const borderColor = darkMode ? 'border-white/[0.06]' : 'border-purple-100/40';
 
     return { darkMode, bgMain, textMain, textMuted, cardBg, borderColor };
   }, [darkMode]);
