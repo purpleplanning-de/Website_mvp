@@ -99,39 +99,39 @@ export default function BundlePage() {
   const bundle = isResult ? resolveBundle(selections) : null;
 
   const actionButtonStyle =
-    'w-full bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-xl hover:bg-purple-700 active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
+    'bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
-    <div className="max-w-4xl mx-auto px-6 mt-12 mb-12 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start">
+    <div className="max-w-4xl mx-auto px-8 md:px-12 mt-12 md:mt-16 mb-20 md:mb-28 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start">
       {!isResult ? (
         <>
-          <p style={fontSans} className={`${textMuted} font-bold uppercase tracking-widest mb-8`}>
+          <p style={fontSans} className={`${textMuted} font-bold uppercase tracking-widest mb-10`}>
             Schritt {step + 1} von {STEPS.length}
           </p>
-          <h2 style={fontSerif} className="text-4xl md:text-5xl italic mb-12">
+          <h2 style={fontSerif} className="text-4xl md:text-5xl italic mb-14 md:mb-16">
             {STEPS[step].question}
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-7 md:gap-8">
             {STEPS[step].options.map((opt) => {
               const Icon = opt.icon;
               return (
                 <button
                   key={opt.id}
                   onClick={() => handleOption(opt)}
-                  className={`p-8 rounded-3xl border shadow-sm hover:scale-105 transition-all flex flex-col items-center text-center group ${cardBg} ${
-                    darkMode ? 'hover:border-purple-400' : 'hover:border-purple-300'
+                  className={`card-hover p-9 md:p-10 rounded-[2rem] border flex flex-col items-center text-center group ${cardBg} ${
+                    darkMode ? 'hover:border-purple-400/40' : 'hover:border-purple-300'
                   }`}
                 >
                   <div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors ${
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-7 transition-colors ${
                       darkMode
-                        ? 'bg-white/10 text-white'
-                        : 'bg-gray-50 text-gray-400 group-hover:bg-white group-hover:text-purple-600'
+                        ? 'bg-white/[0.06] text-white/70'
+                        : 'bg-purple-50/60 text-gray-400 group-hover:text-purple-600'
                     }`}
                   >
-                    <Icon size={28} />
+                    <Icon size={26} strokeWidth={1.5} />
                   </div>
-                  <p className="font-medium text-lg leading-relaxed">{opt.text}</p>
+                  <p className="font-medium text-base md:text-lg leading-relaxed">{opt.text}</p>
                 </button>
               );
             })}
@@ -139,37 +139,41 @@ export default function BundlePage() {
         </>
       ) : (
         <div className="animate-in slide-in-from-bottom-8 duration-700">
-          <div className="inline-block px-4 py-1 bg-green-100 text-green-700 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6">
+          <div
+            className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 ${
+              darkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-50 text-green-700'
+            }`}
+          >
             Dein perfektes Match
           </div>
-          <h2 style={fontSerif} className="text-5xl italic mb-4">
+          <h2 style={fontSerif} className="text-5xl italic mb-5">
             {bundle.title}
           </h2>
           <p
-            className={`text-xl mb-12 max-w-lg mx-auto ${
+            className={`text-lg md:text-xl mb-14 max-w-lg mx-auto font-light ${
               darkMode ? 'text-gray-400' : 'text-gray-500'
             }`}
           >
             {bundle.desc}
           </p>
 
-          <div className={`p-8 rounded-[2.5rem] border shadow-xl max-w-2xl mx-auto mb-12 ${cardBg}`}>
+          <div className={`p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border max-w-2xl mx-auto mb-14 ${cardBg}`}>
             <div className="space-y-4 mb-8 text-left">
               {bundle.items.map((item) => (
                 <div
                   key={item.id}
                   className={`flex gap-4 items-center p-3 rounded-2xl cursor-pointer transition-colors ${
-                    darkMode ? 'hover:bg-white/5' : 'hover:bg-gray-50'
+                    darkMode ? 'hover:bg-white/[0.04]' : 'hover:bg-purple-50/40'
                   }`}
                   onClick={() => navigate(`/product/${item.id}`)}
                 >
-                  <div className="w-16 h-16 rounded-xl bg-gray-100 overflow-hidden shrink-0">
-                    <img src={item.images[0]} className="w-full h-full object-cover" />
+                  <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
+                    <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} />
                   </div>
                   <div className="flex-grow">
                     <div className="flex justify-between items-center">
                       <h4 className="font-bold">{item.name}</h4>
-                      <span className="text-[10px] bg-red-100 text-red-600 px-2 rounded-full font-bold">
+                      <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold">
                         -{bundle.discount}%
                       </span>
                     </div>
@@ -185,12 +189,12 @@ export default function BundlePage() {
             </div>
 
             <div
-              className={`flex justify-between items-center border-t pt-6 ${
-                darkMode ? 'border-white/10' : 'border-gray-100'
+              className={`flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-t pt-7 ${
+                darkMode ? 'border-white/[0.06]' : 'border-purple-100/40'
               }`}
             >
               <div>
-                <p className="text-xs uppercase font-bold text-gray-400">
+                <p className="text-xs uppercase font-bold text-gray-400 mb-1">
                   Bundle Preis (Code:{' '}
                   <span className="text-purple-500">{bundle.code}</span>)
                 </p>
@@ -209,7 +213,7 @@ export default function BundlePage() {
               </div>
               <button
                 onClick={() => addBundleToCart(bundle.items, bundle.code, bundle.discount)}
-                className={`${actionButtonStyle} !w-auto px-8`}
+                className={`${actionButtonStyle} w-full sm:w-auto px-8`}
               >
                 System sichern <ArrowRight size={18} />
               </button>
@@ -221,7 +225,7 @@ export default function BundlePage() {
               setStep(0);
               setSelections([]);
             }}
-            className="text-gray-400 hover:text-gray-600 text-sm underline"
+            className="text-gray-400 hover:text-purple-500 text-sm transition-colors"
           >
             Test wiederholen
           </button>
