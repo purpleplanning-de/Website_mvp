@@ -4,43 +4,67 @@ import { useTheme } from '../../hooks/useTheme';
 
 export default function Footer() {
   const navigate = useNavigate();
-  const { darkMode, borderColor } = useTheme();
-
-  const logoStyle = `text-3xl font-bold italic cursor-pointer inline-block tracking-tight ${
-    darkMode ? 'text-white' : 'text-purple-700'
-  }`;
+  const { darkMode } = useTheme();
 
   return (
-    <footer className={`py-12 border-t text-center ${darkMode ? 'border-white/10' : 'border-purple-50'}`}>
+    <footer
+      className={`py-16 md:py-20 border-t text-center ${
+        darkMode ? 'border-white/5 bg-[#1a0b2e]' : 'border-purple-50 bg-[#faf9f6]'
+      }`}
+    >
       <img
         src={`${import.meta.env.BASE_URL}logo.png`}
         alt="Purple Planning"
         onClick={() => navigate('/')}
-        className="h-16 cursor-pointer inline-block hover:scale-105 transition-transform mb-8"
+        className="h-20 cursor-pointer inline-block hover:scale-105 transition-transform mb-10 drop-shadow-sm"
       />
-      <p
-        style={fontSans}
-        className="text-[10px] uppercase tracking-widest opacity-30 font-bold mb-8 text-center"
-      >
-        &copy; {new Date().getFullYear()} Studio PurplePlanning
-      </p>
       <div
         style={fontSans}
-        className="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-widest opacity-40"
+        className="flex justify-center gap-10 text-[11px] font-semibold uppercase tracking-[0.15em] opacity-40 mb-10"
+      >
+        <button
+          onClick={() => navigate('/shop')}
+          className="hover:text-purple-600 hover:opacity-100 transition-all"
+        >
+          Shop
+        </button>
+        <button
+          onClick={() => navigate('/about')}
+          className="hover:text-purple-600 hover:opacity-100 transition-all"
+        >
+          Über uns
+        </button>
+        <button
+          onClick={() => navigate('/blog')}
+          className="hover:text-purple-600 hover:opacity-100 transition-all"
+        >
+          Blog
+        </button>
+      </div>
+      <div className={`w-16 h-px mx-auto mb-8 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
+      <div
+        style={fontSans}
+        className="flex justify-center gap-8 text-[10px] font-medium uppercase tracking-widest opacity-30 mb-4"
       >
         <button
           onClick={() => navigate('/impressum')}
-          className="hover:text-purple-600 transition-colors"
+          className="hover:text-purple-600 hover:opacity-100 transition-all"
         >
           Impressum
         </button>
         <button
           onClick={() => navigate('/datenschutz')}
-          className="hover:text-purple-600 transition-colors"
+          className="hover:text-purple-600 hover:opacity-100 transition-all"
         >
           Datenschutz
         </button>
       </div>
+      <p
+        style={fontSans}
+        className="text-[10px] uppercase tracking-widest opacity-20 font-medium"
+      >
+        &copy; {new Date().getFullYear()} Studio PurplePlanning
+      </p>
     </footer>
   );
 }
