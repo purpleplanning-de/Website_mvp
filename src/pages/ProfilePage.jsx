@@ -3,30 +3,34 @@ import { LogOut, Award, Check, Lock, Package } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
 import { useTheme } from '../hooks/useTheme';
 import { useUser } from '../hooks/useUser';
-
-const TABS = [
-  { key: 'overview', label: 'Übersicht' },
-  { key: 'orders', label: 'Bestellungen' },
-  { key: 'addresses', label: 'Adressen' },
-  { key: 'settings', label: 'Einstellungen' },
-];
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function ProfilePage() {
   const { darkMode, cardBg } = useTheme();
   const { userData, setUserData, levelInfo, levels } = useUser();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('overview');
 
   const { current: currentLevel, next: nextLevel, progressPercent, pointsToNext } = levelInfo;
   const points = userData.points;
+  const profileTabs = t('profile', 'tabs');
+  const translatedLevels = t('levels', null) || levels;
+
+  const TABS = [
+    { key: 'overview', label: profileTabs.overview },
+    { key: 'orders', label: profileTabs.orders },
+    { key: 'addresses', label: profileTabs.addresses },
+    { key: 'settings', label: profileTabs.settings },
+  ];
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in">
       <header className="mb-12">
         <h2 style={fontSerif} className="text-5xl italic mb-4">
-          Willkommen, {userData.name.split(' ')[0]}
+          {t('profile', 'welcome')} {userData.name.split(' ')[0]}
         </h2>
         <p className="opacity-60 font-light">
-          Schön, dass du wieder da bist. Hier verwaltest du deine Reise.
+          {t('profile', 'subtitle')}
         </p>
       </header>
 
@@ -47,7 +51,7 @@ export default function ProfilePage() {
             </button>
           ))}
           <button className="w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-red-400 hover:bg-red-50 hover:text-red-500 transition-all flex items-center gap-2 mt-8">
-            <LogOut size={16} /> Abmelden
+            <LogOut size={16} /> {t('profile', 'logout')}
           </button>
         </div>
 
@@ -69,15 +73,15 @@ export default function ProfilePage() {
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="bg-purple-200 text-purple-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
-                      Dein Status
+                      {t('profile', 'yourStatus')}
                     </span>
                     <span style={fontSerif} className="text-2xl italic text-purple-500">
-                      {currentLevel.name}
+                      {translatedLevels[levelInfo.actualIdx]?.name ?? currentLevel.name}
                     </span>
                   </div>
                   <div className="flex items-end gap-2 mb-6">
                     <span className="text-5xl font-bold">{points}</span>
-                    <span className="text-sm opacity-60 mb-2">Punkte gesammelt</span>
+                    <span className="text-sm opacity-60 mb-2">{t('profile', 'pointsCollected')}</span>
                   </div>
                   <div className="w-full bg-purple-100/20 h-3 rounded-full overflow-hidden mb-4">
                     <div
@@ -87,12 +91,12 @@ export default function ProfilePage() {
                   </div>
                   {nextLevel ? (
                     <p className="text-sm opacity-60">
-                      Noch <span className="font-bold text-purple-500">{pointsToNext} Punkte</span>{' '}
-                      bis zum <span className="italic">{nextLevel.name}</span>.
+                      {t('profile', 'pointsTo')} <span className="font-bold text-purple-500">{pointsToNext} {t('profile', 'pointsUntil')}</span>{' '}
+                      {t('profile', 'untilLevel')} <span className="italic">{translatedLevels[levelInfo.actualIdx + 1]?.name ?? nextLevel.name}</span>.
                     </p>
                   ) : (
                     <p className="text-sm text-purple-500 font-bold">
-                      Du hast die höchste Stufe erreicht!
+                      {t('profile', 'maxLevel')}
                     </p>
                   )}
                 </div>
@@ -103,12 +107,13 @@ export default function ProfilePage() {
                   style={fontSans}
                   className="text-xs font-bold uppercase tracking-widest opacity-40 mb-6"
                 >
-                  Deine Reise-Etappen
+                  {t('profile', 'journeyStages')}
                 </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {levels.map((lvl, i) => {
-                    const isUnlocked = points >= lvl.min;
-                    const isCurrent = currentLevel.name === lvl.name;
+                  {translatedLevels.map((lvl, i) => {
+                    const origLevel = levels[i];
+                    const isUnlocked = points >= origLevel.min;
+                    const isCurrent = currentLevel.name === origLevel.name;
                     return (
                       <div
                         key={i}
@@ -148,7 +153,7 @@ export default function ProfilePage() {
           {activeTab === 'orders' && (
             <div className="animate-in fade-in">
               <h3 style={fontSerif} className="text-2xl italic mb-8">
-                Deine Bestellhistorie
+                {t('profile', 'orderHistory')}
               </h3>
               <div className="space-y-4">
                 {[1, 2].map((o) => (
@@ -163,14 +168,14 @@ export default function ProfilePage() {
                         <Package size={20} className="text-gray-500" />
                       </div>
                       <div>
-                        <p className="font-bold text-sm">Bestellung #{2025000 + o}</p>
-                        <p className="text-xs opacity-60">Vom 12.01.2026 &bull; 2 Artikel</p>
+                        <p className="font-bold text-sm">{t('profile', 'order')} #{2025000 + o}</p>
+                        <p className="text-xs opacity-60">{t('profile', 'from')} 12.01.2026 &bull; 2 {t('profile', 'items')}</p>
                       </div>
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-sm">49,80 €</p>
                       <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-[10px] uppercase font-bold rounded-md">
-                        Abgeschlossen
+                        {t('profile', 'completed')}
                       </span>
                     </div>
                   </div>
@@ -183,7 +188,7 @@ export default function ProfilePage() {
           {activeTab === 'addresses' && (
             <div className="animate-in fade-in">
               <h3 style={fontSerif} className="text-2xl italic mb-8">
-                Adressbuch
+                {t('profile', 'addressBook')}
               </h3>
               <div
                 className={`p-6 border rounded-2xl relative group ${
@@ -193,22 +198,22 @@ export default function ProfilePage() {
                 }`}
               >
                 <span className="absolute top-4 right-4 bg-purple-100 text-purple-700 text-[9px] font-bold uppercase px-2 py-1 rounded">
-                  Standard
+                  {t('profile', 'default')}
                 </span>
                 <p className="font-bold mb-2">{userData.name}</p>
                 <p className="text-sm opacity-70">{userData.address}</p>
-                <p className="text-sm opacity-70">Deutschland</p>
+                <p className="text-sm opacity-70">{t('profile', 'country')}</p>
                 <div className="mt-4 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button className="text-xs font-bold text-purple-500 hover:underline">
-                    Bearbeiten
+                    {t('profile', 'edit')}
                   </button>
                   <button className="text-xs font-bold text-red-400 hover:underline">
-                    Löschen
+                    {t('profile', 'delete')}
                   </button>
                 </div>
               </div>
               <button className="mt-6 border border-dashed rounded-2xl w-full py-4 text-sm font-bold uppercase tracking-widest hover:border-purple-300 hover:text-purple-500 transition-all opacity-60 hover:opacity-100">
-                + Neue Adresse
+                {t('profile', 'newAddress')}
               </button>
             </div>
           )}
@@ -217,12 +222,12 @@ export default function ProfilePage() {
           {activeTab === 'settings' && (
             <div className="animate-in fade-in max-w-md">
               <h3 style={fontSerif} className="text-2xl italic mb-8">
-                Konto-Einstellungen
+                {t('profile', 'accountSettings')}
               </h3>
               <div className="space-y-6">
                 <div>
                   <label className="text-[10px] uppercase font-bold opacity-40 mb-2 block">
-                    Name ändern
+                    {t('profile', 'changeName')}
                   </label>
                   <input
                     type="text"
@@ -234,7 +239,7 @@ export default function ProfilePage() {
                 </div>
                 <div>
                   <label className="text-[10px] uppercase font-bold opacity-40 mb-2 block">
-                    E-Mail Adresse
+                    {t('profile', 'emailAddress')}
                   </label>
                   <input
                     type="email"
@@ -245,9 +250,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div className={`pt-6 border-t ${darkMode ? 'border-white/10' : 'border-gray-100'}`}>
-                  <h4 className="font-bold text-sm mb-4">Passwort Sicherheit</h4>
+                  <h4 className="font-bold text-sm mb-4">{t('profile', 'passwordSecurity')}</h4>
                   <button className="text-purple-500 text-xs font-bold uppercase tracking-widest border border-purple-500/30 px-4 py-2 rounded-lg hover:bg-purple-500/10 transition-colors">
-                    Passwort ändern
+                    {t('profile', 'changePassword')}
                   </button>
                 </div>
                 <div
@@ -256,9 +261,9 @@ export default function ProfilePage() {
                   }`}
                 >
                   <div>
-                    <h4 className="font-bold text-sm">Newsletter</h4>
+                    <h4 className="font-bold text-sm">{t('profile', 'newsletter')}</h4>
                     <p className="text-xs opacity-60">
-                      Erhalte Updates zu neuen Kollektionen.
+                      {t('profile', 'newsletterDesc')}
                     </p>
                   </div>
                   <div

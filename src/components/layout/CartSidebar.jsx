@@ -104,7 +104,7 @@ export default function CartSidebar() {
                       className="w-20 h-24 rounded-xl overflow-hidden shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
                       onClick={() => goToProduct(item)}
                     >
-                      <img src={item.images[0]} className="w-full h-full object-cover" />
+                      <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} />
                     </div>
                     <div className="flex-grow flex flex-col justify-between h-24 py-1">
                       <div>
@@ -161,7 +161,7 @@ export default function CartSidebar() {
               <div className="flex gap-2">
                 <input
                   type="text"
-                  placeholder="Rabattcode"
+                  placeholder={t('cart', 'discountPlaceholder')}
                   value={discountCode}
                   onChange={(e) => setDiscountCode(e.target.value)}
                   className={`w-full px-4 py-2 rounded-xl text-sm outline-none border focus:border-purple-500 uppercase tracking-wider font-bold ${
@@ -181,25 +181,25 @@ export default function CartSidebar() {
               {/* Totals */}
               <div className="space-y-2 text-sm opacity-70">
                 <div className="flex justify-between">
-                  <span>Zwischensumme</span>
+                  <span>{t('cart', 'subtotal')}</span>
                   <span>{totals.subtotal.toFixed(2)} €</span>
                 </div>
                 {totals.discount > 0 && (
                   <div className="flex justify-between text-red-400">
-                    <span>Rabatt ({appliedDiscount.code})</span>
+                    <span>{t('cart', 'discount')} ({appliedDiscount.code})</span>
                     <span>-{totals.discount.toFixed(2)} €</span>
                   </div>
                 )}
                 <div className="flex justify-between">
-                  <span>Versand</span>
+                  <span>{t('cart', 'shipping')}</span>
                   <span>
-                    {totals.shipping === 0 ? 'Kostenlos' : `${totals.shipping.toFixed(2)} €`}
+                    {totals.shipping === 0 ? t('cart', 'shippingFree') : `${totals.shipping.toFixed(2)} €`}
                   </span>
                 </div>
               </div>
 
               <div className="flex justify-between text-2xl font-bold py-2 border-t border-white/10">
-                <span style={fontSerif}>Gesamt</span>
+                <span style={fontSerif}>{t('cart', 'total')}</span>
                 <span>{totals.total.toFixed(2)} €</span>
               </div>
 

@@ -7,9 +7,16 @@ export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState('de');
 
   const t = useCallback(
-    (section, key) =>
-      translations[language]?.[section]?.[key] ??
-      translations['de'][section][key],
+    (section, key) => {
+      const lang = translations[language] ?? translations['de'];
+      const fallback = translations['de'];
+
+      if (key === null || key === undefined) {
+        return lang[section] ?? fallback[section];
+      }
+
+      return lang[section]?.[key] ?? fallback[section]?.[key];
+    },
     [language],
   );
 

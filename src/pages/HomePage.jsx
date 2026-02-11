@@ -6,31 +6,14 @@ import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
 
-const MANIFEST_CARDS = [
-  {
-    title: 'Du leistest genug.',
-    text: "Unsere Planer sind keine Peitschen. Sie sind Anker. Erlaube dir, stolz auf das 'Sein' zu sein.",
-    icon: Target,
-    persona: 'Für die High-Performerin',
-  },
-  {
-    title: 'Dein Leben ist Kunst.',
-    text: 'Funktionalität muss nicht hässlich sein. Dein Planer ist ein Accessoire deiner Identität.',
-    icon: Sparkle,
-    persona: 'Für die Ästhetin',
-  },
-  {
-    title: 'Ruhe im Kopf.',
-    text: 'Du brauchst keine bunten Blümchen. Du brauchst ein System so klar wie ein Wintermorgen.',
-    icon: Compass,
-    persona: 'Für den Klarheits-Sucher',
-  },
-];
+const MANIFEST_ICONS = [Target, Sparkle, Compass];
 
 export default function HomePage() {
   const navigate = useNavigate();
   const { darkMode, textMain, textMuted, cardBg } = useTheme();
   const { t } = useLanguage();
+
+  const manifestCards = t('home', 'manifestCards');
 
   const linkButtonStyle = `text-[11px] uppercase tracking-[0.3em] font-semibold border-b pb-2 transition-all flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
     darkMode
@@ -80,7 +63,7 @@ export default function HomePage() {
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
             className="w-full h-[320px] md:h-[520px] lg:h-[580px] object-cover transition-transform duration-[5s] group-hover:scale-105"
-            alt="Hero Landschaft Schweden"
+            alt="Hero"
           />
           <div
             className={`absolute inset-0 bg-gradient-to-t ${
@@ -104,11 +87,10 @@ export default function HomePage() {
             darkMode ? 'text-gray-400' : 'text-gray-500'
           }`}
         >
-          Hast du dich jemals gefragt, ob du dein Leben lebst oder ob dein Terminkalender dich
-          lebt? Purple Planning ist die Einladung, dir den Raum zurückzuholen, den du verdienst.
+          {t('home', 'pauseText')}
         </p>
         <button onClick={() => navigate('/about')} className={linkButtonStyle}>
-          Unsere persönliche Geschichte{' '}
+          {t('home', 'pauseLink')}{' '}
           <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </button>
       </section>
@@ -122,19 +104,19 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-8 md:px-12">
           <div className="text-center mb-16 md:mb-20">
             <h2 style={fontSerif} className={`text-3xl md:text-5xl italic mb-5 ${textMain}`}>
-              Nicht noch ein <span className="text-purple-600">To-Do.</span>
+              {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
               className={`max-w-lg mx-auto text-base md:text-lg font-light ${
                 darkMode ? 'text-gray-400' : 'text-gray-500'
               }`}
             >
-              Wir bauen Werkzeuge für deine Identität.
+              {t('home', 'manifestSubtitle')}
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-            {MANIFEST_CARDS.map((item, i) => {
-              const Icon = item.icon;
+            {manifestCards.map((item, i) => {
+              const Icon = MANIFEST_ICONS[i];
               return (
                 <div
                   key={i}
@@ -171,7 +153,7 @@ export default function HomePage() {
               onClick={() => navigate('/bundle')}
               className={actionButtonStyle}
             >
-              Finde dein System <ArrowRight size={18} />
+              {t('home', 'findSystem')} <ArrowRight size={18} />
             </button>
           </div>
         </div>
@@ -188,7 +170,7 @@ export default function HomePage() {
               darkMode ? 'text-gray-500' : 'text-gray-400'
             }`}
           >
-            Die Favoriten unserer Community
+            {t('home', 'popularSubtitle')}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 text-left">
@@ -198,7 +180,7 @@ export default function HomePage() {
         </div>
         <div className="text-center mt-16 md:mt-20">
           <button onClick={() => navigate('/shop')} className={linkButtonStyle}>
-            Alle Produkte ansehen{' '}
+            {t('home', 'viewAll')}{' '}
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </div>

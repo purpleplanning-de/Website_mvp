@@ -2,40 +2,20 @@ import { Calendar } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
 import { getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
+import { useLanguage } from '../hooks/useLanguage';
 
-const POSTS = [
-  {
-    date: '12. Januar 2025',
-    title: 'Der Tag, an dem wir "Stopp" sagten',
-    preview:
-      'Es war ein Dienstag. Grau, nass, Berlin. Der Kalender war voll, aber das Herz war leer. Warum es Mut braucht, alles stehen und liegen zu lassen.',
-    img: '1470071459604-3b5ec3a7fe05',
-  },
-  {
-    date: '03. Februar 2025',
-    title: 'Stille hören lernen',
-    preview:
-      'Die ersten Nächte in Borås waren beängstigend. Keine Sirenen, keine Autos. Nur Wind. Wie wir lernten, die Ruhe nicht als Leere zu empfinden.',
-    img: '1448375240586-dfd8d395ea6c',
-  },
-  {
-    date: '15. März 2025',
-    title: 'Renovieren als Therapie',
-    preview:
-      'Wände einreißen hat etwas Befreiendes. Jeder Pinselstrich deckt nicht nur alte Farbe zu, sondern auch alte Gewohnheiten.',
-    img: '1505330622279-bf7d7fc3874d',
-  },
-  {
-    date: '02. April 2025',
-    title: 'Digitaler Minimalismus',
-    preview:
-      'Warum wir wieder Papier nutzen. Die Haptik des Schreibens als Anker in einer flüchtigen Welt.',
-    img: '1517842645767-c639042777db',
-  },
+const POST_IMAGES = [
+  '1470071459604-3b5ec3a7fe05',
+  '1448375240586-dfd8d395ea6c',
+  '1505330622279-bf7d7fc3874d',
+  '1517842645767-c639042777db',
 ];
 
 export default function BlogPage() {
   const { darkMode } = useTheme();
+  const { t } = useLanguage();
+
+  const posts = t('blog', 'posts');
 
   return (
     <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700">
@@ -46,17 +26,17 @@ export default function BlogPage() {
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
-          Tagebuch aus dem Wald
+          {t('blog', 'tagline')}
         </div>
         <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight">
-          Unsere Reise
+          {t('blog', 'title')}
           <br />
-          <span className="text-purple-600">ungeschminkt</span>.
+          <span className="text-purple-600">{t('blog', 'titleAccent')}</span>.
         </h2>
       </header>
 
       <div className="grid md:grid-cols-2 gap-12 md:gap-16">
-        {POSTS.map((post, i) => (
+        {posts.map((post, i) => (
           <div key={i} className="group cursor-pointer">
             <div
               className={`aspect-[4/3] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] mb-7 relative ${
@@ -64,7 +44,7 @@ export default function BlogPage() {
               } border`}
             >
               <img
-                src={getImg(post.img)}
+                src={getImg(POST_IMAGES[i])}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 alt={post.title}
               />
@@ -95,7 +75,7 @@ export default function BlogPage() {
               {post.preview}
             </p>
             <button className="text-purple-600 font-bold text-[11px] uppercase tracking-widest border-b border-purple-500/20 pb-1 group-hover:border-purple-500 transition-all">
-              Weiterlesen
+              {t('blog', 'readMore')}
             </button>
           </div>
         ))}

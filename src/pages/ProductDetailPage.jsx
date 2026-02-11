@@ -5,31 +5,36 @@ import { fontSerif, fontSans } from '../data/styles';
 import { products } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useCart } from '../hooks/useCart';
-
-const TABS = [
-  { key: 'description', label: 'Beschreibung' },
-  { key: 'details', label: 'Details' },
-  { key: 'shipping', label: 'Versand' },
-];
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { darkMode, textMuted } = useTheme();
   const { addToCart } = useCart();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('description');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const product = products.find((p) => p.id === Number(id));
+  const productIndex = product ? product.id - 1 : 0;
+  const productTranslations = t('products', productIndex);
+  const tabs = t('product', 'tabs');
+
+  const TABS = [
+    { key: 'description', label: tabs.description },
+    { key: 'details', label: tabs.details },
+    { key: 'shipping', label: tabs.shipping },
+  ];
 
   if (!product) {
     return (
       <div className="max-w-6xl mx-auto px-8 py-28 text-center">
         <h2 style={fontSerif} className="text-3xl italic">
-          Produkt nicht gefunden
+          {t('product', 'notFound')}
         </h2>
         <button onClick={() => navigate('/shop')} className="mt-6 text-purple-600 underline">
-          Zurück zum Shop
+          {t('product', 'backToShop')}
         </button>
       </div>
     );
@@ -45,7 +50,7 @@ export default function ProductDetailPage() {
         style={fontSans}
         className="flex items-center gap-2 opacity-30 hover:opacity-100 mb-12 transition-opacity text-left text-sm"
       >
-        <ArrowLeft size={16} /> Zurück zur Übersicht
+        <ArrowLeft size={16} /> {t('product', 'back')}
       </button>
 
       <div className="grid lg:grid-cols-2 gap-14 md:gap-20 items-start">
@@ -122,9 +127,9 @@ export default function ProductDetailPage() {
           </div>
 
           <div className="min-h-[100px] opacity-60 font-light leading-relaxed text-sm md:text-base">
-            {activeTab === 'description' && <p>{product.description}</p>}
-            {activeTab === 'details' && <p>{product.details}</p>}
-            {activeTab === 'shipping' && <p>{product.shipping}</p>}
+            {activeTab === 'description' && <p>{productTranslations?.description ?? product.description}</p>}
+            {activeTab === 'details' && <p>{productTranslations?.details ?? product.details}</p>}
+            {activeTab === 'shipping' && <p>{productTranslations?.shipping ?? product.shipping}</p>}
           </div>
 
           <div className="space-y-5 pt-4">
@@ -136,10 +141,10 @@ export default function ProductDetailPage() {
               }}
               className={actionButtonStyle}
             >
-              Planung beginnen <ArrowRight size={18} />
+              {t('product', 'addToCart')} <ArrowRight size={18} />
             </button>
             <p className="text-center text-xs opacity-35 flex items-center justify-center gap-2">
-              <Check size={12} /> Sofortiger digitaler Download
+              <Check size={12} /> {t('product', 'download')}
             </p>
           </div>
         </div>

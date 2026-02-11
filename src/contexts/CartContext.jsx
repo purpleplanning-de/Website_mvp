@@ -1,9 +1,11 @@
-import { createContext, useState, useMemo, useCallback } from 'react';
+import { createContext, useState, useMemo, useCallback, useContext } from 'react';
 import { VALID_CODES } from '../data/discountCodes';
+import { LanguageContext } from './LanguageContext';
 
 export const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
+  const { t } = useContext(LanguageContext);
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
@@ -26,10 +28,10 @@ export function CartProvider({ children }) {
         }
         return [...prev, { ...product, qty: 1 }];
       });
-      showFeedback(`${product.name} hinzugefügt`);
+      showFeedback(`${product.name} ${t('cart', 'added')}`);
       setIsCartOpen(true);
     },
-    [showFeedback],
+    [showFeedback, t],
   );
 
   const addBundleToCart = useCallback(
@@ -50,10 +52,10 @@ export function CartProvider({ children }) {
       });
       setDiscountCode(code);
       setAppliedDiscount({ code, value: discountPercent / 100 });
-      showFeedback('System-Bundle & Rabatt hinzugefügt');
+      showFeedback(t('cart', 'bundleAdded'));
       setIsCartOpen(true);
     },
-    [showFeedback],
+    [showFeedback, t],
   );
 
   const updateQuantity = useCallback((id, delta) => {
@@ -75,12 +77,12 @@ export function CartProvider({ children }) {
     const upper = discountCode.toUpperCase();
     if (upper in VALID_CODES) {
       setAppliedDiscount({ code: upper, value: VALID_CODES[upper] });
-      showFeedback('Rabattcode angewendet!');
+      showFeedback(t('cart', 'discountApplied'));
     } else {
-      showFeedback('Ungültiger Code');
+      showFeedback(t('cart', 'invalidCode'));
       setAppliedDiscount({ code: '', value: 0 });
     }
-  }, [discountCode, showFeedback]);
+  }, [discountCode, showFeedback, t]);
 
   const totals = useMemo(() => {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
