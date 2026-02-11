@@ -101,7 +101,7 @@ export default function App() {
       <CartSidebar />
       <Navbar />
 
-      <main id="main-content" className="pt-24 md:pt-28 flex-grow">
+      <main id="main-content" className="pt-24 md:pt-40 flex-grow">
         <AnimatePresence mode="wait">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes location={location} key={location.pathname}>
