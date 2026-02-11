@@ -2,7 +2,7 @@ import { fontSerif, fontSans } from '../data/styles';
 
 export default function DatenschutzPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-20 animate-in fade-in pt-20">
+    <div className="max-w-4xl mx-auto px-6 py-20 animate-in fade-in pt-24">
       <h2 style={fontSerif} className="text-4xl italic mb-8 text-center">
         Datenschutzerklärung
       </h2>
