@@ -41,7 +41,7 @@ export default function AboutPage() {
   }`;
 
   return (
-    <div className="max-w-6xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000">
+    <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000">
       {/* Header */}
       <header className="text-center mb-20 md:mb-28">
         <div

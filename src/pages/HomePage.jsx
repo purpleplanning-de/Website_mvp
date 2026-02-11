@@ -51,7 +51,7 @@ export default function HomePage() {
   return (
     <div className="animate-in fade-in duration-1000">
       {/* Hero Quote */}
-      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
+      <header className="max-w-3xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
           <p
             className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed ${
@@ -87,7 +87,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-5xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
@@ -104,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-3xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12">
+      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12">
         <h2
           style={fontSerif}
           className={`text-4xl md:text-5xl italic leading-tight mb-6 ${textMain}`}
@@ -131,7 +131,7 @@ export default function HomePage() {
           darkMode ? 'bg-white/[0.02] border-y border-white/[0.04]' : 'bg-purple-50/30'
         }`}
       >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
+        <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-20 md:mb-24">
             <h2 style={fontSerif} className={`text-4xl md:text-5xl italic mb-6 ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
@@ -190,7 +190,7 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products */}
-      <section className="max-w-5xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
         <div className="text-center mb-20 md:mb-24">
           <h3 style={fontSerif} className={`text-4xl md:text-5xl italic mb-5 ${textMain}`}>
             {t('home', 'popular')}
