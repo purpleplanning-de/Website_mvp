@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useCart } from '../../hooks/useCart';
@@ -16,13 +17,27 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div
+    <motion.div
       className="group cursor-pointer"
       onClick={() => navigate(`/product/${product.id}`)}
+      whileHover={{
+        y: -8,
+        transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] },
+      }}
+      whileTap={{ scale: 0.98 }}
     >
-      <div
+      <motion.div
         className="aspect-[3/4] rounded-[2rem] md:rounded-[2.5rem] mb-7 overflow-hidden relative shadow-sm group-hover:shadow-2xl transition-all duration-700"
-        style={{ backgroundColor: darkMode ? '#2e1d46' : product.bgColor }}
+        style={{
+          backgroundColor: darkMode ? '#2e1d46' : product.bgColor,
+          transformStyle: 'preserve-3d',
+        }}
+        whileHover={{
+          rotateX: 3,
+          rotateY: -3,
+          scale: 1.02,
+          transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] },
+        }}
       >
         <img
           src={product.images[0]}
@@ -46,13 +61,18 @@ export default function ProductCard({ product }) {
             {t('product', 'selectCompanion')}
           </button>
         </div>
-      </div>
-      <h4 style={fontSerif} className="text-xl md:text-2xl mb-1.5 italic text-left">
+      </motion.div>
+      <motion.h4
+        style={fontSerif}
+        className="text-xl md:text-2xl mb-1.5 italic text-left"
+        initial={{ opacity: 0.8 }}
+        whileHover={{ opacity: 1 }}
+      >
         {product.name}
-      </h4>
+      </motion.h4>
       <p style={fontSans} className={`${textMuted} font-medium text-sm text-left`}>
         {product.price.toFixed(2)} €
       </p>
-    </div>
+    </motion.div>
   );
 }

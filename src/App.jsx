@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { fontSans } from './data/styles';
 import { useTheme } from './hooks/useTheme';
 
@@ -27,8 +28,52 @@ function ScrollToTop() {
   return null;
 }
 
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.3,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
+};
+
+const LoadingSpinner = () => (
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    className="flex items-center justify-center min-h-[50vh]"
+  >
+    <motion.div
+      animate={{
+        rotate: 360,
+      }}
+      transition={{
+        duration: 1,
+        repeat: Infinity,
+        ease: 'linear',
+      }}
+      className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full"
+    />
+  </motion.div>
+);
+
 export default function App() {
   const { bgMain, textMain } = useTheme();
+  const location = useLocation();
 
   return (
     <div
@@ -40,24 +85,39 @@ export default function App() {
       <Navbar />
 
       <main className="pt-24 md:pt-28 flex-grow">
-        <Suspense fallback={null}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
-            <Route path="/bundle" element={<BundlePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/roadmap" element={<RoadmapPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/impressum" element={<ImpressumPage />} />
-            <Route path="/datenschutz" element={<DatenschutzPage />} />
-          </Routes>
-        </Suspense>
+        <AnimatePresence mode="wait">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+              <Route path="/shop" element={<PageWrapper><ShopPage /></PageWrapper>} />
+              <Route path="/product/:id" element={<PageWrapper><ProductDetailPage /></PageWrapper>} />
+              <Route path="/bundle" element={<PageWrapper><BundlePage /></PageWrapper>} />
+              <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+              <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
+              <Route path="/roadmap" element={<PageWrapper><RoadmapPage /></PageWrapper>} />
+              <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
+              <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
+              <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
+            </Routes>
+          </Suspense>
+        </AnimatePresence>
       </main>
 
       <Footer />
       <FeedbackToast />
     </div>
+  );
+}
+
+function PageWrapper({ children }) {
+  return (
+    <motion.div
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
+      {children}
+    </motion.div>
   );
 }
