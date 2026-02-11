@@ -87,7 +87,7 @@ export default function Navbar() {
               alt="Purple Planning"
               loading="eager"
               onClick={() => navTo('/')}
-              className="h-14 cursor-pointer hover:scale-105 transition-transform drop-shadow-sm"
+              className="h-16 cursor-pointer hover:scale-105 transition-transform drop-shadow-sm"
             />
           </div>
 
