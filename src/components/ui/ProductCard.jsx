@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useCart } from '../../hooks/useCart';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { darkMode, textMuted } = useTheme();
   const { addToCart } = useCart();
+  const { t } = useLanguage();
 
   const handleAdd = (e) => {
     e.stopPropagation();
@@ -40,7 +42,7 @@ export default function ProductCard({ product }) {
             onClick={handleAdd}
             className="w-full bg-white/95 backdrop-blur-sm py-4 rounded-2xl text-purple-700 font-bold text-[10px] uppercase tracking-widest shadow-xl text-center active:scale-[0.97] transition-transform"
           >
-            Begleiter auswählen
+            {t('product', 'selectCompanion')}
           </button>
         </div>
       </div>

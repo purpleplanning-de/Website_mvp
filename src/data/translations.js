@@ -5,15 +5,282 @@ export const translations = {
       quote: 'Ein Ziel ohne Plan ist nur ein Wunsch.',
       hero: ['Schreibe deine', 'eigene Geschichte'],
       pause: 'Manchmal muss man innehalten.',
+      pauseText:
+        'Hast du dich jemals gefragt, ob du dein Leben lebst oder ob dein Terminkalender dich lebt? Purple Planning ist die Einladung, dir den Raum zurückzuholen, den du verdienst.',
+      pauseLink: 'Unsere persönliche Geschichte',
       manifest: 'Unser Manifest',
+      manifestTitle: 'Nicht noch ein',
+      manifestTodo: 'To-Do.',
+      manifestSubtitle: 'Wir bauen Werkzeuge für deine Identität.',
+      manifestCards: [
+        {
+          title: 'Du leistest genug.',
+          text: "Unsere Planer sind keine Peitschen. Sie sind Anker. Erlaube dir, stolz auf das 'Sein' zu sein.",
+          persona: 'Für die High-Performerin',
+        },
+        {
+          title: 'Dein Leben ist Kunst.',
+          text: 'Funktionalität muss nicht hässlich sein. Dein Planer ist ein Accessoire deiner Identität.',
+          persona: 'Für die Ästhetin',
+        },
+        {
+          title: 'Ruhe im Kopf.',
+          text: 'Du brauchst keine bunten Blümchen. Du brauchst ein System so klar wie ein Wintermorgen.',
+          persona: 'Für den Klarheits-Sucher',
+        },
+      ],
+      findSystem: 'Finde dein System',
       popular: 'Beliebte Begleiter',
+      popularSubtitle: 'Die Favoriten unserer Community',
+      viewAll: 'Alle Produkte ansehen',
     },
     cart: {
       title: 'Warenkorb',
       empty: 'Dein Korb wartet auf Visionen',
       checkout: 'Zur Kasse',
       browse: 'Jetzt stöbern',
+      discountPlaceholder: 'Rabattcode',
+      subtotal: 'Zwischensumme',
+      discount: 'Rabatt',
+      shipping: 'Versand',
+      shippingFree: 'Kostenlos',
+      total: 'Gesamt',
+      added: 'hinzugefügt',
+      bundleAdded: 'System-Bundle & Rabatt hinzugefügt',
+      discountApplied: 'Rabattcode angewendet!',
+      invalidCode: 'Ungültiger Code',
     },
+    shop: {
+      title: 'Der Shop',
+      subtitle:
+        'Jeder Plan ist ein stilles Versprechen an dich selbst. Fülle deine Zeit mit dem, was dich wachsen lässt.',
+    },
+    product: {
+      back: 'Zurück zur Übersicht',
+      notFound: 'Produkt nicht gefunden',
+      backToShop: 'Zurück zum Shop',
+      tabs: { description: 'Beschreibung', details: 'Details', shipping: 'Versand' },
+      addToCart: 'Planung beginnen',
+      download: 'Sofortiger digitaler Download',
+      selectCompanion: 'Begleiter auswählen',
+      viewDetails: 'Details ansehen',
+    },
+    bundle: {
+      step: 'Schritt',
+      of: 'von',
+      questions: [
+        {
+          question: 'Was hindert dich aktuell am meisten?',
+          options: [
+            'Mein Kopf ist voll, ich verliere den Fokus.',
+            'Ich funktioniere nur noch, statt zu leben.',
+            'Meine aktuellen Tools inspirieren mich nicht.',
+          ],
+        },
+        {
+          question: 'Wie arbeitest du am liebsten?',
+          options: [
+            '100% Digital (iPad, Laptop).',
+            'Ich liebe Papier, will aber digitaler werden.',
+            'Viel unterwegs am Smartphone.',
+          ],
+        },
+        {
+          question: 'Was ist dein größtes Ziel für dieses Jahr?',
+          options: [
+            'Finanzielle Freiheit & Karriere.',
+            'Mehr Achtsamkeit & innere Ruhe.',
+            'Meine Träume & Content verwirklichen.',
+          ],
+        },
+      ],
+      match: 'Dein perfektes Match',
+      bundlePrice: 'Bundle Preis',
+      secure: 'System sichern',
+      restart: 'Test wiederholen',
+      results: {
+        ceo: {
+          title: 'Das CEO-Mindset',
+          desc: 'Strategische Klarheit für komplexe Projekte. Führe dein Leben wie ein Unternehmen.',
+        },
+        creator: {
+          title: 'Das Creator-Studio',
+          desc: 'Deine Planung als Leinwand. Ästhetisch, visuell und perfekt für Social Media.',
+        },
+        balance: {
+          title: 'Das Balance-Ritual',
+          desc: 'Für High-Performer, die wieder atmen wollen. Struktur trifft auf Achtsamkeit.',
+        },
+      },
+    },
+    about: {
+      tagline: 'Von Berlin nach Borås',
+      title: 'Hinter den',
+      titleAccent: 'Linien',
+      storyTitle: 'Warum wir nicht mehr rennen.',
+      storyP1:
+        'In Berlin hatten wir eigentlich alles, was man zum „Glücklichsein" braucht. Aber wir fühlten uns seltsam leer.',
+      storyP2:
+        'Es geht nicht darum, dass wir "es geschafft" hatten und uns nun auf einem Bauernhof ausruhen. Ganz im Gegenteil. Wir haben gemerkt, dass wir Teil eines Systems waren, das uns belohnt hat, je schneller wir liefen – und uns bestraft hat, wenn wir atmen wollten.',
+      storyP3:
+        'Diese Leere, die man am Sonntagabend spürt, wenn man an den Montag denkt? Die kennen wir. Und wir wissen: Ein neuer Planer löst das Problem nicht, wenn er nur dazu dient, noch mehr Aufgaben zu verwalten.',
+      storyHighlight:
+        'Wir bauen Purple Planning nicht für die Produktivität. Wir bauen es für die Identität. Wer bist du, wenn du nicht arbeitest?',
+      storyCta:
+        'Möchtest du mehr über unseren Weg aus dem Hamsterrad erfahren? Lies unsere ganz persönlichen Geschichten.',
+      toBlog: 'Zum Blog',
+      michelleQuote:
+        '„Früher habe ich versucht, 48 Stunden in 24 zu quetschen. Heute gestalte ich Seiten, die dir erlauben, auch mal nichts zu tun."',
+      ericQuote:
+        '„Zahlen waren meine Welt. Jetzt zähle ich lieber Momente. Ich sorge dafür, dass unsere Technik dir dient, nicht umgekehrt."',
+      connect: 'Verbinde dich',
+      comingSoon: 'Bald verfügbar',
+      dreams: 'Was wir noch träumen',
+      dreamItems: [
+        { t: 'The Modern Gård', desc: 'Minimalismus im Wald.' },
+        { t: 'Smultron Café', desc: 'Kaffee & echte Gespräche.' },
+        { t: 'Roots Fitness', desc: 'Kraft tanken in der Natur.' },
+        { t: 'Northern Focus', desc: 'Stille Workation.' },
+      ],
+    },
+    blog: {
+      tagline: 'Tagebuch aus dem Wald',
+      title: 'Unsere Reise',
+      titleAccent: 'ungeschminkt',
+      readMore: 'Weiterlesen',
+      posts: [
+        {
+          date: '12. Januar 2025',
+          title: 'Der Tag, an dem wir "Stopp" sagten',
+          preview:
+            'Es war ein Dienstag. Grau, nass, Berlin. Der Kalender war voll, aber das Herz war leer. Warum es Mut braucht, alles stehen und liegen zu lassen.',
+        },
+        {
+          date: '03. Februar 2025',
+          title: 'Stille hören lernen',
+          preview:
+            'Die ersten Nächte in Borås waren beängstigend. Keine Sirenen, keine Autos. Nur Wind. Wie wir lernten, die Ruhe nicht als Leere zu empfinden.',
+        },
+        {
+          date: '15. März 2025',
+          title: 'Renovieren als Therapie',
+          preview:
+            'Wände einreißen hat etwas Befreiendes. Jeder Pinselstrich deckt nicht nur alte Farbe zu, sondern auch alte Gewohnheiten.',
+        },
+        {
+          date: '02. April 2025',
+          title: 'Digitaler Minimalismus',
+          preview:
+            'Warum wir wieder Papier nutzen. Die Haptik des Schreibens als Anker in einer flüchtigen Welt.',
+        },
+      ],
+    },
+    roadmap: {
+      title: 'Der Pfad nach Morgen',
+      subtitle:
+        'Wir sind noch lange nicht fertig. Purple Planning wächst mit dir. Hier siehst du, woran wir in unserer Hütte in Borås gerade arbeiten.',
+      shortTerm: 'Kurzfristig (Q2 2026)',
+      midTerm: 'Mittelfristig (Q3 2026)',
+      notionTitle: 'Deep Work Dashboard (Notion)',
+      notionDesc:
+        'Viele von euch nutzen Notion für die Arbeit. Wir bringen die "Purple Aesthetics" auf euren Desktop. Ein Template für Freelancer und High-Performer.',
+      inDev: 'In Entwicklung',
+      guidesTitle: 'Saisonale Reflexions-Guides',
+      guidesDesc: 'Ein Abo-Modell für die Seele. Jedes Quartal ein neues Workbook.',
+      concept: 'Konzeptphase',
+    },
+    profile: {
+      welcome: 'Willkommen,',
+      subtitle: 'Schön, dass du wieder da bist. Hier verwaltest du deine Reise.',
+      tabs: {
+        overview: 'Übersicht',
+        orders: 'Bestellungen',
+        addresses: 'Adressen',
+        settings: 'Einstellungen',
+      },
+      logout: 'Abmelden',
+      yourStatus: 'Dein Status',
+      pointsCollected: 'Punkte gesammelt',
+      pointsTo: 'Noch',
+      pointsUntil: 'Punkte',
+      untilLevel: 'bis zum',
+      maxLevel: 'Du hast die höchste Stufe erreicht!',
+      journeyStages: 'Deine Reise-Etappen',
+      orderHistory: 'Deine Bestellhistorie',
+      order: 'Bestellung',
+      from: 'Vom',
+      items: 'Artikel',
+      completed: 'Abgeschlossen',
+      addressBook: 'Adressbuch',
+      default: 'Standard',
+      country: 'Deutschland',
+      edit: 'Bearbeiten',
+      delete: 'Löschen',
+      newAddress: '+ Neue Adresse',
+      accountSettings: 'Konto-Einstellungen',
+      changeName: 'Name ändern',
+      emailAddress: 'E-Mail Adresse',
+      passwordSecurity: 'Passwort Sicherheit',
+      changePassword: 'Passwort ändern',
+      newsletter: 'Newsletter',
+      newsletterDesc: 'Erhalte Updates zu neuen Kollektionen.',
+    },
+    footer: {
+      aboutUs: 'Über uns',
+    },
+    levels: [
+      { name: 'Reisender', benefit: 'Zugang zu Standard-Downloads' },
+      { name: 'Entdecker', benefit: '5% Dauerrabatt & Early Access' },
+      { name: 'Gestalter', benefit: 'Kostenlose Sticker monatlich' },
+      { name: 'Visionär', benefit: 'Persönliches Coaching & Retreat-Invite' },
+    ],
+    products: [
+      {
+        description: 'Nicht nur Termine verwalten, sondern Zeit erleben. Dein täglicher Rückzugsort.',
+        details: 'Optimiert für GoodNotes. Über 300 verlinkte Seiten.',
+        shipping: 'Sofortiger Download.',
+      },
+      {
+        description: 'Kleine Momente der Freude. 150+ Sticker für mehr Struktur.',
+        details: 'Transparente PNGs.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Ein stiller Dialog mit dir selbst. Geführte Fragen für mehr Achtsamkeit.',
+        details: 'Interaktive PDF.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Visualisiere das Leben, das auf dich wartet.',
+        details: 'Drag & Drop Elemente.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Achtsamkeit beginnt auf dem Teller.',
+        details: 'Wöchentliche Vorlagen.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Freiheit durch Klarheit. Verstehe deine Finanzströme.',
+        details: 'Automatisierte Summen.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Vom Chaos zum Content. Plane Posts, Reels und Kooperationen an einem Ort.',
+        details: 'Redaktionsplan, Analytics-Tracker, Hashtag-Manager.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Strategie statt operative Hektik. Das Tool für Führungskräfte.',
+        details: 'OKRs, Quartalsplanung, Team-Leadership Templates.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Training für deinen Fokus-Muskel. Blocke Ablenkungen systematisch.',
+        details: 'Pomodoro-Templates, Distraction-Log, Flow-State Guide.',
+        shipping: 'Download.',
+      },
+    ],
   },
   en: {
     nav: { shop: 'Shop', systems: 'System Finder', about: 'About', blog: 'Blog' },
@@ -21,15 +288,282 @@ export const translations = {
       quote: 'A goal without a plan is just a wish.',
       hero: ['Write your', 'own story'],
       pause: 'Sometimes you have to pause.',
+      pauseText:
+        'Have you ever wondered whether you live your life or your calendar lives you? Purple Planning is the invitation to reclaim the space you deserve.',
+      pauseLink: 'Our personal story',
       manifest: 'Our Manifesto',
+      manifestTitle: 'Not another',
+      manifestTodo: 'To-Do.',
+      manifestSubtitle: 'We build tools for your identity.',
+      manifestCards: [
+        {
+          title: "You're doing enough.",
+          text: "Our planners aren't whips. They're anchors. Allow yourself to be proud of simply being.",
+          persona: 'For the High-Performer',
+        },
+        {
+          title: 'Your life is art.',
+          text: "Functionality doesn't have to be ugly. Your planner is an accessory of your identity.",
+          persona: 'For the Aesthete',
+        },
+        {
+          title: 'Peace of mind.',
+          text: "You don't need colorful flowers. You need a system as clear as a winter morning.",
+          persona: 'For the Clarity-Seeker',
+        },
+      ],
+      findSystem: 'Find your system',
       popular: 'Popular Companions',
+      popularSubtitle: 'Community favorites',
+      viewAll: 'View all products',
     },
     cart: {
       title: 'Cart',
       empty: 'Your cart awaits visions',
       checkout: 'Checkout',
       browse: 'Browse now',
+      discountPlaceholder: 'Discount code',
+      subtotal: 'Subtotal',
+      discount: 'Discount',
+      shipping: 'Shipping',
+      shippingFree: 'Free',
+      total: 'Total',
+      added: 'added',
+      bundleAdded: 'System bundle & discount added',
+      discountApplied: 'Discount code applied!',
+      invalidCode: 'Invalid code',
     },
+    shop: {
+      title: 'The Shop',
+      subtitle:
+        'Every plan is a quiet promise to yourself. Fill your time with what helps you grow.',
+    },
+    product: {
+      back: 'Back to overview',
+      notFound: 'Product not found',
+      backToShop: 'Back to shop',
+      tabs: { description: 'Description', details: 'Details', shipping: 'Shipping' },
+      addToCart: 'Start planning',
+      download: 'Instant digital download',
+      selectCompanion: 'Select companion',
+      viewDetails: 'View details',
+    },
+    bundle: {
+      step: 'Step',
+      of: 'of',
+      questions: [
+        {
+          question: 'What holds you back the most right now?',
+          options: [
+            "My head is full, I'm losing focus.",
+            "I'm just functioning instead of living.",
+            "My current tools don't inspire me.",
+          ],
+        },
+        {
+          question: 'How do you prefer to work?',
+          options: [
+            '100% Digital (iPad, Laptop).',
+            'I love paper but want to go more digital.',
+            'Mostly on the go with my phone.',
+          ],
+        },
+        {
+          question: "What's your biggest goal this year?",
+          options: [
+            'Financial freedom & career.',
+            'More mindfulness & inner peace.',
+            'Realize my dreams & content.',
+          ],
+        },
+      ],
+      match: 'Your perfect match',
+      bundlePrice: 'Bundle price',
+      secure: 'Secure your system',
+      restart: 'Retake quiz',
+      results: {
+        ceo: {
+          title: 'The CEO Mindset',
+          desc: 'Strategic clarity for complex projects. Run your life like an enterprise.',
+        },
+        creator: {
+          title: 'The Creator Studio',
+          desc: 'Your planning as a canvas. Aesthetic, visual, and perfect for social media.',
+        },
+        balance: {
+          title: 'The Balance Ritual',
+          desc: 'For high-performers who want to breathe again. Structure meets mindfulness.',
+        },
+      },
+    },
+    about: {
+      tagline: 'From Berlin to Borås',
+      title: 'Behind the',
+      titleAccent: 'Lines',
+      storyTitle: "Why we stopped running.",
+      storyP1:
+        'In Berlin we had everything you supposedly need to be happy. But we felt strangely empty.',
+      storyP2:
+        "It's not that we \"made it\" and are now resting on a farm. Quite the opposite. We realized we were part of a system that rewarded us the faster we ran — and punished us when we wanted to breathe.",
+      storyP3:
+        "That emptiness you feel on Sunday evening when you think about Monday? We know it. And we know: a new planner won't solve the problem if it only serves to manage even more tasks.",
+      storyHighlight:
+        "We're not building Purple Planning for productivity. We're building it for identity. Who are you when you're not working?",
+      storyCta:
+        'Want to learn more about our path out of the hamster wheel? Read our very personal stories.',
+      toBlog: 'To the blog',
+      michelleQuote:
+        '"I used to try squeezing 48 hours into 24. Now I design pages that allow you to do nothing sometimes."',
+      ericQuote:
+        '"Numbers were my world. Now I\'d rather count moments. I make sure our tech serves you, not the other way around."',
+      connect: 'Connect with us',
+      comingSoon: 'Coming soon',
+      dreams: 'What we still dream of',
+      dreamItems: [
+        { t: 'The Modern Gård', desc: 'Minimalism in the forest.' },
+        { t: 'Smultron Café', desc: 'Coffee & real conversations.' },
+        { t: 'Roots Fitness', desc: 'Recharge in nature.' },
+        { t: 'Northern Focus', desc: 'Silent workation.' },
+      ],
+    },
+    blog: {
+      tagline: 'Diary from the forest',
+      title: 'Our journey',
+      titleAccent: 'unfiltered',
+      readMore: 'Read more',
+      posts: [
+        {
+          date: 'January 12, 2025',
+          title: 'The day we said "Stop"',
+          preview:
+            'It was a Tuesday. Grey, wet, Berlin. The calendar was full but the heart was empty. Why it takes courage to drop everything.',
+        },
+        {
+          date: 'February 3, 2025',
+          title: 'Learning to hear silence',
+          preview:
+            'The first nights in Borås were frightening. No sirens, no cars. Just wind. How we learned not to perceive calm as emptiness.',
+        },
+        {
+          date: 'March 15, 2025',
+          title: 'Renovation as therapy',
+          preview:
+            "Tearing down walls has something liberating. Every brushstroke doesn't just cover old paint but also old habits.",
+        },
+        {
+          date: 'April 2, 2025',
+          title: 'Digital minimalism',
+          preview:
+            'Why we use paper again. The haptics of writing as an anchor in a fleeting world.',
+        },
+      ],
+    },
+    roadmap: {
+      title: 'The Path to Tomorrow',
+      subtitle:
+        "We're far from done. Purple Planning grows with you. Here you can see what we're working on in our cabin in Borås.",
+      shortTerm: 'Short-term (Q2 2026)',
+      midTerm: 'Mid-term (Q3 2026)',
+      notionTitle: 'Deep Work Dashboard (Notion)',
+      notionDesc:
+        'Many of you use Notion for work. We bring the "Purple Aesthetics" to your desktop. A template for freelancers and high-performers.',
+      inDev: 'In Development',
+      guidesTitle: 'Seasonal Reflection Guides',
+      guidesDesc: 'A subscription model for the soul. A new workbook every quarter.',
+      concept: 'Concept Phase',
+    },
+    profile: {
+      welcome: 'Welcome,',
+      subtitle: "Great to have you back. Here you manage your journey.",
+      tabs: {
+        overview: 'Overview',
+        orders: 'Orders',
+        addresses: 'Addresses',
+        settings: 'Settings',
+      },
+      logout: 'Sign out',
+      yourStatus: 'Your Status',
+      pointsCollected: 'points collected',
+      pointsTo: 'Only',
+      pointsUntil: 'points',
+      untilLevel: 'until',
+      maxLevel: "You've reached the highest level!",
+      journeyStages: 'Your Journey Stages',
+      orderHistory: 'Your Order History',
+      order: 'Order',
+      from: 'From',
+      items: 'items',
+      completed: 'Completed',
+      addressBook: 'Address Book',
+      default: 'Default',
+      country: 'Germany',
+      edit: 'Edit',
+      delete: 'Delete',
+      newAddress: '+ New Address',
+      accountSettings: 'Account Settings',
+      changeName: 'Change name',
+      emailAddress: 'Email Address',
+      passwordSecurity: 'Password Security',
+      changePassword: 'Change password',
+      newsletter: 'Newsletter',
+      newsletterDesc: 'Get updates on new collections.',
+    },
+    footer: {
+      aboutUs: 'About',
+    },
+    levels: [
+      { name: 'Traveler', benefit: 'Access to standard downloads' },
+      { name: 'Explorer', benefit: '5% permanent discount & early access' },
+      { name: 'Creator', benefit: 'Free stickers monthly' },
+      { name: 'Visionary', benefit: 'Personal coaching & retreat invite' },
+    ],
+    products: [
+      {
+        description: 'Not just managing appointments but experiencing time. Your daily retreat.',
+        details: 'Optimized for GoodNotes. Over 300 linked pages.',
+        shipping: 'Instant download.',
+      },
+      {
+        description: 'Small moments of joy. 150+ stickers for more structure.',
+        details: 'Transparent PNGs.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'A quiet dialogue with yourself. Guided questions for more mindfulness.',
+        details: 'Interactive PDF.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Visualize the life waiting for you.',
+        details: 'Drag & drop elements.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Mindfulness starts on the plate.',
+        details: 'Weekly templates.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Freedom through clarity. Understand your financial flows.',
+        details: 'Automated sums.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'From chaos to content. Plan posts, reels, and collaborations in one place.',
+        details: 'Editorial calendar, analytics tracker, hashtag manager.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Strategy over operational frenzy. The tool for leaders.',
+        details: 'OKRs, quarterly planning, team leadership templates.',
+        shipping: 'Download.',
+      },
+      {
+        description: 'Training for your focus muscle. Block distractions systematically.',
+        details: 'Pomodoro templates, distraction log, flow state guide.',
+        shipping: 'Download.',
+      },
+    ],
   },
   se: {
     nav: { shop: 'Butik', systems: 'Systemhittare', about: 'Om oss', blog: 'Blogg' },
@@ -37,14 +571,281 @@ export const translations = {
       quote: 'Ett mål utan en plan är bara en önskan.',
       hero: ['Skriv din', 'egen historia'],
       pause: 'Ibland måste man pausa.',
+      pauseText:
+        'Har du någonsin undrat om du lever ditt liv eller om din kalender lever dig? Purple Planning är inbjudan att ta tillbaka det utrymme du förtjänar.',
+      pauseLink: 'Vår personliga historia',
       manifest: 'Vårt Manifest',
+      manifestTitle: 'Inte ännu en',
+      manifestTodo: 'To-Do.',
+      manifestSubtitle: 'Vi bygger verktyg för din identitet.',
+      manifestCards: [
+        {
+          title: 'Du gör tillräckligt.',
+          text: 'Våra planerare är inga piskor. De är ankare. Tillåt dig att vara stolt över att bara vara.',
+          persona: 'För högpresteraren',
+        },
+        {
+          title: 'Ditt liv är konst.',
+          text: 'Funktionalitet behöver inte vara fult. Din planerare är ett tillbehör till din identitet.',
+          persona: 'För esteten',
+        },
+        {
+          title: 'Lugn i huvudet.',
+          text: 'Du behöver inga färgglada blommor. Du behöver ett system lika klart som en vintermorgon.',
+          persona: 'För den klarhetssökande',
+        },
+      ],
+      findSystem: 'Hitta ditt system',
       popular: 'Populära Följeslagare',
+      popularSubtitle: 'Communityns favoriter',
+      viewAll: 'Visa alla produkter',
     },
     cart: {
       title: 'Varukorg',
       empty: 'Din korg väntar på visioner',
       checkout: 'Till kassan',
       browse: 'Bläddra nu',
+      discountPlaceholder: 'Rabattkod',
+      subtotal: 'Delsumma',
+      discount: 'Rabatt',
+      shipping: 'Frakt',
+      shippingFree: 'Gratis',
+      total: 'Totalt',
+      added: 'tillagd',
+      bundleAdded: 'Systempaket & rabatt tillagd',
+      discountApplied: 'Rabattkod tillämpad!',
+      invalidCode: 'Ogiltig kod',
     },
+    shop: {
+      title: 'Butiken',
+      subtitle:
+        'Varje plan är ett tyst löfte till dig själv. Fyll din tid med det som får dig att växa.',
+    },
+    product: {
+      back: 'Tillbaka till översikten',
+      notFound: 'Produkten hittades inte',
+      backToShop: 'Tillbaka till butiken',
+      tabs: { description: 'Beskrivning', details: 'Detaljer', shipping: 'Frakt' },
+      addToCart: 'Börja planera',
+      download: 'Omedelbar digital nedladdning',
+      selectCompanion: 'Välj följeslagare',
+      viewDetails: 'Visa detaljer',
+    },
+    bundle: {
+      step: 'Steg',
+      of: 'av',
+      questions: [
+        {
+          question: 'Vad hindrar dig mest just nu?',
+          options: [
+            'Mitt huvud är fullt, jag tappar fokus.',
+            'Jag bara fungerar istället för att leva.',
+            'Mina nuvarande verktyg inspirerar mig inte.',
+          ],
+        },
+        {
+          question: 'Hur föredrar du att arbeta?',
+          options: [
+            '100% Digitalt (iPad, Laptop).',
+            'Jag älskar papper men vill bli mer digital.',
+            'Mycket på språng med mobilen.',
+          ],
+        },
+        {
+          question: 'Vad är ditt största mål i år?',
+          options: [
+            'Ekonomisk frihet & karriär.',
+            'Mer medvetenhet & inre lugn.',
+            'Förverkliga mina drömmar & content.',
+          ],
+        },
+      ],
+      match: 'Din perfekta match',
+      bundlePrice: 'Paketpris',
+      secure: 'Säkra ditt system',
+      restart: 'Gör om testet',
+      results: {
+        ceo: {
+          title: 'CEO-Mindset',
+          desc: 'Strategisk klarhet för komplexa projekt. Led ditt liv som ett företag.',
+        },
+        creator: {
+          title: 'Creator-Studion',
+          desc: 'Din planering som duk. Estetisk, visuell och perfekt för sociala medier.',
+        },
+        balance: {
+          title: 'Balans-Ritualen',
+          desc: 'För högpresterare som vill andas igen. Struktur möter medvetenhet.',
+        },
+      },
+    },
+    about: {
+      tagline: 'Från Berlin till Borås',
+      title: 'Bakom',
+      titleAccent: 'Linjerna',
+      storyTitle: 'Varför vi slutade springa.',
+      storyP1:
+        'I Berlin hade vi egentligen allt man behöver för att vara "lycklig". Men vi kände oss märkligt tomma.',
+      storyP2:
+        'Det handlar inte om att vi "klarat det" och nu vilar på en gård. Tvärtom. Vi insåg att vi var en del av ett system som belönade oss ju snabbare vi sprang — och straffade oss när vi ville andas.',
+      storyP3:
+        'Den tomheten man känner på söndagskvällen när man tänker på måndagen? Den känner vi. Och vi vet: en ny planerare löser inte problemet om den bara tjänar till att hantera ännu fler uppgifter.',
+      storyHighlight:
+        'Vi bygger inte Purple Planning för produktivitet. Vi bygger det för identitet. Vem är du när du inte arbetar?',
+      storyCta:
+        'Vill du veta mer om vår väg ut ur ekorrhjulet? Läs våra personliga berättelser.',
+      toBlog: 'Till bloggen',
+      michelleQuote:
+        '"Förr försökte jag klämma in 48 timmar i 24. Nu designar jag sidor som låter dig göra ingenting ibland."',
+      ericQuote:
+        '"Siffror var min värld. Nu räknar jag hellre ögonblick. Jag ser till att vår teknik tjänar dig, inte tvärtom."',
+      connect: 'Kontakta oss',
+      comingSoon: 'Kommer snart',
+      dreams: 'Vad vi fortfarande drömmer om',
+      dreamItems: [
+        { t: 'The Modern Gård', desc: 'Minimalism i skogen.' },
+        { t: 'Smultron Café', desc: 'Kaffe & riktiga samtal.' },
+        { t: 'Roots Fitness', desc: 'Ladda om i naturen.' },
+        { t: 'Northern Focus', desc: 'Tyst workation.' },
+      ],
+    },
+    blog: {
+      tagline: 'Dagbok från skogen',
+      title: 'Vår resa',
+      titleAccent: 'osminkad',
+      readMore: 'Läs mer',
+      posts: [
+        {
+          date: '12 januari 2025',
+          title: 'Dagen vi sa "Stopp"',
+          preview:
+            'Det var en tisdag. Grå, våt, Berlin. Kalendern var full men hjärtat var tomt. Varför det krävs mod att släppa allt.',
+        },
+        {
+          date: '3 februari 2025',
+          title: 'Lära sig höra tystnaden',
+          preview:
+            'De första nätterna i Borås var skrämmande. Inga sirener, inga bilar. Bara vind. Hur vi lärde oss att inte uppfatta lugnet som tomhet.',
+        },
+        {
+          date: '15 mars 2025',
+          title: 'Renovering som terapi',
+          preview:
+            'Att riva väggar har något befriande. Varje penseldrag täcker inte bara gammal färg utan också gamla vanor.',
+        },
+        {
+          date: '2 april 2025',
+          title: 'Digital minimalism',
+          preview:
+            'Varför vi använder papper igen. Känslan av att skriva som ett ankare i en flyktig värld.',
+        },
+      ],
+    },
+    roadmap: {
+      title: 'Vägen till Imorgon',
+      subtitle:
+        'Vi är långt ifrån klara. Purple Planning växer med dig. Här ser du vad vi arbetar med i vår stuga i Borås.',
+      shortTerm: 'Kortsiktigt (Q2 2026)',
+      midTerm: 'Medelsiktigt (Q3 2026)',
+      notionTitle: 'Deep Work Dashboard (Notion)',
+      notionDesc:
+        'Många av er använder Notion för arbete. Vi tar "Purple Aesthetics" till ert skrivbord. En mall för frilansare och högpresterare.',
+      inDev: 'Under utveckling',
+      guidesTitle: 'Säsongsreflektionsguider',
+      guidesDesc: 'En prenumerationsmodell för själen. En ny arbetsbok varje kvartal.',
+      concept: 'Konceptfas',
+    },
+    profile: {
+      welcome: 'Välkommen,',
+      subtitle: 'Kul att du är tillbaka. Här hanterar du din resa.',
+      tabs: {
+        overview: 'Översikt',
+        orders: 'Beställningar',
+        addresses: 'Adresser',
+        settings: 'Inställningar',
+      },
+      logout: 'Logga ut',
+      yourStatus: 'Din Status',
+      pointsCollected: 'poäng samlade',
+      pointsTo: 'Bara',
+      pointsUntil: 'poäng',
+      untilLevel: 'till',
+      maxLevel: 'Du har nått den högsta nivån!',
+      journeyStages: 'Dina Reseetapper',
+      orderHistory: 'Din Beställningshistorik',
+      order: 'Beställning',
+      from: 'Från',
+      items: 'artiklar',
+      completed: 'Avslutad',
+      addressBook: 'Adressbok',
+      default: 'Standard',
+      country: 'Tyskland',
+      edit: 'Redigera',
+      delete: 'Ta bort',
+      newAddress: '+ Ny Adress',
+      accountSettings: 'Kontoinställningar',
+      changeName: 'Ändra namn',
+      emailAddress: 'E-postadress',
+      passwordSecurity: 'Lösenordssäkerhet',
+      changePassword: 'Ändra lösenord',
+      newsletter: 'Nyhetsbrev',
+      newsletterDesc: 'Få uppdateringar om nya kollektioner.',
+    },
+    footer: {
+      aboutUs: 'Om oss',
+    },
+    levels: [
+      { name: 'Resenär', benefit: 'Tillgång till standardnedladdningar' },
+      { name: 'Utforskare', benefit: '5% permanent rabatt & tidig tillgång' },
+      { name: 'Skapare', benefit: 'Gratis stickers månadsvis' },
+      { name: 'Visionär', benefit: 'Personlig coaching & retreat-inbjudan' },
+    ],
+    products: [
+      {
+        description: 'Inte bara hantera möten utan uppleva tid. Din dagliga fristad.',
+        details: 'Optimerad för GoodNotes. Över 300 länkade sidor.',
+        shipping: 'Omedelbar nedladdning.',
+      },
+      {
+        description: 'Små stunder av glädje. 150+ stickers för mer struktur.',
+        details: 'Transparenta PNG:er.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'En tyst dialog med dig själv. Guidade frågor för mer medvetenhet.',
+        details: 'Interaktiv PDF.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Visualisera livet som väntar på dig.',
+        details: 'Dra och släpp-element.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Medvetenhet börjar på tallriken.',
+        details: 'Veckomallar.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Frihet genom klarhet. Förstå dina finansiella flöden.',
+        details: 'Automatiserade summor.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Från kaos till content. Planera inlägg, reels och samarbeten på ett ställe.',
+        details: 'Redaktionsplan, analysverktyg, hashtag-hanterare.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Strategi istället för operativ hets. Verktyget för ledare.',
+        details: 'OKR:er, kvartalsplanering, team-ledarskapsmallar.',
+        shipping: 'Nedladdning.',
+      },
+      {
+        description: 'Träning för din fokusmoskel. Blockera distraktioner systematiskt.',
+        details: 'Pomodoro-mallar, distraktionslogg, flow-tillståndsguide.',
+        shipping: 'Nedladdning.',
+      },
+    ],
   },
 };

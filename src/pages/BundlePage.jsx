@@ -16,42 +16,30 @@ import { fontSerif, fontSans } from '../data/styles';
 import { products } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useCart } from '../hooks/useCart';
+import { useLanguage } from '../hooks/useLanguage';
 
-const STEPS = [
-  {
-    question: 'Was hindert dich aktuell am meisten?',
-    options: [
-      { id: 'chaos', text: 'Mein Kopf ist voll, ich verliere den Fokus.', icon: Zap },
-      { id: 'stress', text: 'Ich funktioniere nur noch, statt zu leben.', icon: Coffee },
-      { id: 'ugly', text: 'Meine aktuellen Tools inspirieren mich nicht.', icon: Sparkle },
-    ],
-  },
-  {
-    question: 'Wie arbeitest du am liebsten?',
-    options: [
-      { id: 'digital', text: '100% Digital (iPad, Laptop).', icon: Laptop },
-      { id: 'hybrid', text: 'Ich liebe Papier, will aber digitaler werden.', icon: BookOpen },
-      { id: 'mobile', text: 'Viel unterwegs am Smartphone.', icon: Smartphone },
-    ],
-  },
-  {
-    question: 'Was ist dein größtes Ziel für dieses Jahr?',
-    options: [
-      { id: 'financial', text: 'Finanzielle Freiheit & Karriere.', icon: CreditCard },
-      { id: 'mindful', text: 'Mehr Achtsamkeit & innere Ruhe.', icon: Heart },
-      { id: 'visual', text: 'Meine Träume & Content verwirklichen.', icon: Star },
-    ],
-  },
+const OPTION_IDS = [
+  ['chaos', 'stress', 'ugly'],
+  ['digital', 'hybrid', 'mobile'],
+  ['financial', 'mindful', 'visual'],
 ];
 
-function resolveBundle(selections) {
+const OPTION_ICONS = [
+  [Zap, Coffee, Sparkle],
+  [Laptop, BookOpen, Smartphone],
+  [CreditCard, Heart, Star],
+];
+
+function resolveBundle(selections, t) {
   const painPoint = selections[0]?.id;
   const goal = selections[2]?.id;
 
+  const results = t('bundle', 'results');
+
   if (painPoint === 'chaos' || goal === 'financial') {
     return {
-      title: 'Das CEO-Mindset',
-      desc: 'Strategische Klarheit für komplexe Projekte. Führe dein Leben wie ein Unternehmen.',
+      title: results.ceo.title,
+      desc: results.ceo.desc,
       items: [products[0], products[7], products[5]],
       discount: 20,
       code: 'CEO20',
@@ -60,8 +48,8 @@ function resolveBundle(selections) {
 
   if (painPoint === 'ugly' || goal === 'visual') {
     return {
-      title: 'Das Creator-Studio',
-      desc: 'Deine Planung als Leinwand. Ästhetisch, visuell und perfekt für Social Media.',
+      title: results.creator.title,
+      desc: results.creator.desc,
       items: [products[0], products[6], products[1]],
       discount: 15,
       code: 'CREATOR15',
@@ -69,8 +57,8 @@ function resolveBundle(selections) {
   }
 
   return {
-    title: 'Das Balance-Ritual',
-    desc: 'Für High-Performer, die wieder atmen wollen. Struktur trifft auf Achtsamkeit.',
+    title: results.balance.title,
+    desc: results.balance.desc,
     items: [products[0], products[2], products[4]],
     discount: 15,
     code: 'BALANCE15',
@@ -81,22 +69,24 @@ export default function BundlePage() {
   const navigate = useNavigate();
   const { darkMode, textMuted, cardBg } = useTheme();
   const { addBundleToCart } = useCart();
+  const { t } = useLanguage();
   const [step, setStep] = useState(0);
   const [selections, setSelections] = useState([]);
 
   const isResult = step === 'result';
+  const questions = t('bundle', 'questions');
 
-  const handleOption = (option) => {
-    const next = [...selections, option];
+  const handleOption = (optionId) => {
+    const next = [...selections, { id: optionId }];
     setSelections(next);
-    if (step < STEPS.length - 1) {
+    if (step < questions.length - 1) {
       setStep(step + 1);
     } else {
       setStep('result');
     }
   };
 
-  const bundle = isResult ? resolveBundle(selections) : null;
+  const bundle = isResult ? resolveBundle(selections, t) : null;
 
   const actionButtonStyle =
     'bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
@@ -106,18 +96,19 @@ export default function BundlePage() {
       {!isResult ? (
         <>
           <p style={fontSans} className={`${textMuted} font-bold uppercase tracking-widest mb-10`}>
-            Schritt {step + 1} von {STEPS.length}
+            {t('bundle', 'step')} {step + 1} {t('bundle', 'of')} {questions.length}
           </p>
           <h2 style={fontSerif} className="text-4xl md:text-5xl italic mb-14 md:mb-16">
-            {STEPS[step].question}
+            {questions[step].question}
           </h2>
           <div className="grid md:grid-cols-3 gap-7 md:gap-8">
-            {STEPS[step].options.map((opt) => {
-              const Icon = opt.icon;
+            {questions[step].options.map((optText, optIdx) => {
+              const Icon = OPTION_ICONS[step][optIdx];
+              const optId = OPTION_IDS[step][optIdx];
               return (
                 <button
-                  key={opt.id}
-                  onClick={() => handleOption(opt)}
+                  key={optId}
+                  onClick={() => handleOption(optId)}
                   className={`card-hover p-9 md:p-10 rounded-[2rem] border flex flex-col items-center text-center group ${cardBg} ${
                     darkMode ? 'hover:border-purple-400/40' : 'hover:border-purple-300'
                   }`}
@@ -131,7 +122,7 @@ export default function BundlePage() {
                   >
                     <Icon size={26} strokeWidth={1.5} />
                   </div>
-                  <p className="font-medium text-base md:text-lg leading-relaxed">{opt.text}</p>
+                  <p className="font-medium text-base md:text-lg leading-relaxed">{optText}</p>
                 </button>
               );
             })}
@@ -144,7 +135,7 @@ export default function BundlePage() {
               darkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-50 text-green-700'
             }`}
           >
-            Dein perfektes Match
+            {t('bundle', 'match')}
           </div>
           <h2 style={fontSerif} className="text-5xl italic mb-5">
             {bundle.title}
@@ -181,7 +172,7 @@ export default function BundlePage() {
                       {item.description.substring(0, 60)}...
                     </p>
                     <p className="text-xs text-purple-500 mt-1 font-bold">
-                      Details ansehen &rarr;
+                      {t('product', 'viewDetails')} &rarr;
                     </p>
                   </div>
                 </div>
@@ -195,7 +186,7 @@ export default function BundlePage() {
             >
               <div>
                 <p className="text-xs uppercase font-bold text-gray-400 mb-1">
-                  Bundle Preis (Code:{' '}
+                  {t('bundle', 'bundlePrice')} (Code:{' '}
                   <span className="text-purple-500">{bundle.code}</span>)
                 </p>
                 <div className="flex items-center gap-3">
@@ -215,7 +206,7 @@ export default function BundlePage() {
                 onClick={() => addBundleToCart(bundle.items, bundle.code, bundle.discount)}
                 className={`${actionButtonStyle} w-full sm:w-auto px-8`}
               >
-                System sichern <ArrowRight size={18} />
+                {t('bundle', 'secure')} <ArrowRight size={18} />
               </button>
             </div>
           </div>
@@ -227,7 +218,7 @@ export default function BundlePage() {
             }}
             className="text-gray-400 hover:text-purple-500 text-sm transition-colors"
           >
-            Test wiederholen
+            {t('bundle', 'restart')}
           </button>
         </div>
       )}

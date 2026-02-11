@@ -16,24 +16,23 @@ import {
 import { fontSerif, fontSans } from '../data/styles';
 import { getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
+import { useLanguage } from '../hooks/useLanguage';
 
 const SOCIAL_LINKS = [
-  { name: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-50' },
-  { name: 'TikTok', icon: Video, color: 'text-black dark:text-white', bg: 'bg-gray-100 dark:bg-white/10' },
-  { name: 'Etsy Shop', icon: ShoppingBag, color: 'text-orange-500', bg: 'bg-orange-50' },
-  { name: 'Bald verfügbar', icon: Plus, color: 'text-gray-400', bg: 'bg-gray-50 dark:bg-white/5' },
+  { nameKey: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-50' },
+  { nameKey: 'TikTok', icon: Video, color: 'text-black dark:text-white', bg: 'bg-gray-100 dark:bg-white/10' },
+  { nameKey: 'Etsy Shop', icon: ShoppingBag, color: 'text-orange-500', bg: 'bg-orange-50' },
+  { nameKey: 'comingSoon', icon: Plus, color: 'text-gray-400', bg: 'bg-gray-50 dark:bg-white/5' },
 ];
 
-const DREAMS = [
-  { t: 'The Modern Gård', desc: 'Minimalismus im Wald.', icon: Home },
-  { t: 'Smultron Café', desc: 'Kaffee & echte Gespräche.', icon: Utensils },
-  { t: 'Roots Fitness', desc: 'Kraft tanken in der Natur.', icon: Target },
-  { t: 'Northern Focus', desc: 'Stille Workation.', icon: Laptop },
-];
+const DREAM_ICONS = [Home, Utensils, Target, Laptop];
 
 export default function AboutPage() {
   const navigate = useNavigate();
   const { darkMode, cardBg, borderColor } = useTheme();
+  const { t } = useLanguage();
+
+  const dreamItems = t('about', 'dreamItems');
 
   const linkButtonStyle = `text-[10px] uppercase tracking-[0.4em] font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
     darkMode
@@ -51,10 +50,10 @@ export default function AboutPage() {
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
-          Von Berlin nach Borås
+          {t('about', 'tagline')}
         </div>
         <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight text-center">
-          Hinter den <span className="text-purple-600">Linien</span>.
+          {t('about', 'title')} <span className="text-purple-600">{t('about', 'titleAccent')}</span>.
         </h2>
       </header>
 
@@ -68,26 +67,13 @@ export default function AboutPage() {
         >
           <div className="space-y-7 text-left">
             <h3 style={fontSerif} className="text-2xl md:text-3xl text-purple-600 italic">
-              Warum wir nicht mehr rennen.
+              {t('about', 'storyTitle')}
             </h3>
-            <p>
-              In Berlin hatten wir eigentlich alles, was man zum „Glücklichsein" braucht. Aber wir
-              fühlten uns seltsam leer.
-            </p>
-            <p>
-              Es geht nicht darum, dass wir &quot;es geschafft&quot; hatten und uns nun auf einem
-              Bauernhof ausruhen. Ganz im Gegenteil. Wir haben gemerkt, dass wir Teil eines Systems
-              waren, das uns belohnt hat, je schneller wir liefen – und uns bestraft hat, wenn wir
-              atmen wollten.
-            </p>
-            <p>
-              Diese Leere, die man am Sonntagabend spürt, wenn man an den Montag denkt? Die kennen
-              wir. Und wir wissen: Ein neuer Planer löst das Problem nicht, wenn er nur dazu dient,
-              noch mehr Aufgaben zu verwalten.
-            </p>
+            <p>{t('about', 'storyP1')}</p>
+            <p>{t('about', 'storyP2')}</p>
+            <p>{t('about', 'storyP3')}</p>
             <p className="font-medium text-purple-600 italic">
-              Wir bauen Purple Planning nicht für die Produktivität. Wir bauen es für die Identität.
-              Wer bist du, wenn du nicht arbeitest?
+              {t('about', 'storyHighlight')}
             </p>
             <div
               className={`p-7 rounded-2xl border mt-10 ${
@@ -101,11 +87,10 @@ export default function AboutPage() {
                   darkMode ? 'text-purple-300' : 'text-purple-900'
                 }`}
               >
-                Möchtest du mehr über unseren Weg aus dem Hamsterrad erfahren? Lies unsere ganz
-                persönlichen Geschichten.
+                {t('about', 'storyCta')}
               </p>
               <button onClick={() => navigate('/blog')} className={linkButtonStyle}>
-                Zum Blog <ArrowRight size={14} />
+                {t('about', 'toBlog')} <ArrowRight size={14} />
               </button>
             </div>
           </div>
@@ -128,15 +113,13 @@ export default function AboutPage() {
             name: 'Michelle',
             icon: Camera,
             accentIcon: Coffee,
-            quote:
-              '„Früher habe ich versucht, 48 Stunden in 24 zu quetschen. Heute gestalte ich Seiten, die dir erlauben, auch mal nichts zu tun."',
+            quote: t('about', 'michelleQuote'),
           },
           {
             name: 'Eric',
             icon: Laptop,
             accentIcon: Zap,
-            quote:
-              '„Zahlen waren meine Welt. Jetzt zähle ich lieber Momente. Ich sorge dafür, dass unsere Technik dir dient, nicht umgekehrt."',
+            quote: t('about', 'ericQuote'),
           },
         ].map((person) => {
           const Icon = person.icon;
@@ -174,11 +157,12 @@ export default function AboutPage() {
       {/* Social Media */}
       <div className="mb-28 md:mb-36">
         <h4 style={fontSerif} className="text-3xl italic mb-14 text-center">
-          Verbinde dich
+          {t('about', 'connect')}
         </h4>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {SOCIAL_LINKS.map((social, i) => {
             const Icon = social.icon;
+            const displayName = social.nameKey === 'comingSoon' ? t('about', 'comingSoon') : social.nameKey;
             return (
               <div
                 key={i}
@@ -190,7 +174,7 @@ export default function AboutPage() {
                   <Icon size={24} />
                 </div>
                 <span style={fontSans} className="font-bold text-sm tracking-wide">
-                  {social.name}
+                  {displayName}
                 </span>
               </div>
             );
@@ -201,11 +185,11 @@ export default function AboutPage() {
       {/* Dreams */}
       <div className={`pt-20 md:pt-28 border-t ${borderColor}`}>
         <h4 style={fontSerif} className="text-3xl italic mb-14 text-center">
-          Was wir noch träumen
+          {t('about', 'dreams')}
         </h4>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-          {DREAMS.map((p, i) => {
-            const Icon = p.icon;
+          {dreamItems.map((p, i) => {
+            const Icon = DREAM_ICONS[i];
             return (
               <div
                 key={i}

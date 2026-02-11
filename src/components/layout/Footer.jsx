@@ -1,10 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
+import { useLanguage } from '../../hooks/useLanguage';
 
 export default function Footer() {
   const navigate = useNavigate();
   const { darkMode } = useTheme();
+  const { t } = useLanguage();
 
   return (
     <footer
@@ -26,19 +28,19 @@ export default function Footer() {
           onClick={() => navigate('/shop')}
           className="hover:text-purple-600 hover:opacity-100 transition-all"
         >
-          Shop
+          {t('nav', 'shop')}
         </button>
         <button
           onClick={() => navigate('/about')}
           className="hover:text-purple-600 hover:opacity-100 transition-all"
         >
-          Über uns
+          {t('footer', 'aboutUs')}
         </button>
         <button
           onClick={() => navigate('/blog')}
           className="hover:text-purple-600 hover:opacity-100 transition-all"
         >
-          Blog
+          {t('nav', 'blog')}
         </button>
       </div>
       <div className={`w-16 h-px mx-auto mb-10 ${darkMode ? 'bg-white/[0.06]' : 'bg-purple-200/40'}`} />
