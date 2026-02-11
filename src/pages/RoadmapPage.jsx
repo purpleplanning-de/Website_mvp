@@ -8,7 +8,7 @@ export default function RoadmapPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 py-20 md:py-28 animate-in fade-in text-left pt-12">
+    <div className="max-w-5xl mx-auto px-8 md:px-12 py-20 md:py-28 animate-in fade-in text-left pt-16">
       <header className="text-center mb-20 md:mb-28">
         <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7 italic">
           {t('roadmap', 'title')}
