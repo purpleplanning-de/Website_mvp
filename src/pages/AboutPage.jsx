@@ -52,7 +52,7 @@ export default function AboutPage() {
         >
           {t('about', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight text-center">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center">
           {t('about', 'title')} <span className="text-purple-600">{t('about', 'titleAccent')}</span>.
         </h2>
       </header>

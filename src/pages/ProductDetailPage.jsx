@@ -41,7 +41,7 @@ export default function ProductDetailPage() {
   }
 
   const actionButtonStyle =
-    'w-full bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
+    'w-full bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
     <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-16 animate-in fade-in duration-500 text-left pt-16">
@@ -101,7 +101,7 @@ export default function ProductDetailPage() {
                 ({product.reviews} Reviews)
               </span>
             </div>
-            <h2 style={fontSerif} className="text-4xl md:text-5xl italic leading-tight text-left mb-3">
+            <h2 style={fontSerif} className="text-4xl md:text-5xl leading-tight text-left mb-3">
               {product.name}
             </h2>
             <p style={fontSans} className={`text-2xl md:text-3xl font-light ${textMuted}`}>

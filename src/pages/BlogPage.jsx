@@ -28,7 +28,7 @@ export default function BlogPage() {
         >
           {t('blog', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight">
           {t('blog', 'title')}
           <br />
           <span className="text-purple-600">{t('blog', 'titleAccent')}</span>.

@@ -58,7 +58,7 @@ export default function NotFoundPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
           style={fontSerif}
-          className={`text-4xl md:text-5xl italic mb-4 ${textMain}`}
+          className={`text-4xl md:text-5xl mb-4 ${textMain}`}
         >
           Page not found
         </motion.h1>

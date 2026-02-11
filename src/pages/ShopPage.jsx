@@ -40,7 +40,7 @@ export default function ShopPage() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16 md:mb-24 mt-6 md:mt-12"
       >
-        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 italic text-center">
+        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 text-center">
           {t('shop', 'title')}
         </h2>
         <p
