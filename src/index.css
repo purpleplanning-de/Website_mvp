@@ -40,6 +40,18 @@ body {
   color: inherit;
 }
 
+/* Focus-visible for accessibility (WCAG 2.2) */
+*:focus-visible {
+  outline: 2px solid #9333ea;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Remove default outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* Animate-in utilities */
 @keyframes fade-in {
   from { opacity: 0; }

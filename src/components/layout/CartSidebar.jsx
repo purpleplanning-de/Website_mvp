@@ -8,6 +8,8 @@ import {
   Check,
   ArrowRight,
   CreditCard,
+  AlertCircle,
+  CheckCircle,
 } from 'lucide-react';
 import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
@@ -25,6 +27,7 @@ export default function CartSidebar() {
     discountCode,
     setDiscountCode,
     appliedDiscount,
+    discountError,
     updateQuantity,
     removeFromCart,
     applyDiscount,
@@ -71,9 +74,10 @@ export default function CartSidebar() {
             </h2>
             <button
               onClick={() => setIsCartOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-full"
+              aria-label={t('cart', 'close')}
+              className="p-2 hover:bg-white/10 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
-              <X size={24} />
+              <X size={24} aria-hidden="true" />
             </button>
           </div>
 
@@ -104,7 +108,7 @@ export default function CartSidebar() {
                       className="w-20 h-24 rounded-xl overflow-hidden shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
                       onClick={() => goToProduct(item)}
                     >
-                      <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} />
+                      <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} loading="lazy" />
                     </div>
                     <div className="flex-grow flex flex-col justify-between h-24 py-1">
                       <div>
@@ -128,23 +132,32 @@ export default function CartSidebar() {
                       </div>
                       <div className="flex items-center justify-between">
                         <div
-                          className={`flex items-center gap-3 ${
+                          className={`flex items-center gap-2 ${
                             darkMode ? 'bg-black/20' : 'bg-gray-50'
-                          } rounded-lg px-2 py-1`}
+                          } rounded-lg px-1 py-1`}
                         >
-                          <button onClick={() => updateQuantity(item.id, -1)}>
-                            <Minus size={14} />
+                          <button
+                            onClick={() => updateQuantity(item.id, -1)}
+                            aria-label={t('cart', 'decreaseQuantity')}
+                            className="min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
+                          >
+                            <Minus size={14} aria-hidden="true" />
                           </button>
-                          <span className="text-xs font-bold w-4 text-center">{item.qty}</span>
-                          <button onClick={() => updateQuantity(item.id, 1)}>
-                            <Plus size={14} />
+                          <span className="text-xs font-bold w-6 text-center" aria-label={`${t('cart', 'quantity')}: ${item.qty}`}>{item.qty}</span>
+                          <button
+                            onClick={() => updateQuantity(item.id, 1)}
+                            aria-label={t('cart', 'increaseQuantity')}
+                            className="min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
+                          >
+                            <Plus size={14} aria-hidden="true" />
                           </button>
                         </div>
                         <button
                           onClick={() => removeFromCart(item.id)}
-                          className="text-gray-400 hover:text-red-400"
+                          aria-label={`${t('cart', 'remove')} ${item.name}`}
+                          className="text-gray-400 hover:text-red-400 min-w-[32px] min-h-[32px] flex items-center justify-center"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={16} aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -158,24 +171,56 @@ export default function CartSidebar() {
           {cart.length > 0 && (
             <div className="pt-6 border-t border-white/10 space-y-4">
               {/* Discount Input */}
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder={t('cart', 'discountPlaceholder')}
-                  value={discountCode}
-                  onChange={(e) => setDiscountCode(e.target.value)}
-                  className={`w-full px-4 py-2 rounded-xl text-sm outline-none border focus:border-purple-500 uppercase tracking-wider font-bold ${
-                    darkMode
-                      ? 'bg-white/10 border-transparent text-white'
-                      : 'bg-gray-50 border-gray-200 text-black'
-                  }`}
-                />
-                <button
-                  onClick={applyDiscount}
-                  className="bg-purple-600 text-white px-4 rounded-xl hover:bg-purple-700 transition-colors"
-                >
-                  <Check size={18} />
-                </button>
+              <div className="space-y-2">
+                <div className="flex gap-2 relative">
+                  <div className="relative flex-1">
+                    <input
+                      type="text"
+                      placeholder={t('cart', 'discountPlaceholder')}
+                      value={discountCode}
+                      onChange={(e) => setDiscountCode(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && applyDiscount()}
+                      aria-invalid={discountError ? 'true' : 'false'}
+                      aria-describedby="discount-error"
+                      className={`w-full px-4 py-2 pr-10 rounded-xl text-sm outline-none border-2 transition-all uppercase tracking-wider font-bold ${
+                        discountError
+                          ? 'border-red-500 focus:border-red-600'
+                          : appliedDiscount.code
+                            ? 'border-green-500 focus:border-green-600'
+                            : darkMode
+                              ? 'bg-white/10 border-transparent text-white focus:border-purple-500'
+                              : 'bg-gray-50 border-gray-200 text-black focus:border-purple-500'
+                      }`}
+                    />
+                    {appliedDiscount.code && !discountCode && (
+                      <CheckCircle
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-green-500"
+                        size={16}
+                        aria-hidden="true"
+                      />
+                    )}
+                    {discountError && (
+                      <AlertCircle
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500"
+                        size={16}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </div>
+                  <button
+                    onClick={applyDiscount}
+                    aria-label={t('cart', 'applyDiscount')}
+                    className="bg-purple-600 text-white px-4 rounded-xl hover:bg-purple-700 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  >
+                    <Check size={18} aria-hidden="true" />
+                  </button>
+                </div>
+                {discountError && (
+                  <p id="discount-error" className="text-red-500 text-xs flex items-center gap-1 animate-in slide-in-from-top-2">
+                    <AlertCircle size={12} aria-hidden="true" />
+                    {t('cart', 'invalidCode')}
+                  </p>
+                )}
               </div>
 
               {/* Totals */}

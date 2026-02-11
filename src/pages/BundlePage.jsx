@@ -159,7 +159,7 @@ export default function BundlePage() {
                   onClick={() => navigate(`/product/${item.id}`)}
                 >
                   <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0">
-                    <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} />
+                    <img src={item.images[0]} className="w-full h-full object-cover" alt={item.name} loading="lazy" />
                   </div>
                   <div className="flex-grow">
                     <div className="flex justify-between items-center">

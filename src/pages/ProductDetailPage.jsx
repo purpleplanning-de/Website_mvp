@@ -64,6 +64,7 @@ export default function ProductDetailPage() {
           >
             <img
               src={product.images[currentImageIndex] || product.images[0]}
+              loading="lazy"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               alt={product.name}
             />
@@ -79,7 +80,7 @@ export default function ProductDetailPage() {
                     : 'border-transparent opacity-50 hover:opacity-100'
                 }`}
               >
-                <img src={img} className="w-full h-full object-cover" alt="" />
+                <img src={img} className="w-full h-full object-cover" alt="" loading="lazy" />
               </button>
             ))}
           </div>
