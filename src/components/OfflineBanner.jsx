@@ -14,10 +14,12 @@ export default function OfflineBanner() {
   const [wasOffline, setWasOffline] = useState(false);
 
   useEffect(() => {
+    let timeoutId = null;
+
     const handleOnline = () => {
       setIsOnline(true);
       // Keep the "back online" message for 3 seconds
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setWasOffline(false);
       }, 3000);
     };
@@ -33,6 +35,10 @@ export default function OfflineBanner() {
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
+      // Clear timeout to prevent memory leak
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
   }, []);
 

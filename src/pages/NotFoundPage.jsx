@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Home, ShoppingBag, Search, ArrowLeft, Sparkle } from 'lucide-react';
+import { Home, ShoppingBag, ArrowLeft, Sparkle } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';

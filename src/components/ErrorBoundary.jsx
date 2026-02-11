@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { motion } from 'framer-motion';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 /**
  * Error Boundary Component
@@ -10,6 +11,8 @@ import { fontSerif, fontSans } from '../data/styles';
  * logs those errors, and displays a fallback UI instead of crashing.
  */
 class ErrorBoundary extends Component {
+  static contextType = ThemeContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -37,14 +40,6 @@ class ErrorBoundary extends Component {
     // e.g., Sentry, LogRocket, etc.
   }
 
-  handleReset = () => {
-    this.setState({
-      hasError: false,
-      error: null,
-      errorInfo: null,
-    });
-  };
-
   handleGoHome = () => {
     window.location.href = '/';
   };
@@ -55,7 +50,7 @@ class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      const isDarkMode = document.documentElement.classList.contains('dark');
+      const { darkMode: isDarkMode } = this.context;
 
       return (
         <div

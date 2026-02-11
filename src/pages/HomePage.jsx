@@ -51,8 +51,8 @@ export default function HomePage() {
   return (
     <div className="animate-in fade-in duration-1000">
       {/* Hero Quote */}
-      <header className="max-w-4xl mx-auto px-8 text-center mt-10 md:mt-20 mb-14 md:mb-20">
-        <div className="mb-10 md:mb-14">
+      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-12 md:mt-24 mb-16 md:mb-24">
+        <div className="mb-12 md:mb-16">
           <p
             style={fontSerif}
             className={`text-xl md:text-2xl lg:text-3xl italic font-light leading-relaxed ${
@@ -61,7 +61,7 @@ export default function HomePage() {
           >
             {t('home', 'quote')}
           </p>
-          <div className="mt-5 flex justify-center items-center gap-5">
+          <div className="mt-6 flex justify-center items-center gap-5">
             <div className={`h-px w-12 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
             <p
               style={fontSans}
@@ -82,7 +82,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-6xl mx-auto px-6 md:px-10 mb-24 md:mb-36">
+      <section className="max-w-6xl mx-auto px-6 md:px-10 mb-28 md:mb-40">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
@@ -99,7 +99,7 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-2xl mx-auto px-8 text-center mb-28 md:mb-40">
+      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48">
         <h2
           style={fontSerif}
           className={`text-3xl md:text-5xl italic leading-tight mb-8 ${textMain}`}
@@ -122,33 +122,33 @@ export default function HomePage() {
 
       {/* Manifest Section */}
       <section
-        className={`section-spacing mb-28 md:mb-40 ${
+        className={`section-spacing mb-32 md:mb-48 ${
           darkMode ? 'bg-white/[0.02] border-y border-white/[0.04]' : 'bg-purple-50/30'
         }`}
       >
-        <div className="max-w-6xl mx-auto px-8 md:px-12">
-          <div className="text-center mb-16 md:mb-20">
-            <h2 style={fontSerif} className={`text-3xl md:text-5xl italic mb-5 ${textMain}`}>
+        <div className="max-w-5xl mx-auto px-6 md:px-8">
+          <div className="text-center mb-20 md:mb-24">
+            <h2 style={fontSerif} className={`text-4xl md:text-5xl italic mb-6 ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
-              className={`max-w-lg mx-auto text-base md:text-lg font-light ${
+              className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed ${
                 darkMode ? 'text-gray-400' : 'text-gray-500'
               }`}
             >
               {t('home', 'manifestSubtitle')}
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-20 md:mb-24">
             {manifestCards.map((item, i) => {
               const Icon = MANIFEST_ICONS[i];
               return (
                 <div
                   key={i}
-                  className={`card-hover p-9 md:p-11 rounded-3xl md:rounded-[2rem] border cursor-default ${cardBg}`}
+                  className={`card-hover p-8 md:p-10 rounded-3xl md:rounded-[2rem] border cursor-default text-center ${cardBg}`}
                 >
                   <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-7 ${
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 mx-auto ${
                       darkMode
                         ? 'bg-purple-900/40 text-purple-300'
                         : 'bg-purple-50 text-purple-500'
@@ -156,24 +156,24 @@ export default function HomePage() {
                   >
                     <Icon size={22} strokeWidth={1.5} />
                   </div>
-                  <h3 style={fontSerif} className="text-xl md:text-2xl italic mb-4">
+                  <h3 style={fontSerif} className={`text-2xl md:text-2xl italic mb-4 ${textMain}`}>
                     {item.title}
                   </h3>
                   <p
-                    className={`font-light leading-relaxed mb-7 text-sm md:text-[15px] ${
+                    className={`font-light leading-relaxed mb-6 text-sm md:text-[15px] ${
                       darkMode ? 'text-gray-400' : 'text-gray-500'
                     }`}
                   >
                     {item.text}
                   </p>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-500/80">
+                  <p className={`text-[10px] font-bold uppercase tracking-[0.25em] ${darkMode ? 'text-purple-400/70' : 'text-purple-500/70'}`}>
                     {item.persona}
                   </p>
                 </div>
               );
             })}
           </div>
-          <div className="text-center mt-16 md:mt-20">
+          <div className="text-center">
             <button
               onClick={() => navigate('/bundle')}
               className={actionButtonStyle}
@@ -185,14 +185,14 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products */}
-      <section className="max-w-6xl mx-auto px-8 md:px-12 pb-28 md:pb-40">
-        <div className="text-center mb-16 md:mb-20">
-          <h3 style={fontSerif} className={`text-3xl md:text-4xl italic mb-4 ${textMain}`}>
+      <section className="max-w-5xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
+        <div className="text-center mb-20 md:mb-24">
+          <h3 style={fontSerif} className={`text-4xl md:text-5xl italic mb-5 ${textMain}`}>
             {t('home', 'popular')}
           </h3>
           <p
-            className={`text-sm md:text-base font-light ${
-              darkMode ? 'text-gray-500' : 'text-gray-400'
+            className={`text-base md:text-lg font-light ${
+              darkMode ? 'text-gray-400' : 'text-gray-500'
             }`}
           >
             {t('home', 'popularSubtitle')}
@@ -203,7 +203,7 @@ export default function HomePage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 text-left"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10"
         >
           {products.slice(0, 3).map((p) => (
             <motion.div key={p.id} variants={itemVariants}>
@@ -211,7 +211,7 @@ export default function HomePage() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="text-center mt-16 md:mt-20">
+        <div className="text-center mt-20 md:mt-24">
           <button onClick={() => navigate('/shop')} className={linkButtonStyle}>
             {t('home', 'viewAll')}{' '}
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
