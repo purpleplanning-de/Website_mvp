@@ -62,8 +62,9 @@ export default function HomePage() {
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
+            loading="eager"
             className="w-full h-[320px] md:h-[520px] lg:h-[580px] object-cover transition-transform duration-[5s] group-hover:scale-105"
-            alt="Hero"
+            alt="Hero planning workspace with purple planner"
           />
           <div
             className={`absolute inset-0 bg-gradient-to-t ${

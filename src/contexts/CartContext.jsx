@@ -11,6 +11,7 @@ export function CartProvider({ children }) {
   const [discountCode, setDiscountCode] = useState('');
   const [appliedDiscount, setAppliedDiscount] = useState({ code: '', value: 0 });
   const [feedback, setFeedback] = useState(null);
+  const [discountError, setDiscountError] = useState(false);
 
   const showFeedback = useCallback((msg) => {
     setFeedback(msg);
@@ -74,13 +75,22 @@ export function CartProvider({ children }) {
   }, []);
 
   const applyDiscount = useCallback(() => {
-    const upper = discountCode.toUpperCase();
+    const upper = discountCode.toUpperCase().trim();
+    if (!upper) {
+      setDiscountError(true);
+      setTimeout(() => setDiscountError(false), 3000);
+      return;
+    }
     if (upper in VALID_CODES) {
       setAppliedDiscount({ code: upper, value: VALID_CODES[upper] });
       showFeedback(t('cart', 'discountApplied'));
+      setDiscountError(false);
+      setDiscountCode('');
     } else {
       showFeedback(t('cart', 'invalidCode'));
       setAppliedDiscount({ code: '', value: 0 });
+      setDiscountError(true);
+      setTimeout(() => setDiscountError(false), 3000);
     }
   }, [discountCode, showFeedback, t]);
 
@@ -103,6 +113,7 @@ export function CartProvider({ children }) {
         setDiscountCode,
         appliedDiscount,
         feedback,
+        discountError,
         addToCart,
         addBundleToCart,
         updateQuantity,
