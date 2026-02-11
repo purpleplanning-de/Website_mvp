@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, Target, Sparkle, Compass } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
 import { products, getImg } from '../data/products';
@@ -7,6 +8,29 @@ import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
 
 const MANIFEST_ICONS = [Target, Sparkle, Compass];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.23, 1, 0.32, 1],
+    },
+  },
+};
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -174,11 +198,19 @@ export default function HomePage() {
             {t('home', 'popularSubtitle')}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 text-left">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 text-left"
+        >
           {products.slice(0, 3).map((p) => (
-            <ProductCard key={p.id} product={p} />
+            <motion.div key={p.id} variants={itemVariants}>
+              <ProductCard product={p} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="text-center mt-16 md:mt-20">
           <button onClick={() => navigate('/shop')} className={linkButtonStyle}>
             {t('home', 'viewAll')}{' '}

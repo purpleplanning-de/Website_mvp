@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   X,
   Sparkle,
@@ -48,24 +49,33 @@ export default function CartSidebar() {
   };
 
   return (
-    <>
-      {/* Backdrop */}
-      <div
-        className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm transition-all duration-700 ${
-          isCartOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
-        onClick={() => setIsCartOpen(false)}
-      />
+    <AnimatePresence>
+      {isCartOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm"
+            onClick={() => setIsCartOpen(false)}
+          />
 
-      {/* Drawer */}
-      <div
-        className={`fixed right-0 top-0 h-full w-full max-w-md ${
-          darkMode ? 'bg-[#2e1d46] text-white' : 'bg-white text-black'
-        } shadow-2xl z-[101] transition-transform duration-700 ${
-          isCartOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ transitionTimingFunction: 'cubic-bezier(0.25, 0.8, 0.25, 1)' }}
-      >
+          {/* Drawer */}
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{
+              type: 'spring',
+              damping: 30,
+              stiffness: 300,
+            }}
+            className={`fixed right-0 top-0 h-full w-full max-w-md ${
+              darkMode ? 'bg-[#2e1d46] text-white' : 'bg-white text-black'
+            } shadow-2xl z-[101]`}
+          >
         <div className="p-8 h-full flex flex-col text-left">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
@@ -265,7 +275,9 @@ export default function CartSidebar() {
             </div>
           )}
         </div>
-      </div>
-    </>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }
