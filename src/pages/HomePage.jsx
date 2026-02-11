@@ -6,6 +6,7 @@ import { products, getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
+import SEO from '../components/SEO';
 
 const MANIFEST_ICONS = [Target, Sparkle, Compass];
 
@@ -49,7 +50,13 @@ export default function HomePage() {
     'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
-    <div className="animate-in fade-in duration-1000 pt-16">
+    <>
+      <SEO
+        title="Purple Planning - Handgefertigte Planer für dein bestes Jahr"
+        description="Entdecke minimalistisch designte Planer, Journale und Organizer. Handgefertigt mit Liebe. Steigere deine Produktivität mit stilvollen Tools. Made with 💜"
+        keywords="planer kaufen, bullet journal, handgefertigter planer, productivity planner, minimalistisches design, zeitmanagement tools"
+      />
+      <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
@@ -224,5 +231,6 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

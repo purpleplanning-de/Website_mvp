@@ -1,9 +1,32 @@
-import { createContext, useState, useMemo } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
 
 export const ThemeContext = createContext(null);
 
+const THEME_STORAGE_KEY = 'purpleplanning_theme';
+
 export function ThemeProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(false);
+  // Initialize from localStorage or system preference
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      const saved = localStorage.getItem(THEME_STORAGE_KEY);
+      if (saved !== null) {
+        return JSON.parse(saved);
+      }
+      // Check system preference
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch {
+      return false;
+    }
+  });
+
+  // Persist theme to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(darkMode));
+    } catch (error) {
+      console.error('Failed to save theme to localStorage:', error);
+    }
+  }, [darkMode]);
 
   const toggle = () => setDarkMode((prev) => !prev);
 

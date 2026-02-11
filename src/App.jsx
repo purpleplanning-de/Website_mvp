@@ -10,6 +10,7 @@ import CartSidebar from './components/layout/CartSidebar';
 import FeedbackToast from './components/ui/FeedbackToast';
 import OfflineBanner from './components/OfflineBanner';
 import ErrorBoundary from './components/ErrorBoundary';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ShopPage = lazy(() => import('./pages/ShopPage'));
@@ -53,26 +54,6 @@ const pageVariants = {
     },
   },
 };
-
-const LoadingSpinner = () => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    className="flex items-center justify-center min-h-[50vh]"
-  >
-    <motion.div
-      animate={{
-        rotate: 360,
-      }}
-      transition={{
-        duration: 1,
-        repeat: Infinity,
-        ease: 'linear',
-      }}
-      className="w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full"
-    />
-  </motion.div>
-);
 
 export default function App() {
   const { bgMain, textMain } = useTheme();

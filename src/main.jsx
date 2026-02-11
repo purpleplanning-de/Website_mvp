@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import './index.css';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -12,17 +13,19 @@ import { UserProvider } from './contexts/UserContext';
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter basename="/Website_mvp">
-        <ThemeProvider>
-          <LanguageProvider>
-            <CartProvider>
-              <UserProvider>
-                <App />
-              </UserProvider>
-            </CartProvider>
-          </LanguageProvider>
-        </ThemeProvider>
-      </BrowserRouter>
+      <HelmetProvider>
+        <BrowserRouter basename="/Website_mvp">
+          <ThemeProvider>
+            <LanguageProvider>
+              <CartProvider>
+                <UserProvider>
+                  <App />
+                </UserProvider>
+              </CartProvider>
+            </LanguageProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </HelmetProvider>
     </ErrorBoundary>
   </StrictMode>,
 );

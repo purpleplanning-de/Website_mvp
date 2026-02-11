@@ -17,6 +17,7 @@ import { fontSerif, fontSans } from '../data/styles';
 import { getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
+import SEO from '../components/SEO';
 
 const SOCIAL_LINKS = [
   { nameKey: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-50' },
@@ -41,7 +42,13 @@ export default function AboutPage() {
   }`;
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
+    <>
+      <SEO
+        title="Über uns - Purple Planning | Unsere Story"
+        description="Erfahre mehr über Purple Planning. Handgefertigte Planer mit Liebe zum Detail. Von der Idee bis zum fertigen Produkt - unsere Story."
+        keywords="über purple planning, handarbeit, made in germany, nachhaltige planer"
+      />
+      <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
       {/* Header */}
       <header className="text-center mb-20 md:mb-28">
         <div
@@ -219,5 +226,6 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
