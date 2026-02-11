@@ -49,7 +49,7 @@ export default function HomePage() {
     'bg-purple-600 text-white py-4 md:py-5 px-10 md:px-14 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
-    <div className="animate-in fade-in duration-1000 pt-40">
+    <div className="animate-in fade-in duration-1000 pt-12">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
