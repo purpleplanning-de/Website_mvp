@@ -36,7 +36,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full transition-all duration-500 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           darkMode
             ? 'bg-[#1a0b2e]/95 border-b border-white/10'
             : 'bg-white/95 shadow-sm'
