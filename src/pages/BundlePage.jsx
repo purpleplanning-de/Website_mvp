@@ -89,16 +89,16 @@ export default function BundlePage() {
   const bundle = isResult ? resolveBundle(selections, t) : null;
 
   const actionButtonStyle =
-    'bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
+    'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
-    <div className="max-w-3xl mx-auto px-8 md:px-12 mt-12 md:mt-16 mb-20 md:mb-28 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start pt-12">
+    <div className="max-w-3xl mx-auto px-8 md:px-12 mt-12 md:mt-16 mb-20 md:mb-28 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start pt-16">
       {!isResult ? (
         <>
           <p style={fontSans} className={`${textMuted} font-bold uppercase tracking-widest mb-10`}>
             {t('bundle', 'step')} {step + 1} {t('bundle', 'of')} {questions.length}
           </p>
-          <h2 style={fontSerif} className="text-4xl md:text-5xl italic mb-14 md:mb-16">
+          <h2 style={fontSerif} className="text-4xl md:text-5xl mb-14 md:mb-16">
             {questions[step].question}
           </h2>
           <div className="grid md:grid-cols-3 gap-7 md:gap-8">
@@ -137,7 +137,7 @@ export default function BundlePage() {
           >
             {t('bundle', 'match')}
           </div>
-          <h2 style={fontSerif} className="text-5xl italic mb-5">
+          <h2 style={fontSerif} className="text-5xl mb-5">
             {bundle.title}
           </h2>
           <p

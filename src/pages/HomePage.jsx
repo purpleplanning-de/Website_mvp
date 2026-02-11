@@ -39,17 +39,17 @@ export default function HomePage() {
 
   const manifestCards = t('home', 'manifestCards');
 
-  const linkButtonStyle = `text-[11px] uppercase tracking-[0.3em] font-semibold border-b pb-2 transition-all flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
+  const linkButtonStyle = `text-[11px] uppercase tracking-[0.3em] font-semibold border-b pb-2 transition-all inline-flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-700 hover:text-white hover:border-purple-400'
       : 'text-purple-600 border-purple-200 hover:text-purple-800 hover:border-purple-400'
   }`;
 
   const actionButtonStyle =
-    'bg-purple-600 text-white py-4 md:py-5 px-10 md:px-14 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
+    'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
-    <div className="animate-in fade-in duration-1000 pt-12">
+    <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
@@ -58,7 +58,7 @@ export default function HomePage() {
               darkMode ? 'text-white/70' : 'text-gray-600'
             }`}
             style={{
-              ...fontSerif,
+              ...fontSans,
               textShadow: darkMode
                 ? '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.4)'
                 : '0 1px 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5)'
@@ -107,7 +107,7 @@ export default function HomePage() {
       <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12">
         <h2
           style={fontSerif}
-          className={`text-4xl md:text-5xl italic leading-tight mb-6 text-center ${textMain}`}
+          className={`text-4xl md:text-5xl leading-tight mb-6 text-center ${textMain}`}
         >
           {t('home', 'pause')}
         </h2>
@@ -133,7 +133,7 @@ export default function HomePage() {
       >
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-20 md:mb-24">
-            <h2 style={fontSerif} className={`text-4xl md:text-5xl italic mb-6 text-center ${textMain}`}>
+            <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 text-center ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
@@ -161,11 +161,11 @@ export default function HomePage() {
                   >
                     <Icon size={22} strokeWidth={1.5} />
                   </div>
-                  <h3 style={fontSerif} className={`text-2xl md:text-2xl italic mb-4 ${textMain}`}>
+                  <h3 style={fontSans} className={`text-lg md:text-lg italic mb-6 ${textMain}`}>
                     {item.title}
                   </h3>
                   <p
-                    className={`font-light leading-relaxed mb-6 text-sm md:text-[15px] ${
+                    className={`font-light leading-relaxed mb-8 text-sm md:text-[15px] ${
                       darkMode ? 'text-gray-400' : 'text-gray-500'
                     }`}
                   >
@@ -192,7 +192,7 @@ export default function HomePage() {
       {/* Popular Products */}
       <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
         <div className="text-center mb-20 md:mb-24">
-          <h3 style={fontSerif} className={`text-4xl md:text-5xl italic mb-5 text-center ${textMain}`}>
+          <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 text-center ${textMain}`}>
             {t('home', 'popular')}
           </h3>
           <p

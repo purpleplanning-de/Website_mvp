@@ -33,14 +33,14 @@ export default function ShopPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 text-center pt-12">
+    <div className="max-w-5xl mx-auto px-8 md:px-12 text-center pt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-center mb-16 md:mb-24 mt-6 md:mt-12"
       >
-        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 italic text-center">
+        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 text-center">
           {t('shop', 'title')}
         </h2>
         <p

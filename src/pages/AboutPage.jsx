@@ -41,7 +41,7 @@ export default function AboutPage() {
   }`;
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-12">
+    <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
       {/* Header */}
       <header className="text-center mb-20 md:mb-28">
         <div
@@ -52,7 +52,7 @@ export default function AboutPage() {
         >
           {t('about', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight text-center">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center">
           {t('about', 'title')} <span className="text-purple-600">{t('about', 'titleAccent')}</span>.
         </h2>
       </header>

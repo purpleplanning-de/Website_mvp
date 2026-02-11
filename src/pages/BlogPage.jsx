@@ -18,7 +18,7 @@ export default function BlogPage() {
   const posts = t('blog', 'posts');
 
   return (
-    <div className="max-w-4xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700 pt-12">
+    <div className="max-w-4xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700 pt-16">
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8">
         <div
           style={fontSans}
@@ -28,7 +28,7 @@ export default function BlogPage() {
         >
           {t('blog', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl italic leading-tight">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight">
           {t('blog', 'title')}
           <br />
           <span className="text-purple-600">{t('blog', 'titleAccent')}</span>.
