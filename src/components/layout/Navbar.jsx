@@ -48,7 +48,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Left nav links — desktop — ALL TEXT LINKS */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start ml-4 lg:ml-6">
             {NAV_LINKS.map(({ path, key }) => (
               <button
                 key={path}
@@ -92,7 +92,7 @@ export default function Navbar() {
           </div>
 
           {/* Right icons only */}
-          <div className="flex items-center gap-3 flex-1 justify-end">
+          <div className="flex items-center gap-3 flex-1 justify-end mr-4 lg:mr-6">
               <div
                 className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
                   darkMode ? 'bg-white/5' : 'bg-gray-100/80'
