@@ -199,7 +199,6 @@ export default function Navbar() {
                   </span>
                 )}
               </button>
-            </div>
           </div>
         </div>
       </nav>
