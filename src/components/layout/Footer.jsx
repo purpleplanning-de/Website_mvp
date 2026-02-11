@@ -10,6 +10,7 @@ export default function Footer() {
 
   return (
     <footer
+      id="footer"
       className={`py-20 md:py-28 border-t text-center ${
         darkMode ? 'border-white/[0.04] bg-[#1a0b2e]' : 'border-purple-50/60 bg-[#faf9f6]'
       }`}

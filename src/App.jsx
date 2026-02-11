@@ -8,6 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CartSidebar from './components/layout/CartSidebar';
 import FeedbackToast from './components/ui/FeedbackToast';
+import OfflineBanner from './components/OfflineBanner';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ShopPage = lazy(() => import('./pages/ShopPage'));
@@ -19,6 +20,7 @@ const RoadmapPage = lazy(() => import('./pages/RoadmapPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -80,11 +82,26 @@ export default function App() {
       style={fontSans}
       className={`min-h-screen flex flex-col ${bgMain} ${textMain} transition-colors duration-700 selection:bg-purple-500 selection:text-white`}
     >
+      {/* Skip to Content Links for Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[400] focus:px-6 focus:py-3 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:font-bold focus:shadow-xl"
+      >
+        Skip to main content
+      </a>
+      <a
+        href="#footer"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-48 focus:z-[400] focus:px-6 focus:py-3 focus:bg-purple-600 focus:text-white focus:rounded-lg focus:font-bold focus:shadow-xl"
+      >
+        Skip to footer
+      </a>
+
       <ScrollToTop />
+      <OfflineBanner />
       <CartSidebar />
       <Navbar />
 
-      <main className="pt-24 md:pt-28 flex-grow">
+      <main id="main-content" className="pt-24 md:pt-28 flex-grow">
         <AnimatePresence mode="wait">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes location={location} key={location.pathname}>
@@ -98,6 +115,7 @@ export default function App() {
               <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
               <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
               <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
+              <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
             </Routes>
           </Suspense>
         </AnimatePresence>
