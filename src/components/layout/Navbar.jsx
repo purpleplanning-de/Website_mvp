@@ -46,35 +46,53 @@ export default function Navbar() {
             : 'bg-transparent'
         } backdrop-blur-lg`}
       >
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Top row: Logo centered, Icons on the right, Mobile menu on left */}
-          <div className="flex items-center justify-between h-20">
-            {/* Mobile hamburger */}
-            <button
-              aria-label={isMobileMenuOpen ? t('nav', 'closeMenu') : t('nav', 'openMenu')}
-              aria-expanded={isMobileMenuOpen}
-              className="md:hidden p-3 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-            </button>
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+          {/* Left nav links — desktop — ALL TEXT LINKS */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start">
+            {NAV_LINKS.map(({ path, key }) => (
+              <button
+                key={path}
+                onClick={() => navTo(path)}
+                style={fontSans}
+                className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
+                  location.pathname === path
+                    ? 'text-purple-600'
+                    : darkMode
+                      ? 'text-white/60 hover:text-white'
+                      : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {t('nav', key)}
+                {location.pathname === path && (
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
+                )}
+              </button>
+            ))}
+          </div>
 
-            {/* Spacer for mobile */}
-            <div className="md:hidden flex-1" />
+          {/* Mobile hamburger */}
+          <button
+            aria-label={isMobileMenuOpen ? t('nav', 'closeMenu') : t('nav', 'openMenu')}
+            aria-expanded={isMobileMenuOpen}
+            className="md:hidden p-3 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          </button>
 
-            {/* Logo - centered */}
-            <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-              <img
-                src={`${import.meta.env.BASE_URL}logo.png`}
-                alt="Purple Planning"
-                loading="eager"
-                onClick={() => navTo('/')}
-                className="h-14 cursor-pointer hover:scale-105 transition-transform drop-shadow-sm"
-              />
-            </div>
+          {/* Logo */}
+          <div className="flex-1 flex justify-center">
+            <img
+              src={`${import.meta.env.BASE_URL}logo.png`}
+              alt="Purple Planning"
+              loading="eager"
+              onClick={() => navTo('/')}
+              className="h-14 cursor-pointer hover:scale-105 transition-transform drop-shadow-sm"
+            />
+          </div>
 
-            {/* Right icons only */}
-            <div className="flex items-center gap-3 ml-auto">
+          {/* Right icons only */}
+          <div className="flex items-center gap-3 flex-1 justify-end">
               <div
                 className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
                   darkMode ? 'bg-white/5' : 'bg-gray-100/80'
@@ -181,30 +199,6 @@ export default function Navbar() {
                   </span>
                 )}
               </button>
-            </div>
-          </div>
-
-          {/* Bottom row: Nav links centered below logo (desktop only) */}
-          <div className="hidden md:flex items-center justify-center gap-6 lg:gap-8 pb-4 pt-2">
-            {NAV_LINKS.map(({ path, key }) => (
-              <button
-                key={path}
-                onClick={() => navTo(path)}
-                style={fontSans}
-                className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
-                  location.pathname === path
-                    ? 'text-purple-600'
-                    : darkMode
-                      ? 'text-white/60 hover:text-white'
-                      : 'text-gray-500 hover:text-gray-900'
-                }`}
-              >
-                {t('nav', key)}
-                {location.pathname === path && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
-                )}
-              </button>
-            ))}
           </div>
         </div>
       </nav>
