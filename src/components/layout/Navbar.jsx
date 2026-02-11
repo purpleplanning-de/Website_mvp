@@ -47,9 +47,9 @@ export default function Navbar() {
         } backdrop-blur-lg`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Left nav links — desktop */}
+          {/* Left nav links — desktop — ALL TEXT LINKS */}
           <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start">
-            {NAV_LINKS.slice(0, 2).map(({ path, key }) => (
+            {NAV_LINKS.map(({ path, key }) => (
               <button
                 key={path}
                 onClick={() => navTo(path)}
@@ -91,33 +91,8 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Right nav links + actions */}
-          <div className="flex items-center gap-6 lg:gap-8 flex-1 justify-end">
-            {/* Right nav links */}
-            <div className="hidden md:flex items-center gap-6 lg:gap-8">
-              {NAV_LINKS.slice(2).map(({ path, key }) => (
-                <button
-                  key={path}
-                  onClick={() => navTo(path)}
-                  style={fontSans}
-                  className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
-                    location.pathname === path
-                      ? 'text-purple-600'
-                      : darkMode
-                        ? 'text-white/60 hover:text-white'
-                        : 'text-gray-500 hover:text-gray-900'
-                  }`}
-                >
-                  {t('nav', key)}
-                  {location.pathname === path && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Icon group */}
-            <div className="flex items-center gap-3">
+          {/* Right icons only */}
+          <div className="flex items-center gap-3 flex-1 justify-end">
               <div
                 className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
                   darkMode ? 'bg-white/5' : 'bg-gray-100/80'
