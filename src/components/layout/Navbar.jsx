@@ -5,7 +5,6 @@ import { fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useCart } from '../../hooks/useCart';
-import { useScrolled } from '../../hooks/useScrolled';
 
 const NAV_LINKS = [
   { path: '/shop', key: 'shop' },
@@ -23,7 +22,6 @@ const LANGUAGES = [
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const scrolled = useScrolled();
   const { darkMode, toggle } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const { setIsCartOpen, totals } = useCart();
@@ -38,12 +36,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? darkMode
-              ? 'bg-[#1a0b2e]/95 border-b border-white/10'
-              : 'bg-white/95 shadow-sm'
-            : 'bg-transparent'
+        className={`w-full transition-all duration-500 ${
+          darkMode
+            ? 'bg-[#1a0b2e]/95 border-b border-white/10'
+            : 'bg-white/95 shadow-sm'
         } backdrop-blur-lg`}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
