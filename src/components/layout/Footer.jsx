@@ -19,31 +19,8 @@ export default function Footer() {
         src={`${import.meta.env.BASE_URL}logo.png`}
         alt="Purple Planning"
         onClick={() => navigate('/')}
-        className="h-20 cursor-pointer inline-block hover:scale-105 transition-transform mb-12 drop-shadow-sm"
+        className="h-16 cursor-pointer mx-auto block hover:scale-105 transition-transform mb-12 drop-shadow-sm"
       />
-      <div
-        style={fontSans}
-        className="flex justify-center gap-10 md:gap-12 text-[11px] font-semibold uppercase tracking-[0.15em] opacity-35 mb-12"
-      >
-        <button
-          onClick={() => navigate('/shop')}
-          className="hover:text-purple-600 hover:opacity-100 transition-all"
-        >
-          {t('nav', 'shop')}
-        </button>
-        <button
-          onClick={() => navigate('/about')}
-          className="hover:text-purple-600 hover:opacity-100 transition-all"
-        >
-          {t('footer', 'aboutUs')}
-        </button>
-        <button
-          onClick={() => navigate('/blog')}
-          className="hover:text-purple-600 hover:opacity-100 transition-all"
-        >
-          {t('nav', 'blog')}
-        </button>
-      </div>
       <div className={`w-16 h-px mx-auto mb-10 ${darkMode ? 'bg-white/[0.06]' : 'bg-purple-200/40'}`} />
       <div
         style={fontSans}
