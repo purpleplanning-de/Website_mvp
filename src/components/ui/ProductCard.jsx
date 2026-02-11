@@ -4,6 +4,7 @@ import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useCart } from '../../hooks/useCart';
 import { useLanguage } from '../../hooks/useLanguage';
+import OptimizedImage from './OptimizedImage';
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -39,11 +40,13 @@ export default function ProductCard({ product }) {
           transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] },
         }}
       >
-        <img
+        <OptimizedImage
           src={product.images[0]}
           alt={product.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply group-hover:mix-blend-normal"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          aspectRatio="3/4"
+          className="opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 mix-blend-multiply group-hover:mix-blend-normal"
         />
         <span
           style={fontSerif}
