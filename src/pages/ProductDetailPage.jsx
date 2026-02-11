@@ -44,7 +44,7 @@ export default function ProductDetailPage() {
     'w-full bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
-    <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-16 animate-in fade-in duration-500 text-left pt-32">
+    <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-16 animate-in fade-in duration-500 text-left pt-40">
       <button
         onClick={() => navigate('/shop')}
         style={fontSans}
