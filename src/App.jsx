@@ -9,6 +9,7 @@ import Footer from './components/layout/Footer';
 import CartSidebar from './components/layout/CartSidebar';
 import FeedbackToast from './components/ui/FeedbackToast';
 import OfflineBanner from './components/OfflineBanner';
+import ErrorBoundary from './components/ErrorBoundary';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ShopPage = lazy(() => import('./pages/ShopPage'));
@@ -105,23 +106,25 @@ export default function App() {
       <div className="h-20" aria-hidden="true" />
 
       <main id="main-content" className="flex-grow">
-        <AnimatePresence mode="wait">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-              <Route path="/shop" element={<PageWrapper><ShopPage /></PageWrapper>} />
-              <Route path="/product/:id" element={<PageWrapper><ProductDetailPage /></PageWrapper>} />
-              <Route path="/bundle" element={<PageWrapper><BundlePage /></PageWrapper>} />
-              <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
-              <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
-              <Route path="/roadmap" element={<PageWrapper><RoadmapPage /></PageWrapper>} />
-              <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
-              <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
-              <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
-              <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
-            </Routes>
-          </Suspense>
-        </AnimatePresence>
+        <ErrorBoundary>
+          <AnimatePresence mode="wait">
+            <Suspense fallback={<LoadingSpinner />}>
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+                <Route path="/shop" element={<PageWrapper><ShopPage /></PageWrapper>} />
+                <Route path="/product/:id" element={<PageWrapper><ProductDetailPage /></PageWrapper>} />
+                <Route path="/bundle" element={<PageWrapper><BundlePage /></PageWrapper>} />
+                <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+                <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
+                <Route path="/roadmap" element={<PageWrapper><RoadmapPage /></PageWrapper>} />
+                <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
+                <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
+                <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
+                <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
+              </Routes>
+            </Suspense>
+          </AnimatePresence>
+        </ErrorBoundary>
       </main>
 
       <Footer />

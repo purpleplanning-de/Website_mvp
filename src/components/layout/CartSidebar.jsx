@@ -11,6 +11,7 @@ import {
   CreditCard,
   AlertCircle,
   CheckCircle,
+  ShoppingBag,
 } from 'lucide-react';
 import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
@@ -95,17 +96,68 @@ export default function CartSidebar() {
           <div className="flex-grow overflow-y-auto space-y-6 pr-2">
             {cart.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                <Sparkle size={48} className="text-purple-400 mb-6" />
-                <h3 style={fontSerif} className="text-xl italic mb-4">
+                {/* Icon with animated background */}
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{
+                    type: 'spring',
+                    damping: 15,
+                    stiffness: 200,
+                    delay: 0.1,
+                  }}
+                  className="relative mb-8"
+                >
+                  <div
+                    className={`absolute inset-0 rounded-full blur-2xl ${
+                      darkMode ? 'bg-purple-500/20' : 'bg-purple-200/40'
+                    }`}
+                  />
+                  <div
+                    className={`relative w-24 h-24 rounded-full flex items-center justify-center ${
+                      darkMode ? 'bg-purple-900/40' : 'bg-purple-50'
+                    }`}
+                  >
+                    <ShoppingBag size={40} className="text-purple-400" strokeWidth={1.5} />
+                  </div>
+                </motion.div>
+
+                {/* Text */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  style={fontSerif}
+                  className="text-2xl mb-3"
+                >
                   {t('cart', 'empty')}
-                </h3>
-                <button
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className={`text-sm mb-8 max-w-xs ${
+                    darkMode ? 'text-gray-400' : 'text-gray-500'
+                  }`}
+                >
+                  Entdecke unsere handgefertigten Planer und finde deinen perfekten Begleiter.
+                </motion.p>
+
+                {/* CTA Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={goToShop}
                   style={fontSans}
-                  className="bg-purple-600 text-white px-8 py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-purple-700"
+                  className="bg-purple-600 text-white px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-purple-700 shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                 >
+                  <Sparkle size={14} />
                   {t('cart', 'browse')}
-                </button>
+                </motion.button>
               </div>
             ) : (
               <div className="space-y-6">

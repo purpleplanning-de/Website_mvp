@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, Moon, Sun, Globe, Map, Menu, X } from 'lucide-react';
 import { fontSans } from '../../data/styles';
@@ -27,11 +27,57 @@ export default function Navbar() {
   const { setIsCartOpen, totals } = useCart();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+  const langMenuRef = useRef(null);
 
   const navTo = (path) => {
     navigate(path);
     setIsMobileMenuOpen(false);
   };
+
+  // Close mobile menu on ESC key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen || isLangMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isMobileMenuOpen, isLangMenuOpen]);
+
+  // Close mobile menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
+        setIsMobileMenuOpen(false);
+      }
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen || isLangMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isMobileMenuOpen, isLangMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -111,10 +157,11 @@ export default function Navbar() {
                   </button>
 
                   {/* Language Selector */}
-                  <div className="relative">
+                  <div className="relative" ref={langMenuRef}>
                     <button
                       onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                       aria-label={t('nav', 'changeLanguage')}
+                      aria-expanded={isLangMenuOpen}
                       className={`flex items-center gap-1 px-2.5 py-2.5 rounded-full hover:bg-white/20 transition-colors text-[11px] font-bold uppercase ${
                         darkMode ? 'text-white/60' : 'text-gray-500'
                       }`}
@@ -126,7 +173,8 @@ export default function Navbar() {
                     {/* Language Dropdown */}
                     {isLangMenuOpen && (
                       <div
-                        className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border min-w-[120px] ${
+                        role="menu"
+                        className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border min-w-[120px] z-50 ${
                           darkMode
                             ? 'bg-[#2e1d46] border-white/10'
                             : 'bg-white border-gray-100'
@@ -211,6 +259,10 @@ export default function Navbar() {
       {/* Mobile Menu - Appears BELOW navbar */}
       {isMobileMenuOpen && (
         <div
+          ref={mobileMenuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
           className={`fixed top-20 left-0 right-0 bottom-0 z-40 ${
             darkMode ? 'bg-[#1a0b2e]/98' : 'bg-white/98'
           } backdrop-blur-xl animate-in fade-in`}

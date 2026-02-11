@@ -55,7 +55,7 @@ export default function HomePage() {
         <div className="mb-14 md:mb-20">
           <p
             className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed text-center ${
-              darkMode ? 'text-white/70' : 'text-gray-600'
+              darkMode ? 'text-white/85' : 'text-gray-600'
             }`}
             style={{
               ...fontSans,
@@ -114,7 +114,7 @@ export default function HomePage() {
         <p
           style={fontSans}
           className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto text-center ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('home', 'pauseText')}
@@ -138,7 +138,7 @@ export default function HomePage() {
             </h2>
             <p
               className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed text-center ${
-                darkMode ? 'text-gray-400' : 'text-gray-500'
+                darkMode ? 'text-gray-300' : 'text-gray-500'
               }`}
             >
               {t('home', 'manifestSubtitle')}
@@ -166,7 +166,7 @@ export default function HomePage() {
                   </h3>
                   <p
                     className={`font-light leading-relaxed mb-8 text-sm md:text-[15px] ${
-                      darkMode ? 'text-gray-400' : 'text-gray-500'
+                      darkMode ? 'text-gray-300' : 'text-gray-500'
                     }`}
                   >
                     {item.text}
@@ -197,7 +197,7 @@ export default function HomePage() {
           </h3>
           <p
             className={`text-base md:text-lg font-light text-center ${
-              darkMode ? 'text-gray-400' : 'text-gray-500'
+              darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >
             {t('home', 'popularSubtitle')}

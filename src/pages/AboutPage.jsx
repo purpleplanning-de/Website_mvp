@@ -22,7 +22,7 @@ const SOCIAL_LINKS = [
   { nameKey: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-50' },
   { nameKey: 'TikTok', icon: Video, color: 'text-black dark:text-white', bg: 'bg-gray-100 dark:bg-white/10' },
   { nameKey: 'Etsy Shop', icon: ShoppingBag, color: 'text-orange-500', bg: 'bg-orange-50' },
-  { nameKey: 'comingSoon', icon: Plus, color: 'text-gray-400', bg: 'bg-gray-50 dark:bg-white/5' },
+  { nameKey: 'comingSoon', icon: Plus, color: 'text-gray-300', bg: 'bg-gray-50 dark:bg-white/5' },
 ];
 
 const DREAM_ICONS = [Home, Utensils, Target, Laptop];
@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div
           style={fontSans}
           className={`space-y-8 leading-relaxed text-base md:text-lg font-light text-left ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           <div className="space-y-7 text-left">

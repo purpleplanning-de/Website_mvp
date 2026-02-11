@@ -117,7 +117,7 @@ export default function BundlePage() {
                     className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-7 transition-colors ${
                       darkMode
                         ? 'bg-white/[0.06] text-white/70'
-                        : 'bg-purple-50/60 text-gray-400 group-hover:text-purple-600'
+                        : 'bg-purple-50/60 text-gray-300 group-hover:text-purple-600'
                     }`}
                   >
                     <Icon size={26} strokeWidth={1.5} />
@@ -142,7 +142,7 @@ export default function BundlePage() {
           </h2>
           <p
             className={`text-lg md:text-xl mb-14 max-w-lg mx-auto font-light ${
-              darkMode ? 'text-gray-400' : 'text-gray-500'
+              darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >
             {bundle.desc}
@@ -168,7 +168,7 @@ export default function BundlePage() {
                         -{bundle.discount}%
                       </span>
                     </div>
-                    <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                    <p className={`text-xs ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>
                       {item.description.substring(0, 60)}...
                     </p>
                     <p className="text-xs text-purple-500 mt-1 font-bold">
@@ -185,7 +185,7 @@ export default function BundlePage() {
               }`}
             >
               <div>
-                <p className="text-xs uppercase font-bold text-gray-400 mb-1">
+                <p className="text-xs uppercase font-bold text-gray-300 mb-1">
                   {t('bundle', 'bundlePrice')} (Code:{' '}
                   <span className="text-purple-500">{bundle.code}</span>)
                 </p>
@@ -197,7 +197,7 @@ export default function BundlePage() {
                     ).toFixed(2)}{' '}
                     €
                   </span>
-                  <span className="line-through text-gray-400 text-sm">
+                  <span className="line-through text-gray-300 text-sm">
                     {bundle.items.reduce((a, b) => a + b.price, 0).toFixed(2)} €
                   </span>
                 </div>
@@ -216,7 +216,7 @@ export default function BundlePage() {
               setStep(0);
               setSelections([]);
             }}
-            className="text-gray-400 hover:text-purple-500 text-sm transition-colors"
+            className="text-gray-300 hover:text-purple-500 text-sm transition-colors"
           >
             {t('bundle', 'restart')}
           </button>

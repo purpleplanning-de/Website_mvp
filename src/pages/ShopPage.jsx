@@ -46,7 +46,7 @@ export default function ShopPage() {
         <p
           style={fontSans}
           className={`font-light italic text-base md:text-lg max-w-lg mx-auto text-center ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('shop', 'subtitle')}
