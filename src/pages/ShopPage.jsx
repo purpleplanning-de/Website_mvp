@@ -33,7 +33,7 @@ export default function ShopPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-6xl mx-auto px-8 md:px-12 text-left">
+    <div className="max-w-6xl mx-auto px-8 md:px-12 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
