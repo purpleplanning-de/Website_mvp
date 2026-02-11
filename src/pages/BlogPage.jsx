@@ -18,7 +18,7 @@ export default function BlogPage() {
   const posts = t('blog', 'posts');
 
   return (
-    <div className="max-w-4xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700">
+    <div className="max-w-4xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700 pt-32">
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8">
         <div
           style={fontSans}

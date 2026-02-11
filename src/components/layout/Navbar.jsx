@@ -36,7 +36,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full transition-all duration-500 ${
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
           darkMode
             ? 'bg-[#1a0b2e]/95 border-b border-white/10'
             : 'bg-white/95 shadow-sm'
@@ -44,7 +44,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Left nav links — desktop — ALL TEXT LINKS */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start ml-4 lg:ml-6">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start ml-8 lg:ml-12">
             {NAV_LINKS.map(({ path, key }) => (
               <button
                 key={path}
