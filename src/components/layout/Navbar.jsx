@@ -42,9 +42,9 @@ export default function Navbar() {
             : 'bg-white/95 shadow-sm'
         } backdrop-blur-lg`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-10 lg:px-16 h-20 flex items-center justify-between">
           {/* Left nav links — desktop — ALL TEXT LINKS */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start ml-8 lg:ml-12">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start ml-2 lg:ml-4">
             {NAV_LINKS.map(({ path, key }) => (
               <button
                 key={path}
@@ -88,7 +88,7 @@ export default function Navbar() {
           </div>
 
           {/* Right icons only */}
-          <div className="flex items-center gap-3 flex-1 justify-end mr-4 lg:mr-6">
+          <div className="flex items-center gap-3 flex-1 justify-end mr-2 lg:mr-4">
               <div
                 className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
                   darkMode ? 'bg-white/5' : 'bg-gray-100/80'
@@ -202,7 +202,7 @@ export default function Navbar() {
       {/* Mobile menu overlay */}
       {isMobileMenuOpen && (
         <div
-          className={`fixed inset-0 z-40 pt-20 ${
+          className={`fixed inset-0 z-40 pt-24 ${
             darkMode ? 'bg-[#1a0b2e]/98' : 'bg-white/98'
           } backdrop-blur-xl animate-in fade-in`}
         >
