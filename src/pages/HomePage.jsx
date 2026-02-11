@@ -54,10 +54,15 @@ export default function HomePage() {
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
           <p
-            style={fontSerif}
             className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed ${
-              darkMode ? 'text-white/50' : 'text-gray-400'
+              darkMode ? 'text-white/70' : 'text-gray-600'
             }`}
+            style={{
+              ...fontSerif,
+              textShadow: darkMode
+                ? '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.4)'
+                : '0 1px 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5)'
+            }}
           >
             {t('home', 'quote')}
           </p>
@@ -99,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-3xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48">
+      <section className="max-w-3xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12">
         <h2
           style={fontSerif}
           className={`text-4xl md:text-5xl italic leading-tight mb-6 ${textMain}`}
