@@ -48,8 +48,8 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Left nav links — desktop */}
-          <div className="hidden md:flex items-center gap-10 flex-1">
-            {NAV_LINKS.map(({ path, key }) => (
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start">
+            {NAV_LINKS.slice(0, 2).map(({ path, key }) => (
               <button
                 key={path}
                 onClick={() => navTo(path)}
@@ -91,114 +91,140 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Right actions */}
-          <div className="flex items-center gap-3 flex-1 justify-end">
-            <div
-              className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
-                darkMode ? 'bg-white/5' : 'bg-gray-100/80'
-              }`}
-            >
-              <button
-                onClick={toggle}
-                aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
-                className="p-2.5 rounded-full hover:bg-white/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
-              >
-                {darkMode ? (
-                  <Sun size={15} className="text-yellow-300" aria-hidden="true" />
-                ) : (
-                  <Moon size={15} className="text-gray-500" aria-hidden="true" />
-                )}
-              </button>
-
-              <div className="relative">
+          {/* Right nav links + actions */}
+          <div className="flex items-center gap-6 lg:gap-8 flex-1 justify-end">
+            {/* Right nav links */}
+            <div className="hidden md:flex items-center gap-6 lg:gap-8">
+              {NAV_LINKS.slice(2).map(({ path, key }) => (
                 <button
-                  onClick={() => setIsLangMenuOpen((prev) => !prev)}
-                  aria-label={t('nav', 'changeLanguage')}
-                  aria-expanded={isLangMenuOpen}
-                  aria-haspopup="true"
-                  className={`flex items-center justify-center gap-1 p-2.5 rounded-full hover:bg-white/20 transition-all text-[11px] font-bold uppercase min-w-[44px] min-h-[44px] ${
-                    darkMode ? 'text-white/60' : 'text-gray-500'
+                  key={path}
+                  onClick={() => navTo(path)}
+                  style={fontSans}
+                  className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
+                    location.pathname === path
+                      ? 'text-purple-600'
+                      : darkMode
+                        ? 'text-white/60 hover:text-white'
+                        : 'text-gray-500 hover:text-gray-900'
                   }`}
                 >
-                  <Globe size={14} aria-hidden="true" />
-                  {language}
+                  {t('nav', key)}
+                  {location.pathname === path && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
+                  )}
                 </button>
-
-                {isLangMenuOpen && (
-                  <div
-                    className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border ${
-                      darkMode
-                        ? 'bg-[#2e1d46] border-white/10'
-                        : 'bg-white border-gray-100'
-                    } min-w-[120px] flex flex-col overflow-hidden animate-in slide-in-from-top-2`}
-                  >
-                    {LANGUAGES.map(({ code, label }) => (
-                      <button
-                        key={code}
-                        onClick={() => {
-                          setLanguage(code);
-                          setIsLangMenuOpen(false);
-                        }}
-                        className={`text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
-                          language === code
-                            ? 'text-purple-500'
-                            : darkMode
-                              ? 'text-white/70'
-                              : 'text-gray-600'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+              ))}
             </div>
 
-            <button
-              onClick={() => navTo('/roadmap')}
-              aria-label={t('nav', 'roadmap')}
-              className={`hidden sm:flex items-center justify-center p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] ${
-                location.pathname === '/roadmap'
-                  ? 'text-purple-500'
-                  : darkMode
+            {/* Icon group */}
+            <div className="flex items-center gap-3">
+              <div
+                className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
+                  darkMode ? 'bg-white/5' : 'bg-gray-100/80'
+                }`}
+              >
+                <button
+                  onClick={toggle}
+                  aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
+                  className="p-2.5 rounded-full hover:bg-white/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
+                >
+                  {darkMode ? (
+                    <Sun size={15} className="text-yellow-300" aria-hidden="true" />
+                  ) : (
+                    <Moon size={15} className="text-gray-500" aria-hidden="true" />
+                  )}
+                </button>
+
+                <div className="relative">
+                  <button
+                    onClick={() => setIsLangMenuOpen((prev) => !prev)}
+                    aria-label={t('nav', 'changeLanguage')}
+                    aria-expanded={isLangMenuOpen}
+                    aria-haspopup="true"
+                    className={`flex items-center justify-center gap-1 p-2.5 rounded-full hover:bg-white/20 transition-all text-[11px] font-bold uppercase min-w-[44px] min-h-[44px] ${
+                      darkMode ? 'text-white/60' : 'text-gray-500'
+                    }`}
+                  >
+                    <Globe size={14} aria-hidden="true" />
+                    {language}
+                  </button>
+
+                  {isLangMenuOpen && (
+                    <div
+                      className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border ${
+                        darkMode
+                          ? 'bg-[#2e1d46] border-white/10'
+                          : 'bg-white border-gray-100'
+                      } min-w-[120px] flex flex-col overflow-hidden animate-in slide-in-from-top-2`}
+                    >
+                      {LANGUAGES.map(({ code, label }) => (
+                        <button
+                          key={code}
+                          onClick={() => {
+                            setLanguage(code);
+                            setIsLangMenuOpen(false);
+                          }}
+                          className={`text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
+                            language === code
+                              ? 'text-purple-500'
+                              : darkMode
+                                ? 'text-white/70'
+                                : 'text-gray-600'
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <button
+                onClick={() => navTo('/roadmap')}
+                aria-label={t('nav', 'roadmap')}
+                className={`hidden sm:flex items-center justify-center p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] ${
+                  location.pathname === '/roadmap'
+                    ? 'text-purple-500'
+                    : darkMode
+                      ? 'text-white/40 hover:text-white'
+                      : 'text-gray-400 hover:text-gray-700'
+                }`}
+              >
+                <Map size={18} aria-hidden="true" />
+              </button>
+
+              <button
+                onClick={() => navTo('/profile')}
+                aria-label={t('nav', 'profile')}
+                className={`p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+                  location.pathname === '/profile'
+                    ? 'text-purple-500'
+                    : darkMode
+                      ? 'text-white/40 hover:text-white'
+                      : 'text-gray-400 hover:text-gray-700'
+                }`}
+              >
+                <User size={18} aria-hidden="true" />
+              </button>
+
+              <button
+                onClick={() => setIsCartOpen(true)}
+                aria-label={totals.count > 0 ? `${t('nav', 'cart')} (${totals.count} ${t('nav', 'items')})` : t('nav', 'cart')}
+                className={`relative p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+                  darkMode
                     ? 'text-white/40 hover:text-white'
                     : 'text-gray-400 hover:text-gray-700'
-              }`}
-            >
-              <Map size={18} aria-hidden="true" />
-            </button>
-
-            <button
-              onClick={() => navTo('/profile')}
-              aria-label={t('nav', 'profile')}
-              className={`p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
-                location.pathname === '/profile'
-                  ? 'text-purple-500'
-                  : darkMode
-                    ? 'text-white/40 hover:text-white'
-                    : 'text-gray-400 hover:text-gray-700'
-              }`}
-            >
-              <User size={18} aria-hidden="true" />
-            </button>
-
-            <button
-              onClick={() => setIsCartOpen(true)}
-              aria-label={totals.count > 0 ? `${t('nav', 'cart')} (${totals.count} ${t('nav', 'items')})` : t('nav', 'cart')}
-              className={`relative p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
-                darkMode
-                  ? 'text-white/40 hover:text-white'
-                  : 'text-gray-400 hover:text-gray-700'
-              }`}
-            >
-              <ShoppingCart size={18} aria-hidden="true" />
-              {totals.count > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-purple-600 text-white text-[9px] min-w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold" aria-hidden="true">
-                  {totals.count}
-                </span>
-              )}
-            </button>
+                }`}
+              >
+                <ShoppingCart size={18} aria-hidden="true" />
+                {totals.count > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-purple-600 text-white text-[9px] min-w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold" aria-hidden="true">
+                    {totals.count}
+                  </span>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
