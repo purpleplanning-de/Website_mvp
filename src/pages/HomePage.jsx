@@ -51,12 +51,12 @@ export default function HomePage() {
   return (
     <div className="animate-in fade-in duration-1000">
       {/* Hero Quote */}
-      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-12 md:mt-24 mb-16 md:mb-24">
-        <div className="mb-12 md:mb-16">
+      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
+        <div className="mb-14 md:mb-20">
           <p
             style={fontSerif}
-            className={`text-xl md:text-2xl lg:text-3xl italic font-light leading-relaxed ${
-              darkMode ? 'text-white/60' : 'text-gray-500'
+            className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed ${
+              darkMode ? 'text-white/50' : 'text-gray-400'
             }`}
           >
             {t('home', 'quote')}
@@ -82,7 +82,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-6xl mx-auto px-6 md:px-10 mb-28 md:mb-40">
+      <section className="max-w-5xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
@@ -99,16 +99,16 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48">
+      <section className="max-w-3xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48">
         <h2
           style={fontSerif}
-          className={`text-3xl md:text-5xl italic leading-tight mb-8 ${textMain}`}
+          className={`text-4xl md:text-5xl italic leading-tight mb-6 ${textMain}`}
         >
           {t('home', 'pause')}
         </h2>
         <p
           style={fontSans}
-          className={`font-light text-base md:text-lg italic leading-relaxed mb-10 max-w-xl mx-auto ${
+          className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto ${
             darkMode ? 'text-gray-400' : 'text-gray-500'
           }`}
         >
