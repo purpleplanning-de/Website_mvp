@@ -24,7 +24,7 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in">
+    <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in pt-20">
       <header className="mb-12">
         <h2 style={fontSerif} className="text-5xl italic mb-4">
           {t('profile', 'welcome')} {userData.name.split(' ')[0]}

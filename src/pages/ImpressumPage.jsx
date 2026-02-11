@@ -2,7 +2,7 @@ import { fontSerif, fontSans } from '../data/styles';
 
 export default function ImpressumPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-20 animate-in fade-in">
+    <div className="max-w-4xl mx-auto px-6 py-20 animate-in fade-in pt-20">
       <h2 style={fontSerif} className="text-4xl italic mb-8 text-center">
         Impressum
       </h2>
