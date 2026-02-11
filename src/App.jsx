@@ -101,7 +101,10 @@ export default function App() {
       <CartSidebar />
       <Navbar />
 
-      <main id="main-content" className="pt-32 md:pt-36 flex-grow">
+      {/* Spacer for fixed navbar - prevents content overlap */}
+      <div className="h-20" aria-hidden="true" />
+
+      <main id="main-content" className="flex-grow">
         <AnimatePresence mode="wait">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes location={location} key={location.pathname}>
