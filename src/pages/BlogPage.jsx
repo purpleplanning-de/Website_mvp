@@ -22,13 +22,13 @@ export default function BlogPage() {
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8 flex flex-col items-center">
         <div
           style={fontSans}
-          className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+          className={`w-fit mx-auto px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
           {t('blog', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center w-fit mx-auto">
           {t('blog', 'title')}
           <br />
           <span className="text-purple-600">{t('blog', 'titleAccent')}</span>.

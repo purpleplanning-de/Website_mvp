@@ -53,13 +53,13 @@ export default function AboutPage() {
       <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
         <div
           style={fontSans}
-          className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 mx-auto ${
+          className={`w-fit mx-auto px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
           {t('about', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center w-fit mx-auto">
           {t('about', 'title')} <span className="text-purple-600">{t('about', 'titleAccent')}</span>.
         </h2>
       </header>
