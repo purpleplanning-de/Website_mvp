@@ -29,7 +29,7 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="max-w-6xl mx-auto px-8 py-28 text-center">
+      <div className="max-w-6xl mx-auto px-6 py-28 text-center">
         <h2 style={fontSerif} className="text-3xl italic">
           {t('product', 'notFound')}
         </h2>
@@ -44,7 +44,7 @@ export default function ProductDetailPage() {
     'w-full bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
-    <div className="max-w-6xl mx-auto px-8 md:px-12 py-12 md:py-16 animate-in fade-in duration-500 text-left pt-16">
+    <div className="max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-16 animate-in fade-in duration-500 text-left pt-16">
       <button
         onClick={() => navigate('/shop')}
         style={fontSans}
@@ -127,7 +127,7 @@ export default function ProductDetailPage() {
             ))}
           </div>
 
-          <div className="min-h-[100px] opacity-60 font-light leading-relaxed text-sm md:text-base">
+          <div className={`min-h-[100px] font-light leading-relaxed text-sm md:text-base ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
             {activeTab === 'description' && <p>{productTranslations?.description ?? product.description}</p>}
             {activeTab === 'details' && <p>{productTranslations?.details ?? product.details}</p>}
             {activeTab === 'shipping' && <p>{productTranslations?.shipping ?? product.shipping}</p>}

@@ -48,7 +48,7 @@ export default function AboutPage() {
         description="Erfahre mehr über Purple Planning. Handgefertigte Planer mit Liebe zum Detail. Von der Idee bis zum fertigen Produkt - unsere Story."
         keywords="über purple planning, handarbeit, made in germany, nachhaltige planer"
       />
-      <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
+      <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000 pt-16">
       {/* Header */}
       <header className="text-center mb-20 md:mb-28">
         <div
@@ -79,7 +79,7 @@ export default function AboutPage() {
             <p>{t('about', 'storyP1')}</p>
             <p>{t('about', 'storyP2')}</p>
             <p>{t('about', 'storyP3')}</p>
-            <p className="font-medium text-purple-600 italic">
+            <p className={`font-medium ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
               {t('about', 'storyHighlight')}
             </p>
             <div
@@ -90,8 +90,8 @@ export default function AboutPage() {
               }`}
             >
               <p
-                className={`italic text-sm mb-5 leading-relaxed ${
-                  darkMode ? 'text-purple-300' : 'text-purple-900'
+                className={`not-italic text-sm mb-5 leading-relaxed ${
+                  darkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
                 {t('about', 'storyCta')}
@@ -153,7 +153,7 @@ export default function AboutPage() {
               <h4 style={fontSerif} className="text-3xl mb-4 italic">
                 {person.name}
               </h4>
-              <p style={fontSans} className="text-sm opacity-50 italic leading-relaxed">
+              <p style={fontSans} className={`text-sm leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 {person.quote}
               </p>
             </div>

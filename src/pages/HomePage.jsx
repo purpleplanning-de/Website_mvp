@@ -61,7 +61,7 @@ export default function HomePage() {
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
           <p
-            className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed text-center ${
+            className={`text-lg md:text-xl lg:text-2xl not-italic font-light leading-relaxed text-center ${
               darkMode ? 'text-white/85' : 'text-gray-600'
             }`}
             style={{
@@ -120,7 +120,7 @@ export default function HomePage() {
         </h2>
         <p
           style={fontSans}
-          className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto text-center ${
+          className={`font-light text-base md:text-lg not-italic leading-relaxed mb-8 max-w-2xl mx-auto text-center ${
             darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
@@ -168,7 +168,7 @@ export default function HomePage() {
                   >
                     <Icon size={22} strokeWidth={1.5} />
                   </div>
-                  <h3 style={fontSans} className={`text-lg md:text-lg italic mb-6 ${textMain}`}>
+                  <h3 style={fontSerif} className={`text-lg md:text-xl italic mb-6 ${textMain}`}>
                     {item.title}
                   </h3>
                   <p
