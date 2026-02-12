@@ -9,7 +9,7 @@ export default function RoadmapPage() {
 
   return (
     <div className="max-w-5xl mx-auto px-6 md:px-8 py-20 md:py-28 animate-in fade-in text-left pt-16">
-      <header className="text-center mb-20 md:mb-28">
+      <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
         <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7">
           {t('roadmap', 'title')}
         </h2>

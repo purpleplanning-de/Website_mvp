@@ -50,7 +50,7 @@ export default function AboutPage() {
       />
       <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000 pt-16">
       {/* Header */}
-      <header className="text-center mb-20 md:mb-28">
+      <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
         <div
           style={fontSans}
           className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 mx-auto ${
