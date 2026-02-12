@@ -17,12 +17,13 @@ import { fontSerif, fontSans } from '../data/styles';
 import { getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
+import SEO from '../components/SEO';
 
 const SOCIAL_LINKS = [
   { nameKey: 'Instagram', icon: Instagram, color: 'text-pink-500', bg: 'bg-pink-50' },
   { nameKey: 'TikTok', icon: Video, color: 'text-black dark:text-white', bg: 'bg-gray-100 dark:bg-white/10' },
   { nameKey: 'Etsy Shop', icon: ShoppingBag, color: 'text-orange-500', bg: 'bg-orange-50' },
-  { nameKey: 'comingSoon', icon: Plus, color: 'text-gray-400', bg: 'bg-gray-50 dark:bg-white/5' },
+  { nameKey: 'comingSoon', icon: Plus, color: 'text-gray-300', bg: 'bg-gray-50 dark:bg-white/5' },
 ];
 
 const DREAM_ICONS = [Home, Utensils, Target, Laptop];
@@ -34,19 +35,25 @@ export default function AboutPage() {
 
   const dreamItems = t('about', 'dreamItems');
 
-  const linkButtonStyle = `text-[10px] uppercase tracking-[0.4em] font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
+  const linkButtonStyle = `text-xs uppercase tracking-wider font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-800 hover:text-white'
       : 'text-purple-700 border-purple-100 hover:text-purple-400'
   }`;
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
+    <>
+      <SEO
+        title="Über uns - Purple Planning | Unsere Story"
+        description="Erfahre mehr über Purple Planning. Handgefertigte Planer mit Liebe zum Detail. Von der Idee bis zum fertigen Produkt - unsere Story."
+        keywords="über purple planning, handarbeit, made in germany, nachhaltige planer"
+      />
+      <div className="max-w-5xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-1000 pt-16">
       {/* Header */}
       <header className="text-center mb-20 md:mb-28">
         <div
           style={fontSans}
-          className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 mx-auto ${
+          className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 mx-auto ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
@@ -62,7 +69,7 @@ export default function AboutPage() {
         <div
           style={fontSans}
           className={`space-y-8 leading-relaxed text-base md:text-lg font-light text-left ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           <div className="space-y-7 text-left">
@@ -208,7 +215,7 @@ export default function AboutPage() {
                   </h5>
                   <p
                     style={fontSans}
-                    className="text-[10px] opacity-50 leading-tight font-light mt-1"
+                    className="text-xs opacity-50 leading-tight font-light mt-1"
                   >
                     {p.desc}
                   </p>
@@ -219,5 +226,6 @@ export default function AboutPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

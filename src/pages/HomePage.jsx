@@ -6,6 +6,7 @@ import { products, getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
+import SEO from '../components/SEO';
 
 const MANIFEST_ICONS = [Target, Sparkle, Compass];
 
@@ -14,14 +15,14 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -39,7 +40,7 @@ export default function HomePage() {
 
   const manifestCards = t('home', 'manifestCards');
 
-  const linkButtonStyle = `text-[11px] uppercase tracking-[0.3em] font-semibold border-b pb-2 transition-all inline-flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
+  const linkButtonStyle = `text-xs uppercase tracking-wide font-semibold border-b pb-2 transition-all inline-flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-700 hover:text-white hover:border-purple-400'
       : 'text-purple-600 border-purple-200 hover:text-purple-800 hover:border-purple-400'
@@ -49,13 +50,19 @@ export default function HomePage() {
     'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
-    <div className="animate-in fade-in duration-1000 pt-16">
+    <>
+      <SEO
+        title="Purple Planning - Handgefertigte Planer für dein bestes Jahr"
+        description="Entdecke minimalistisch designte Planer, Journale und Organizer. Handgefertigt mit Liebe. Steigere deine Produktivität mit stilvollen Tools. Made with 💜"
+        keywords="planer kaufen, bullet journal, handgefertigter planer, productivity planner, minimalistisches design, zeitmanagement tools"
+      />
+      <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
           <p
             className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed text-center ${
-              darkMode ? 'text-white/70' : 'text-gray-600'
+              darkMode ? 'text-white/85' : 'text-gray-600'
             }`}
             style={{
               ...fontSans,
@@ -70,7 +77,7 @@ export default function HomePage() {
             <div className={`h-px w-12 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
             <p
               style={fontSans}
-              className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-35"
+              className="text-xs uppercase tracking-wider font-medium opacity-35"
             >
               Antoine de Saint-Exupéry
             </p>
@@ -114,7 +121,7 @@ export default function HomePage() {
         <p
           style={fontSans}
           className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto text-center ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('home', 'pauseText')}
@@ -138,7 +145,7 @@ export default function HomePage() {
             </h2>
             <p
               className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed text-center ${
-                darkMode ? 'text-gray-400' : 'text-gray-500'
+                darkMode ? 'text-gray-300' : 'text-gray-500'
               }`}
             >
               {t('home', 'manifestSubtitle')}
@@ -166,12 +173,12 @@ export default function HomePage() {
                   </h3>
                   <p
                     className={`font-light leading-relaxed mb-8 text-sm md:text-[15px] ${
-                      darkMode ? 'text-gray-400' : 'text-gray-500'
+                      darkMode ? 'text-gray-300' : 'text-gray-500'
                     }`}
                   >
                     {item.text}
                   </p>
-                  <p className={`text-[10px] font-bold uppercase tracking-[0.25em] ${darkMode ? 'text-purple-400/70' : 'text-purple-500/70'}`}>
+                  <p className={`text-xs font-bold uppercase tracking-wide ${darkMode ? 'text-purple-400/70' : 'text-purple-500/70'}`}>
                     {item.persona}
                   </p>
                 </div>
@@ -197,7 +204,7 @@ export default function HomePage() {
           </h3>
           <p
             className={`text-base md:text-lg font-light text-center ${
-              darkMode ? 'text-gray-400' : 'text-gray-500'
+              darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >
             {t('home', 'popularSubtitle')}
@@ -224,5 +231,6 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

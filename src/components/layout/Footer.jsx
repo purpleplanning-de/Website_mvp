@@ -33,7 +33,7 @@ export default function Footer() {
           {/* Legal Links */}
           <div
             style={fontSans}
-            className="flex justify-center gap-8 text-[10px] font-medium uppercase tracking-widest opacity-25 mb-5"
+            className="flex justify-center gap-8 text-xs font-medium uppercase tracking-widest opacity-25 mb-5"
           >
             <button
               onClick={() => navigate('/impressum')}
@@ -52,7 +52,7 @@ export default function Footer() {
           {/* Copyright */}
           <p
             style={fontSans}
-            className="text-[10px] uppercase tracking-widest opacity-15 font-medium"
+            className="text-xs uppercase tracking-widest opacity-15 font-medium"
           >
             &copy; {new Date().getFullYear()} Studio PurplePlanning
           </p>

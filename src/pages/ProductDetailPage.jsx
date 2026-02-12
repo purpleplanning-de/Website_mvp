@@ -97,7 +97,7 @@ export default function ProductDetailPage() {
                   fill={s <= Math.round(product.rating) ? 'currentColor' : 'none'}
                 />
               ))}
-              <span className="text-[11px] opacity-40 font-bold tracking-widest uppercase ml-2">
+              <span className="text-xs opacity-40 font-bold tracking-widest uppercase ml-2">
                 ({product.reviews} Reviews)
               </span>
             </div>

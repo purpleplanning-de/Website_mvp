@@ -22,7 +22,7 @@ export default function BlogPage() {
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8">
         <div
           style={fontSans}
-          className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 ${
+          className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
@@ -60,7 +60,7 @@ export default function BlogPage() {
               <Calendar size={13} className="text-purple-500/70" />
               <span
                 style={fontSans}
-                className="text-[11px] font-bold tracking-widest uppercase opacity-50"
+                className="text-xs font-bold tracking-widest uppercase opacity-50"
               >
                 {post.date}
               </span>
@@ -74,7 +74,7 @@ export default function BlogPage() {
             <p style={fontSans} className="opacity-50 font-light leading-relaxed mb-5 text-sm md:text-base">
               {post.preview}
             </p>
-            <button className="text-purple-600 font-bold text-[11px] uppercase tracking-widest border-b border-purple-500/20 pb-1 group-hover:border-purple-500 transition-all">
+            <button className="text-purple-600 font-bold text-xs uppercase tracking-widest border-b border-purple-500/20 pb-1 group-hover:border-purple-500 transition-all">
               {t('blog', 'readMore')}
             </button>
           </div>

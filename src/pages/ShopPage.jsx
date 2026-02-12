@@ -4,6 +4,7 @@ import { products } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
+import SEO from '../components/SEO';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -22,7 +23,7 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
       ease: [0.23, 1, 0.32, 1],
     },
   },
@@ -33,7 +34,13 @@ export default function ShopPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 text-center pt-16">
+    <>
+      <SEO
+        title="Shop - Purple Planning | Handgefertigte Planer & Journale"
+        description="Entdecke unsere komplette Kollektion an handgefertigten Planern, Journalen und Organizern. Minimalistisches Design, höchste Qualität. Jetzt shoppen!"
+        keywords="planer shop, journal kaufen, handgefertigte planer, bullet journal shop, organizer kaufen"
+      />
+      <div className="max-w-5xl mx-auto px-8 md:px-12 text-center pt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,7 +53,7 @@ export default function ShopPage() {
         <p
           style={fontSans}
           className={`font-light italic text-base md:text-lg max-w-lg mx-auto text-center ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('shop', 'subtitle')}
@@ -65,5 +72,6 @@ export default function ShopPage() {
         ))}
       </motion.div>
     </div>
+    </>
   );
 }
