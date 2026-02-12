@@ -47,12 +47,12 @@ export default function ShopPage() {
         transition={{ duration: 0.6 }}
         className="text-center mb-16 md:mb-20 mt-6 md:mt-12 flex flex-col items-center"
       >
-        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 text-center">
+        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 text-center w-fit mx-auto">
           {t('shop', 'title')}
         </h2>
         <p
           style={fontSans}
-          className={`font-light not-italic text-base md:text-lg max-w-lg mx-auto text-center ${
+          className={`font-light not-italic text-base md:text-lg max-w-lg mx-auto text-center w-fit ${
             darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
