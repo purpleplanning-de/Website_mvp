@@ -5,6 +5,7 @@ export const translations = {
       systems: 'System-Finder',
       about: 'Über uns',
       blog: 'Blog',
+      contact: 'Kontakt',
       roadmap: 'Roadmap',
       profile: 'Profil',
       cart: 'Warenkorb',

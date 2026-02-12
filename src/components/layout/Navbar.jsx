@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { path: '/bundle', key: 'systems' },
   { path: '/about', key: 'about' },
   { path: '/blog', key: 'blog' },
+  { path: '/contact', key: 'contact' },
 ];
 
 const LANGUAGES = [

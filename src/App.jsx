@@ -17,6 +17,7 @@ const BundlePage = lazy(() => import('./pages/BundlePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
 const RoadmapPage = lazy(() => import('./pages/RoadmapPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'));
@@ -101,7 +102,10 @@ export default function App() {
       <CartSidebar />
       <Navbar />
 
-      <main id="main-content" className="pt-24 md:pt-28 flex-grow">
+      {/* Spacer for fixed navbar - prevents content overlap */}
+      <div className="h-20" aria-hidden="true" />
+
+      <main id="main-content" className="flex-grow">
         <AnimatePresence mode="wait">
           <Suspense fallback={<LoadingSpinner />}>
             <Routes location={location} key={location.pathname}>
@@ -111,6 +115,7 @@ export default function App() {
               <Route path="/bundle" element={<PageWrapper><BundlePage /></PageWrapper>} />
               <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
               <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
+              <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
               <Route path="/roadmap" element={<PageWrapper><RoadmapPage /></PageWrapper>} />
               <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
               <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
