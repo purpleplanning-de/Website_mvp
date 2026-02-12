@@ -8,9 +8,9 @@ export default function RoadmapPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-5xl mx-auto px-8 md:px-12 py-20 md:py-28 animate-in fade-in text-left">
+    <div className="max-w-5xl mx-auto px-8 md:px-12 py-20 md:py-28 animate-in fade-in text-left pt-16">
       <header className="text-center mb-20 md:mb-28">
-        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7 italic">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7">
           {t('roadmap', 'title')}
         </h2>
         <p className="opacity-50 font-light max-w-2xl mx-auto text-base md:text-lg">
@@ -41,7 +41,7 @@ export default function RoadmapPage() {
                 {t('roadmap', 'notionDesc')}
               </p>
               <span
-                className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                   darkMode ? 'bg-white/[0.06] text-purple-300' : 'bg-purple-50 text-purple-600'
                 }`}
               >
@@ -75,7 +75,7 @@ export default function RoadmapPage() {
                 {t('roadmap', 'guidesDesc')}
               </p>
               <span
-                className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                   darkMode ? 'bg-white/[0.06] text-gray-400' : 'bg-gray-100 text-gray-500'
                 }`}
               >

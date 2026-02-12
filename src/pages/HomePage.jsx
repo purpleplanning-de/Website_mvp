@@ -6,6 +6,7 @@ import { products, getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
+import SEO from '../components/SEO';
 
 const MANIFEST_ICONS = [Target, Sparkle, Compass];
 
@@ -14,14 +15,14 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -39,25 +40,36 @@ export default function HomePage() {
 
   const manifestCards = t('home', 'manifestCards');
 
-  const linkButtonStyle = `text-[11px] uppercase tracking-[0.3em] font-semibold border-b pb-2 transition-all flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
+  const linkButtonStyle = `text-xs uppercase tracking-wide font-semibold border-b pb-2 transition-all inline-flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-700 hover:text-white hover:border-purple-400'
       : 'text-purple-600 border-purple-200 hover:text-purple-800 hover:border-purple-400'
   }`;
 
   const actionButtonStyle =
-    'bg-purple-600 text-white py-4 md:py-5 px-10 md:px-14 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
+    'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center inline-flex items-center gap-2 cursor-pointer text-sm md:text-base';
 
   return (
-    <div className="animate-in fade-in duration-1000">
+    <>
+      <SEO
+        title="Purple Planning - Handgefertigte Planer für dein bestes Jahr"
+        description="Entdecke minimalistisch designte Planer, Journale und Organizer. Handgefertigt mit Liebe. Steigere deine Produktivität mit stilvollen Tools. Made with 💜"
+        keywords="planer kaufen, bullet journal, handgefertigter planer, productivity planner, minimalistisches design, zeitmanagement tools"
+      />
+      <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
         <div className="mb-14 md:mb-20">
           <p
-            style={fontSerif}
-            className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed ${
-              darkMode ? 'text-white/50' : 'text-gray-400'
+            className={`text-lg md:text-xl lg:text-2xl italic font-light leading-relaxed text-center ${
+              darkMode ? 'text-white/85' : 'text-gray-600'
             }`}
+            style={{
+              ...fontSans,
+              textShadow: darkMode
+                ? '0 2px 20px rgba(0,0,0,0.8), 0 0 40px rgba(0,0,0,0.4)'
+                : '0 1px 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5)'
+            }}
           >
             {t('home', 'quote')}
           </p>
@@ -65,7 +77,7 @@ export default function HomePage() {
             <div className={`h-px w-12 ${darkMode ? 'bg-white/10' : 'bg-purple-200/50'}`} />
             <p
               style={fontSans}
-              className="text-[10px] uppercase tracking-[0.4em] font-medium opacity-35"
+              className="text-xs uppercase tracking-wider font-medium opacity-35"
             >
               Antoine de Saint-Exupéry
             </p>
@@ -74,7 +86,7 @@ export default function HomePage() {
         </div>
         <h1
           style={fontSerif}
-          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight ${textMain}`}
+          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight text-center ${textMain}`}
         >
           {t('home', 'hero')[0]} <br />
           <span className={`${textMuted} italic`}>{t('home', 'hero')[1]}</span>
@@ -82,7 +94,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-5xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
@@ -99,17 +111,17 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-3xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48">
+      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12">
         <h2
           style={fontSerif}
-          className={`text-4xl md:text-5xl italic leading-tight mb-6 ${textMain}`}
+          className={`text-4xl md:text-5xl leading-tight mb-6 text-center ${textMain}`}
         >
           {t('home', 'pause')}
         </h2>
         <p
           style={fontSans}
-          className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto ${
-            darkMode ? 'text-gray-400' : 'text-gray-500'
+          className={`font-light text-base md:text-lg italic leading-relaxed mb-8 max-w-2xl mx-auto text-center ${
+            darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('home', 'pauseText')}
@@ -126,14 +138,14 @@ export default function HomePage() {
           darkMode ? 'bg-white/[0.02] border-y border-white/[0.04]' : 'bg-purple-50/30'
         }`}
       >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
+        <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-20 md:mb-24">
-            <h2 style={fontSerif} className={`text-4xl md:text-5xl italic mb-6 ${textMain}`}>
+            <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 text-center ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
-              className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed ${
-                darkMode ? 'text-gray-400' : 'text-gray-500'
+              className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed text-center ${
+                darkMode ? 'text-gray-300' : 'text-gray-500'
               }`}
             >
               {t('home', 'manifestSubtitle')}
@@ -156,17 +168,17 @@ export default function HomePage() {
                   >
                     <Icon size={22} strokeWidth={1.5} />
                   </div>
-                  <h3 style={fontSerif} className={`text-2xl md:text-2xl italic mb-4 ${textMain}`}>
+                  <h3 style={fontSans} className={`text-lg md:text-lg italic mb-6 ${textMain}`}>
                     {item.title}
                   </h3>
                   <p
-                    className={`font-light leading-relaxed mb-6 text-sm md:text-[15px] ${
-                      darkMode ? 'text-gray-400' : 'text-gray-500'
+                    className={`font-light leading-relaxed mb-8 text-sm md:text-[15px] ${
+                      darkMode ? 'text-gray-300' : 'text-gray-500'
                     }`}
                   >
                     {item.text}
                   </p>
-                  <p className={`text-[10px] font-bold uppercase tracking-[0.25em] ${darkMode ? 'text-purple-400/70' : 'text-purple-500/70'}`}>
+                  <p className={`text-xs font-bold uppercase tracking-wide ${darkMode ? 'text-purple-400/70' : 'text-purple-500/70'}`}>
                     {item.persona}
                   </p>
                 </div>
@@ -185,14 +197,14 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products */}
-      <section className="max-w-5xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
         <div className="text-center mb-20 md:mb-24">
-          <h3 style={fontSerif} className={`text-4xl md:text-5xl italic mb-5 ${textMain}`}>
+          <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 text-center ${textMain}`}>
             {t('home', 'popular')}
           </h3>
           <p
-            className={`text-base md:text-lg font-light ${
-              darkMode ? 'text-gray-400' : 'text-gray-500'
+            className={`text-base md:text-lg font-light text-center ${
+              darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >
             {t('home', 'popularSubtitle')}
@@ -219,5 +231,6 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

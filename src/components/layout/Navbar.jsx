@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, User, Moon, Sun, Globe, Map, Menu, X } from 'lucide-react';
 import { fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useCart } from '../../hooks/useCart';
-import { useScrolled } from '../../hooks/useScrolled';
 
 const NAV_LINKS = [
   { path: '/shop', key: 'shop' },
@@ -24,249 +23,332 @@ const LANGUAGES = [
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
-  const scrolled = useScrolled();
   const { darkMode, toggle } = useTheme();
   const { language, setLanguage, t } = useLanguage();
   const { setIsCartOpen, totals } = useCart();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+  const langMenuRef = useRef(null);
 
   const navTo = (path) => {
     navigate(path);
     setIsMobileMenuOpen(false);
   };
 
+  // Close mobile menu on ESC key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen || isLangMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [isMobileMenuOpen, isLangMenuOpen]);
+
+  // Close mobile menu on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(e.target)) {
+        setIsMobileMenuOpen(false);
+      }
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen || isLangMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isMobileMenuOpen, isLangMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <>
+      {/* Main Navbar - Fixed at top */}
       <nav
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? darkMode
-              ? 'bg-[#1a0b2e]/95 border-b border-white/10'
-              : 'bg-white/95 shadow-sm'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 h-20 z-50 ${
+          darkMode
+            ? 'bg-[#1a0b2e]/95 border-b border-white/10'
+            : 'bg-white/95 shadow-sm'
         } backdrop-blur-lg`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Left nav links — desktop */}
-          <div className="hidden md:flex items-center gap-6 lg:gap-8 flex-1 justify-start">
-            {NAV_LINKS.slice(0, 2).map(({ path, key }) => (
-              <button
-                key={path}
-                onClick={() => navTo(path)}
-                style={fontSans}
-                className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
-                  location.pathname === path
-                    ? 'text-purple-600'
-                    : darkMode
-                      ? 'text-white/60 hover:text-white'
-                      : 'text-gray-500 hover:text-gray-900'
-                }`}
-              >
-                {t('nav', key)}
-                {location.pathname === path && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
-                )}
-              </button>
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto h-full px-6 sm:px-8 lg:px-12">
+          {/* Grid Layout: Left | Center | Right */}
+          <div className="grid grid-cols-[1fr_auto_1fr] gap-4 h-full items-center">
 
-          {/* Mobile hamburger */}
-          <button
-            aria-label={isMobileMenuOpen ? t('nav', 'closeMenu') : t('nav', 'openMenu')}
-            aria-expanded={isMobileMenuOpen}
-            className="md:hidden p-3 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-          </button>
-
-          {/* Logo */}
-          <div className="flex-1 flex justify-center">
-            <img
-              src={`${import.meta.env.BASE_URL}logo.png`}
-              alt="Purple Planning"
-              loading="eager"
-              onClick={() => navTo('/')}
-              className="h-14 cursor-pointer hover:scale-105 transition-transform drop-shadow-sm"
-            />
-          </div>
-
-          {/* Right nav links + actions */}
-          <div className="flex items-center gap-6 lg:gap-8 flex-1 justify-end">
-            {/* Right nav links */}
-            <div className="hidden md:flex items-center gap-6 lg:gap-8">
-              {NAV_LINKS.slice(2).map(({ path, key }) => (
-                <button
-                  key={path}
-                  onClick={() => navTo(path)}
-                  style={fontSans}
-                  className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative pb-1 ${
-                    location.pathname === path
-                      ? 'text-purple-600'
-                      : darkMode
-                        ? 'text-white/60 hover:text-white'
-                        : 'text-gray-500 hover:text-gray-900'
-                  }`}
-                >
-                  {t('nav', key)}
-                  {location.pathname === path && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-purple-500 rounded-full" />
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* Icon group */}
-            <div className="flex items-center gap-3">
-              <div
-                className={`hidden sm:flex items-center gap-1 rounded-full px-2 py-1.5 ${
-                  darkMode ? 'bg-white/5' : 'bg-gray-100/80'
-                }`}
-              >
-                <button
-                  onClick={toggle}
-                  aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
-                  className="p-2.5 rounded-full hover:bg-white/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
-                >
-                  {darkMode ? (
-                    <Sun size={15} className="text-yellow-300" aria-hidden="true" />
-                  ) : (
-                    <Moon size={15} className="text-gray-500" aria-hidden="true" />
-                  )}
-                </button>
-
-                <div className="relative">
+            {/* LEFT: Navigation Links (Desktop) */}
+            <div className="justify-self-start">
+              <div className="hidden md:flex items-center gap-8">
+                {NAV_LINKS.map(({ path, key }) => (
                   <button
-                    onClick={() => setIsLangMenuOpen((prev) => !prev)}
-                    aria-label={t('nav', 'changeLanguage')}
-                    aria-expanded={isLangMenuOpen}
-                    aria-haspopup="true"
-                    className={`flex items-center justify-center gap-1 p-2.5 rounded-full hover:bg-white/20 transition-all text-[11px] font-bold uppercase min-w-[44px] min-h-[44px] ${
-                      darkMode ? 'text-white/60' : 'text-gray-500'
+                    key={path}
+                    onClick={() => navTo(path)}
+                    style={fontSans}
+                    className={`text-xs font-semibold tracking-wide uppercase transition-colors relative ${
+                      location.pathname === path
+                        ? 'text-purple-600'
+                        : darkMode
+                          ? 'text-white/60 hover:text-white'
+                          : 'text-gray-500 hover:text-gray-900'
                     }`}
                   >
-                    <Globe size={14} aria-hidden="true" />
-                    {language}
+                    {t('nav', key)}
+                    {location.pathname === path && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple-500 rounded-full" />
+                    )}
                   </button>
-
-                  {isLangMenuOpen && (
-                    <div
-                      className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border ${
-                        darkMode
-                          ? 'bg-[#2e1d46] border-white/10'
-                          : 'bg-white border-gray-100'
-                      } min-w-[120px] flex flex-col overflow-hidden animate-in slide-in-from-top-2`}
-                    >
-                      {LANGUAGES.map(({ code, label }) => (
-                        <button
-                          key={code}
-                          onClick={() => {
-                            setLanguage(code);
-                            setIsLangMenuOpen(false);
-                          }}
-                          className={`text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
-                            language === code
-                              ? 'text-purple-500'
-                              : darkMode
-                                ? 'text-white/70'
-                                : 'text-gray-600'
-                          }`}
-                        >
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                ))}
               </div>
 
+              {/* Mobile: Hamburger Menu */}
               <button
-                onClick={() => navTo('/roadmap')}
-                aria-label={t('nav', 'roadmap')}
-                className={`hidden sm:flex items-center justify-center p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] ${
-                  location.pathname === '/roadmap'
-                    ? 'text-purple-500'
-                    : darkMode
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label={isMobileMenuOpen ? t('nav', 'closeMenu') : t('nav', 'openMenu')}
+                className="md:hidden p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+
+            {/* CENTER: Logo */}
+            <div className="justify-self-center">
+              <img
+                src={`${import.meta.env.BASE_URL}logo.png`}
+                alt="Purple Planning"
+                onClick={() => navTo('/')}
+                className="h-14 sm:h-16 cursor-pointer hover:scale-105 transition-transform"
+              />
+            </div>
+
+            {/* RIGHT: Icons & Actions */}
+            <div className="justify-self-end">
+              <div className="flex items-center gap-2">
+
+                {/* Theme & Language (Desktop) */}
+                <div className="hidden sm:flex items-center gap-1 bg-gray-100/80 dark:bg-white/5 rounded-full px-2 py-1.5">
+                  {/* Theme Toggle */}
+                  <button
+                    onClick={toggle}
+                    aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
+                    className="p-3 rounded-full hover:bg-white/20 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+                  >
+                    {darkMode ? (
+                      <Sun size={18} className="text-yellow-300" />
+                    ) : (
+                      <Moon size={18} className="text-gray-500" />
+                    )}
+                  </button>
+
+                  {/* Language Selector */}
+                  <div className="relative" ref={langMenuRef}>
+                    <button
+                      onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                      aria-label={t('nav', 'changeLanguage')}
+                      aria-expanded={isLangMenuOpen}
+                      className={`flex items-center gap-1.5 px-3 py-3 rounded-full hover:bg-white/20 transition-colors text-xs font-bold uppercase min-w-[44px] min-h-[44px] ${
+                        darkMode ? 'text-white/60' : 'text-gray-500'
+                      }`}
+                    >
+                      <Globe size={16} />
+                      {language}
+                    </button>
+
+                    {/* Language Dropdown */}
+                    {isLangMenuOpen && (
+                      <div
+                        role="menu"
+                        className={`absolute top-full right-0 mt-2 py-2 rounded-xl shadow-xl border min-w-[120px] z-50 ${
+                          darkMode
+                            ? 'bg-[#2e1d46] border-white/10'
+                            : 'bg-white border-gray-100'
+                        }`}
+                      >
+                        {LANGUAGES.map(({ code, label }) => (
+                          <button
+                            key={code}
+                            onClick={() => {
+                              setLanguage(code);
+                              setIsLangMenuOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
+                              language === code
+                                ? 'text-purple-500'
+                                : darkMode
+                                  ? 'text-white/70'
+                                  : 'text-gray-600'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Roadmap Icon (Desktop) */}
+                <button
+                  onClick={() => navTo('/roadmap')}
+                  aria-label={t('nav', 'roadmap')}
+                  className={`hidden sm:flex items-center justify-center p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] ${
+                    location.pathname === '/roadmap'
+                      ? 'text-purple-500'
+                      : darkMode
+                        ? 'text-white/40 hover:text-white'
+                        : 'text-gray-400 hover:text-gray-700'
+                  }`}
+                >
+                  <Map size={20} />
+                </button>
+
+                {/* Profile Icon */}
+                <button
+                  onClick={() => navTo('/profile')}
+                  aria-label={t('nav', 'profile')}
+                  className={`p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+                    location.pathname === '/profile'
+                      ? 'text-purple-500'
+                      : darkMode
+                        ? 'text-white/40 hover:text-white'
+                        : 'text-gray-400 hover:text-gray-700'
+                  }`}
+                >
+                  <User size={20} />
+                </button>
+
+                {/* Shopping Cart */}
+                <button
+                  onClick={() => setIsCartOpen(true)}
+                  aria-label={t('nav', 'cart')}
+                  className={`relative p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
+                    darkMode
                       ? 'text-white/40 hover:text-white'
                       : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                <Map size={18} aria-hidden="true" />
-              </button>
-
-              <button
-                onClick={() => navTo('/profile')}
-                aria-label={t('nav', 'profile')}
-                className={`p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
-                  location.pathname === '/profile'
-                    ? 'text-purple-500'
-                    : darkMode
-                      ? 'text-white/40 hover:text-white'
-                      : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                <User size={18} aria-hidden="true" />
-              </button>
-
-              <button
-                onClick={() => setIsCartOpen(true)}
-                aria-label={totals.count > 0 ? `${t('nav', 'cart')} (${totals.count} ${t('nav', 'items')})` : t('nav', 'cart')}
-                className={`relative p-2 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
-                  darkMode
-                    ? 'text-white/40 hover:text-white'
-                    : 'text-gray-400 hover:text-gray-700'
-                }`}
-              >
-                <ShoppingCart size={18} aria-hidden="true" />
-                {totals.count > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 bg-purple-600 text-white text-[9px] min-w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold" aria-hidden="true">
-                    {totals.count}
-                  </span>
-                )}
-              </button>
+                  }`}
+                >
+                  <ShoppingCart size={20} />
+                  {totals.count > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs min-w-[20px] min-h-[20px] rounded-full flex items-center justify-center font-bold">
+                      {totals.count}
+                    </span>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile Menu - Appears BELOW navbar */}
       {isMobileMenuOpen && (
         <div
-          className={`fixed inset-0 z-40 pt-20 ${
+          ref={mobileMenuRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          className={`fixed top-20 left-0 right-0 bottom-0 z-40 ${
             darkMode ? 'bg-[#1a0b2e]/98' : 'bg-white/98'
           } backdrop-blur-xl animate-in fade-in`}
         >
-          <div className="flex flex-col items-center gap-8 pt-12">
+          <div className="flex flex-col items-center justify-center gap-8 pt-16">
+            {/* Mobile Nav Links */}
             {NAV_LINKS.map(({ path, key }) => (
               <button
                 key={path}
                 onClick={() => navTo(path)}
                 className={`text-2xl font-light tracking-wide transition-colors ${
                   location.pathname === path
-                    ? 'text-purple-600'
+                    ? 'text-purple-600 font-semibold'
                     : darkMode
-                      ? 'text-white/70'
-                      : 'text-gray-600'
+                      ? 'text-white/70 hover:text-white'
+                      : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
                 {t('nav', key)}
               </button>
             ))}
-            <div className="flex gap-4 mt-8">
+
+            {/* Mobile Bottom Actions */}
+            <div className="flex items-center gap-4 pt-8 mt-8 border-t border-white/10">
+              {/* Theme Toggle */}
               <button
                 onClick={toggle}
                 aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
-                className="p-3 rounded-full bg-purple-100 text-purple-600"
+                className="p-4 rounded-full hover:bg-white/10 transition-colors"
               >
-                {darkMode ? <Sun size={20} aria-hidden="true" /> : <Moon size={20} aria-hidden="true" />}
+                {darkMode ? <Sun size={22} className="text-yellow-300" /> : <Moon size={22} />}
               </button>
+
+              {/* Language Selector */}
+              <div className="relative" ref={langMenuRef}>
+                <button
+                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                  aria-label={t('nav', 'changeLanguage')}
+                  className={`flex items-center gap-2 px-4 py-3 rounded-full hover:bg-white/10 transition-colors text-sm font-bold uppercase ${
+                    darkMode ? 'text-white/70' : 'text-gray-600'
+                  }`}
+                >
+                  <Globe size={18} />
+                  {language}
+                </button>
+
+                {isLangMenuOpen && (
+                  <div
+                    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 py-2 rounded-xl shadow-xl border min-w-[120px] ${
+                      darkMode
+                        ? 'bg-[#2e1d46] border-white/10'
+                        : 'bg-white border-gray-100'
+                    }`}
+                  >
+                    {LANGUAGES.map(({ code, label }) => (
+                      <button
+                        key={code}
+                        onClick={() => {
+                          setLanguage(code);
+                          setIsLangMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
+                          language === code
+                            ? 'text-purple-500'
+                            : darkMode
+                              ? 'text-white/70'
+                              : 'text-gray-600'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Roadmap */}
               <button
                 onClick={() => navTo('/roadmap')}
                 aria-label={t('nav', 'roadmap')}
-                className="p-3 rounded-full bg-purple-100 text-purple-600"
+                className={`p-4 rounded-full hover:bg-white/10 transition-colors ${
+                  location.pathname === '/roadmap' ? 'text-purple-500' : ''
+                }`}
               >
-                <Map size={20} aria-hidden="true" />
+                <Map size={22} />
               </button>
             </div>
           </div>

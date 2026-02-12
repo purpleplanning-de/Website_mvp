@@ -1,17 +1,58 @@
-import { createContext, useState, useMemo, useCallback, useContext } from 'react';
+import { createContext, useState, useMemo, useCallback, useContext, useEffect } from 'react';
 import { VALID_CODES } from '../data/discountCodes';
 import { LanguageContext } from './LanguageContext';
 
 export const CartContext = createContext(null);
 
+// LocalStorage keys
+const CART_STORAGE_KEY = 'purpleplanning_cart';
+const DISCOUNT_STORAGE_KEY = 'purpleplanning_discount';
+
 export function CartProvider({ children }) {
   const { t } = useContext(LanguageContext);
-  const [cart, setCart] = useState([]);
+
+  // Initialize from localStorage
+  const [cart, setCart] = useState(() => {
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [discountCode, setDiscountCode] = useState('');
-  const [appliedDiscount, setAppliedDiscount] = useState({ code: '', value: 0 });
+
+  const [appliedDiscount, setAppliedDiscount] = useState(() => {
+    try {
+      const saved = localStorage.getItem(DISCOUNT_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : { code: '', value: 0 };
+    } catch {
+      return { code: '', value: 0 };
+    }
+  });
+
   const [feedback, setFeedback] = useState(null);
   const [discountError, setDiscountError] = useState(false);
+
+  // Persist cart to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    } catch (error) {
+      console.error('Failed to save cart to localStorage:', error);
+    }
+  }, [cart]);
+
+  // Persist discount to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(appliedDiscount));
+    } catch (error) {
+      console.error('Failed to save discount to localStorage:', error);
+    }
+  }, [appliedDiscount]);
 
   const showFeedback = useCallback((msg) => {
     setFeedback(msg);

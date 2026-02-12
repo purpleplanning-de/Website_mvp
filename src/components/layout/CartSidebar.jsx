@@ -11,6 +11,7 @@ import {
   CreditCard,
   AlertCircle,
   CheckCircle,
+  ShoppingBag,
 } from 'lucide-react';
 import { fontSerif, fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
@@ -85,7 +86,7 @@ export default function CartSidebar() {
             <button
               onClick={() => setIsCartOpen(false)}
               aria-label={t('cart', 'close')}
-              className="p-2 hover:bg-white/10 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="p-3 hover:bg-white/10 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <X size={24} aria-hidden="true" />
             </button>
@@ -95,17 +96,68 @@ export default function CartSidebar() {
           <div className="flex-grow overflow-y-auto space-y-6 pr-2">
             {cart.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-20 text-center">
-                <Sparkle size={48} className="text-purple-400 mb-6" />
-                <h3 style={fontSerif} className="text-xl italic mb-4">
+                {/* Icon with animated background */}
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{
+                    type: 'spring',
+                    damping: 15,
+                    stiffness: 200,
+                    delay: 0.1,
+                  }}
+                  className="relative mb-8"
+                >
+                  <div
+                    className={`absolute inset-0 rounded-full blur-2xl ${
+                      darkMode ? 'bg-purple-500/20' : 'bg-purple-200/40'
+                    }`}
+                  />
+                  <div
+                    className={`relative w-24 h-24 rounded-full flex items-center justify-center ${
+                      darkMode ? 'bg-purple-900/40' : 'bg-purple-50'
+                    }`}
+                  >
+                    <ShoppingBag size={40} className="text-purple-400" strokeWidth={1.5} />
+                  </div>
+                </motion.div>
+
+                {/* Text */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  style={fontSerif}
+                  className="text-2xl mb-3"
+                >
                   {t('cart', 'empty')}
-                </h3>
-                <button
+                </motion.h3>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className={`text-sm mb-8 max-w-xs ${
+                    darkMode ? 'text-gray-400' : 'text-gray-500'
+                  }`}
+                >
+                  Entdecke unsere handgefertigten Planer und finde deinen perfekten Begleiter.
+                </motion.p>
+
+                {/* CTA Button */}
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={goToShop}
                   style={fontSans}
-                  className="bg-purple-600 text-white px-8 py-3 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-purple-700"
+                  className="bg-purple-600 text-white px-8 py-4 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-purple-700 shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                 >
+                  <Sparkle size={14} />
                   {t('cart', 'browse')}
-                </button>
+                </motion.button>
               </div>
             ) : (
               <div className="space-y-6">
@@ -134,7 +186,11 @@ export default function CartSidebar() {
                             {item.price.toFixed(2)} €
                           </p>
                           {appliedDiscount.value > 0 && (
-                            <span className="text-[9px] bg-red-100 text-red-600 px-1.5 rounded font-bold uppercase tracking-wide">
+                            <span className={`text-xs px-1.5 rounded font-bold uppercase tracking-wide ${
+                              darkMode
+                                ? 'bg-red-900/40 text-red-300'
+                                : 'bg-red-100 text-red-600'
+                            }`}>
                               -{appliedDiscount.value * 100}%
                             </span>
                           )}
@@ -142,32 +198,32 @@ export default function CartSidebar() {
                       </div>
                       <div className="flex items-center justify-between">
                         <div
-                          className={`flex items-center gap-2 ${
+                          className={`flex items-center gap-1 ${
                             darkMode ? 'bg-black/20' : 'bg-gray-50'
                           } rounded-lg px-1 py-1`}
                         >
                           <button
                             onClick={() => updateQuantity(item.id, -1)}
                             aria-label={t('cart', 'decreaseQuantity')}
-                            className="min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
+                            className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
                           >
-                            <Minus size={14} aria-hidden="true" />
+                            <Minus size={16} aria-hidden="true" />
                           </button>
-                          <span className="text-xs font-bold w-6 text-center" aria-label={`${t('cart', 'quantity')}: ${item.qty}`}>{item.qty}</span>
+                          <span className="text-sm font-bold min-w-[32px] text-center" aria-label={`${t('cart', 'quantity')}: ${item.qty}`}>{item.qty}</span>
                           <button
                             onClick={() => updateQuantity(item.id, 1)}
                             aria-label={t('cart', 'increaseQuantity')}
-                            className="min-w-[32px] min-h-[32px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
+                            className="min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/10 rounded transition-colors"
                           >
-                            <Plus size={14} aria-hidden="true" />
+                            <Plus size={16} aria-hidden="true" />
                           </button>
                         </div>
                         <button
                           onClick={() => removeFromCart(item.id)}
                           aria-label={`${t('cart', 'remove')} ${item.name}`}
-                          className="text-gray-400 hover:text-red-400 min-w-[32px] min-h-[32px] flex items-center justify-center"
+                          className="text-gray-400 hover:text-red-400 min-w-[44px] min-h-[44px] flex items-center justify-center"
                         >
-                          <Trash2 size={16} aria-hidden="true" />
+                          <Trash2 size={18} aria-hidden="true" />
                         </button>
                       </div>
                     </div>
@@ -192,7 +248,7 @@ export default function CartSidebar() {
                       onKeyPress={(e) => e.key === 'Enter' && applyDiscount()}
                       aria-invalid={discountError ? 'true' : 'false'}
                       aria-describedby="discount-error"
-                      className={`w-full px-4 py-2 pr-10 rounded-xl text-sm outline-none border-2 transition-all uppercase tracking-wider font-bold ${
+                      className={`w-full px-4 py-3 pr-10 rounded-xl text-sm outline-none border-2 transition-all uppercase tracking-wider font-bold min-h-[44px] ${
                         discountError
                           ? 'border-red-500 focus:border-red-600'
                           : appliedDiscount.code
