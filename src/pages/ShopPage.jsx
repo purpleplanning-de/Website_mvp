@@ -40,7 +40,7 @@ export default function ShopPage() {
         description="Entdecke unsere komplette Kollektion an handgefertigten Planern, Journalen und Organizern. Minimalistisches Design, höchste Qualität. Jetzt shoppen!"
         keywords="planer shop, journal kaufen, handgefertigte planer, bullet journal shop, organizer kaufen"
       />
-      <div className="max-w-5xl mx-auto px-8 md:px-12 text-center pt-16">
+      <div className="max-w-5xl mx-auto px-6 md:px-8 text-center pt-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ export default function ShopPage() {
         </h2>
         <p
           style={fontSans}
-          className={`font-light italic text-base md:text-lg max-w-lg mx-auto text-center ${
+          className={`font-light not-italic text-base md:text-lg max-w-lg mx-auto text-center ${
             darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
@@ -67,7 +67,7 @@ export default function ShopPage() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="mb-24 md:mb-32"
       >
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl group max-w-4xl mx-auto">
+        <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group max-w-4xl mx-auto">
           <img
             src={getImg('1490730811888-31b1e1ea3e7e')}
             loading="eager"

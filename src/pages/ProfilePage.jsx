@@ -24,8 +24,8 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-20 animate-in fade-in pt-16">
-      <header className="mb-12">
+    <div className="max-w-6xl mx-auto px-6 md:px-8 py-20 animate-in fade-in pt-16">
+      <header className="mb-16">
         <h2 style={fontSerif} className="text-5xl mb-4">
           {t('profile', 'welcome')} {userData.name.split(' ')[0]}
         </h2>
@@ -43,7 +43,9 @@ export default function ProfilePage() {
               onClick={() => setActiveTab(key)}
               className={`w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all ${
                 activeTab === key
-                  ? 'bg-purple-50 text-purple-700'
+                  ? darkMode
+                    ? 'bg-purple-900/30 text-purple-300'
+                    : 'bg-purple-50 text-purple-700'
                   : 'opacity-60 hover:opacity-100 hover:bg-white/10'
               }`}
             >

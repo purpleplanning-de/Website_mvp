@@ -18,7 +18,7 @@ export default function BlogPage() {
   const posts = t('blog', 'posts');
 
   return (
-    <div className="max-w-4xl mx-auto px-8 md:px-12 py-16 md:py-20 animate-in fade-in duration-700 pt-16">
+    <div className="max-w-4xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-700 pt-16">
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8">
         <div
           style={fontSans}
@@ -71,7 +71,7 @@ export default function BlogPage() {
             >
               {post.title}
             </h3>
-            <p style={fontSans} className="opacity-50 font-light leading-relaxed mb-5 text-sm md:text-base">
+            <p style={fontSans} className={`font-light leading-relaxed mb-5 text-sm md:text-base ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
               {post.preview}
             </p>
             <button className="text-purple-600 font-bold text-xs uppercase tracking-widest border-b border-purple-500/20 pb-1 group-hover:border-purple-500 transition-all">
