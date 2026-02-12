@@ -19,7 +19,7 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-700 pt-16">
-      <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8">
+      <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8 flex flex-col items-center">
         <div
           style={fontSans}
           className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${

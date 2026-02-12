@@ -58,7 +58,7 @@ export default function HomePage() {
       />
       <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
-      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28">
+      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28 flex flex-col items-center">
         <div className="mb-14 md:mb-20">
           <p
             className={`text-lg md:text-xl lg:text-2xl not-italic font-light leading-relaxed text-center ${
@@ -139,7 +139,7 @@ export default function HomePage() {
         }`}
       >
         <div className="max-w-4xl mx-auto px-6 md:px-8">
-          <div className="text-center mb-20 md:mb-24">
+          <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
             <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 text-center ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
@@ -198,7 +198,7 @@ export default function HomePage() {
 
       {/* Popular Products */}
       <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
-        <div className="text-center mb-20 md:mb-24">
+        <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
           <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 text-center ${textMain}`}>
             {t('home', 'popular')}
           </h3>
