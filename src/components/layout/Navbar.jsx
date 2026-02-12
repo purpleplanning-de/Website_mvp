@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { path: '/bundle', key: 'systems' },
   { path: '/about', key: 'about' },
   { path: '/blog', key: 'blog' },
+  { path: '/contact', key: 'contact' },
 ];
 
 const LANGUAGES = [
@@ -273,7 +274,6 @@ export default function Navbar() {
               <button
                 key={path}
                 onClick={() => navTo(path)}
-                style={fontSans}
                 className={`text-2xl font-light tracking-wide transition-colors ${
                   location.pathname === path
                     ? 'text-purple-600 font-semibold'
@@ -286,21 +286,69 @@ export default function Navbar() {
               </button>
             ))}
 
-            {/* Mobile Action Buttons */}
-            <div className="flex gap-4 mt-8">
+            {/* Mobile Bottom Actions */}
+            <div className="flex items-center gap-4 pt-8 mt-8 border-t border-white/10">
+              {/* Theme Toggle */}
               <button
                 onClick={toggle}
                 aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
-                className="p-4 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200 transition-colors"
+                className="p-4 rounded-full hover:bg-white/10 transition-colors"
               >
-                {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+                {darkMode ? <Sun size={22} className="text-yellow-300" /> : <Moon size={22} />}
               </button>
+
+              {/* Language Selector */}
+              <div className="relative" ref={langMenuRef}>
+                <button
+                  onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                  aria-label={t('nav', 'changeLanguage')}
+                  className={`flex items-center gap-2 px-4 py-3 rounded-full hover:bg-white/10 transition-colors text-sm font-bold uppercase ${
+                    darkMode ? 'text-white/70' : 'text-gray-600'
+                  }`}
+                >
+                  <Globe size={18} />
+                  {language}
+                </button>
+
+                {isLangMenuOpen && (
+                  <div
+                    className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 py-2 rounded-xl shadow-xl border min-w-[120px] ${
+                      darkMode
+                        ? 'bg-[#2e1d46] border-white/10'
+                        : 'bg-white border-gray-100'
+                    }`}
+                  >
+                    {LANGUAGES.map(({ code, label }) => (
+                      <button
+                        key={code}
+                        onClick={() => {
+                          setLanguage(code);
+                          setIsLangMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-xs font-semibold hover:bg-purple-500 hover:text-white transition-colors ${
+                          language === code
+                            ? 'text-purple-500'
+                            : darkMode
+                              ? 'text-white/70'
+                              : 'text-gray-600'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Roadmap */}
               <button
                 onClick={() => navTo('/roadmap')}
                 aria-label={t('nav', 'roadmap')}
-                className="p-4 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200 transition-colors"
+                className={`p-4 rounded-full hover:bg-white/10 transition-colors ${
+                  location.pathname === '/roadmap' ? 'text-purple-500' : ''
+                }`}
               >
-                <Map size={20} />
+                <Map size={22} />
               </button>
             </div>
           </div>

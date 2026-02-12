@@ -18,6 +18,7 @@ const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'));
 const BundlePage = lazy(() => import('./pages/BundlePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 const RoadmapPage = lazy(() => import('./pages/RoadmapPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
@@ -97,6 +98,7 @@ export default function App() {
                 <Route path="/bundle" element={<PageWrapper><BundlePage /></PageWrapper>} />
                 <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
                 <Route path="/blog" element={<PageWrapper><BlogPage /></PageWrapper>} />
+                <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
                 <Route path="/roadmap" element={<PageWrapper><RoadmapPage /></PageWrapper>} />
                 <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
                 <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />

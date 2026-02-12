@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { fontSerif, fontSans } from '../data/styles';
-import { products } from '../data/products';
+import { products, getImg } from '../data/products';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
@@ -45,7 +45,7 @@ export default function ShopPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16 md:mb-24 mt-6 md:mt-12"
+        className="text-center mb-16 md:mb-20 mt-6 md:mt-12"
       >
         <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6 text-center">
           {t('shop', 'title')}
@@ -58,6 +58,28 @@ export default function ShopPage() {
         >
           {t('shop', 'subtitle')}
         </p>
+      </motion.div>
+
+      {/* Hero Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="mb-24 md:mb-32"
+      >
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl group max-w-4xl mx-auto">
+          <img
+            src={getImg('1490730811888-31b1e1ea3e7e')}
+            loading="eager"
+            className="w-full h-[280px] md:h-[400px] object-cover transition-transform duration-[5s] group-hover:scale-105"
+            alt="Purple Planning Shop Collection"
+          />
+          <div
+            className={`absolute inset-0 bg-gradient-to-t ${
+              darkMode ? 'from-[#1a0b2e]/60' : 'from-purple-900/15'
+            } via-transparent to-transparent`}
+          />
+        </div>
       </motion.div>
       <motion.div
         variants={containerVariants}
