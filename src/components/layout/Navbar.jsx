@@ -101,7 +101,7 @@ export default function Navbar() {
                     key={path}
                     onClick={() => navTo(path)}
                     style={fontSans}
-                    className={`text-[11px] font-semibold tracking-[0.2em] uppercase transition-colors relative ${
+                    className={`text-xs font-semibold tracking-wide uppercase transition-colors relative ${
                       location.pathname === path
                         ? 'text-purple-600'
                         : darkMode
@@ -121,7 +121,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label={isMobileMenuOpen ? t('nav', 'closeMenu') : t('nav', 'openMenu')}
-                className="md:hidden p-2 rounded-lg hover:bg-purple-50 dark:hover:bg-white/5 transition-colors"
+                className="md:hidden p-3 rounded-lg hover:bg-purple-50 dark:hover:bg-white/5 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -147,12 +147,12 @@ export default function Navbar() {
                   <button
                     onClick={toggle}
                     aria-label={darkMode ? t('nav', 'switchToLightMode') : t('nav', 'switchToDarkMode')}
-                    className="p-2.5 rounded-full hover:bg-white/20 transition-colors"
+                    className="p-3 rounded-full hover:bg-white/20 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
                   >
                     {darkMode ? (
-                      <Sun size={15} className="text-yellow-300" />
+                      <Sun size={18} className="text-yellow-300" />
                     ) : (
-                      <Moon size={15} className="text-gray-500" />
+                      <Moon size={18} className="text-gray-500" />
                     )}
                   </button>
 
@@ -162,11 +162,11 @@ export default function Navbar() {
                       onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                       aria-label={t('nav', 'changeLanguage')}
                       aria-expanded={isLangMenuOpen}
-                      className={`flex items-center gap-1 px-2.5 py-2.5 rounded-full hover:bg-white/20 transition-colors text-[11px] font-bold uppercase ${
+                      className={`flex items-center gap-1.5 px-3 py-3 rounded-full hover:bg-white/20 transition-colors text-xs font-bold uppercase min-w-[44px] min-h-[44px] ${
                         darkMode ? 'text-white/60' : 'text-gray-500'
                       }`}
                     >
-                      <Globe size={14} />
+                      <Globe size={16} />
                       {language}
                     </button>
 
@@ -207,7 +207,7 @@ export default function Navbar() {
                 <button
                   onClick={() => navTo('/roadmap')}
                   aria-label={t('nav', 'roadmap')}
-                  className={`hidden sm:flex items-center justify-center p-2 rounded-full transition-colors ${
+                  className={`hidden sm:flex items-center justify-center p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] ${
                     location.pathname === '/roadmap'
                       ? 'text-purple-500'
                       : darkMode
@@ -215,14 +215,14 @@ export default function Navbar() {
                         : 'text-gray-400 hover:text-gray-700'
                   }`}
                 >
-                  <Map size={18} />
+                  <Map size={20} />
                 </button>
 
                 {/* Profile Icon */}
                 <button
                   onClick={() => navTo('/profile')}
                   aria-label={t('nav', 'profile')}
-                  className={`p-2 rounded-full transition-colors ${
+                  className={`p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
                     location.pathname === '/profile'
                       ? 'text-purple-500'
                       : darkMode
@@ -230,22 +230,22 @@ export default function Navbar() {
                         : 'text-gray-400 hover:text-gray-700'
                   }`}
                 >
-                  <User size={18} />
+                  <User size={20} />
                 </button>
 
                 {/* Shopping Cart */}
                 <button
                   onClick={() => setIsCartOpen(true)}
                   aria-label={t('nav', 'cart')}
-                  className={`relative p-2 rounded-full transition-colors ${
+                  className={`relative p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
                     darkMode
                       ? 'text-white/40 hover:text-white'
                       : 'text-gray-400 hover:text-gray-700'
                   }`}
                 >
-                  <ShoppingCart size={18} />
+                  <ShoppingCart size={20} />
                   {totals.count > 0 && (
-                    <span className="absolute -top-0.5 -right-0.5 bg-purple-600 text-white text-[9px] w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold">
+                    <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs min-w-[20px] min-h-[20px] rounded-full flex items-center justify-center font-bold">
                       {totals.count}
                     </span>
                   )}

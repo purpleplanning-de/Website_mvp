@@ -41,7 +41,7 @@ export default function RoadmapPage() {
                 {t('roadmap', 'notionDesc')}
               </p>
               <span
-                className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                   darkMode ? 'bg-white/[0.06] text-purple-300' : 'bg-purple-50 text-purple-600'
                 }`}
               >
@@ -75,7 +75,7 @@ export default function RoadmapPage() {
                 {t('roadmap', 'guidesDesc')}
               </p>
               <span
-                className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
                   darkMode ? 'bg-white/[0.06] text-gray-400' : 'bg-gray-100 text-gray-500'
                 }`}
               >

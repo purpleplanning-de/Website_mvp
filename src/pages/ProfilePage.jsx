@@ -72,7 +72,11 @@ export default function ProfilePage() {
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="bg-purple-200 text-purple-800 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">
+                    <span className={`text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full ${
+                      darkMode
+                        ? 'bg-purple-900/40 text-purple-300'
+                        : 'bg-purple-200 text-purple-800'
+                    }`}>
                       {t('profile', 'yourStatus')}
                     </span>
                     <span style={fontSerif} className="text-2xl italic text-purple-500">
@@ -140,7 +144,7 @@ export default function ProfilePage() {
                         >
                           {lvl.name}
                         </p>
-                        <p className="text-[10px] opacity-60 leading-tight">{lvl.benefit}</p>
+                        <p className="text-xs opacity-60 leading-tight">{lvl.benefit}</p>
                       </div>
                     );
                   })}
@@ -174,7 +178,7 @@ export default function ProfilePage() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-sm">49,80 €</p>
-                      <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-[10px] uppercase font-bold rounded-md">
+                      <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs uppercase font-bold rounded-md">
                         {t('profile', 'completed')}
                       </span>
                     </div>
@@ -197,7 +201,7 @@ export default function ProfilePage() {
                     : 'border-purple-200 bg-purple-50/30'
                 }`}
               >
-                <span className="absolute top-4 right-4 bg-purple-100 text-purple-700 text-[9px] font-bold uppercase px-2 py-1 rounded">
+                <span className="absolute top-4 right-4 bg-purple-100 text-purple-700 text-xs font-bold uppercase px-2 py-1 rounded">
                   {t('profile', 'default')}
                 </span>
                 <p className="font-bold mb-2">{userData.name}</p>
@@ -226,7 +230,7 @@ export default function ProfilePage() {
               </h3>
               <div className="space-y-6">
                 <div>
-                  <label className="text-[10px] uppercase font-bold opacity-40 mb-2 block">
+                  <label className="text-xs uppercase font-bold opacity-40 mb-2 block">
                     {t('profile', 'changeName')}
                   </label>
                   <input
@@ -238,7 +242,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="text-[10px] uppercase font-bold opacity-40 mb-2 block">
+                  <label className="text-xs uppercase font-bold opacity-40 mb-2 block">
                     {t('profile', 'emailAddress')}
                   </label>
                   <input

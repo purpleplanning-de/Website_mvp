@@ -35,7 +35,7 @@ export default function AboutPage() {
 
   const dreamItems = t('about', 'dreamItems');
 
-  const linkButtonStyle = `text-[10px] uppercase tracking-[0.4em] font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
+  const linkButtonStyle = `text-xs uppercase tracking-wider font-bold border-b pb-2 transition-all flex items-center gap-2 group cursor-pointer ${
     darkMode
       ? 'text-purple-300 border-purple-800 hover:text-white'
       : 'text-purple-700 border-purple-100 hover:text-purple-400'
@@ -53,7 +53,7 @@ export default function AboutPage() {
       <header className="text-center mb-20 md:mb-28">
         <div
           style={fontSans}
-          className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 mx-auto ${
+          className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 mx-auto ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
@@ -215,7 +215,7 @@ export default function AboutPage() {
                   </h5>
                   <p
                     style={fontSans}
-                    className="text-[10px] opacity-50 leading-tight font-light mt-1"
+                    className="text-xs opacity-50 leading-tight font-light mt-1"
                   >
                     {p.desc}
                   </p>

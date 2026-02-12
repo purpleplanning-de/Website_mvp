@@ -131,8 +131,8 @@ export default function BundlePage() {
       ) : (
         <div className="animate-in slide-in-from-bottom-8 duration-700">
           <div
-            className={`inline-block px-5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8 ${
-              darkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-50 text-green-700'
+            className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+              darkMode ? 'bg-green-900/40 text-green-300' : 'bg-green-50 text-green-700'
             }`}
           >
             {t('bundle', 'match')}
@@ -164,7 +164,11 @@ export default function BundlePage() {
                   <div className="flex-grow">
                     <div className="flex justify-between items-center">
                       <h4 className="font-bold">{item.name}</h4>
-                      <span className="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold">
+                      <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${
+                        darkMode
+                          ? 'bg-red-900/40 text-red-300'
+                          : 'bg-red-100 text-red-600'
+                      }`}>
                         -{bundle.discount}%
                       </span>
                     </div>

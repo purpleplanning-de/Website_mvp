@@ -31,11 +31,8 @@ export default function ProductCard({ product }) {
         className="aspect-[3/4] rounded-[2rem] md:rounded-[2.5rem] mb-7 overflow-hidden relative shadow-sm group-hover:shadow-2xl transition-all duration-700"
         style={{
           backgroundColor: darkMode ? '#2e1d46' : product.bgColor,
-          transformStyle: 'preserve-3d',
         }}
         whileHover={{
-          rotateX: 3,
-          rotateY: -3,
           scale: 1.02,
           transition: { duration: 0.3, ease: [0.23, 1, 0.32, 1] },
         }}
@@ -59,7 +56,7 @@ export default function ProductCard({ product }) {
           <button
             style={fontSans}
             onClick={handleAdd}
-            className="w-full bg-white/95 backdrop-blur-sm py-4 rounded-2xl text-purple-700 font-bold text-[10px] uppercase tracking-widest shadow-xl text-center active:scale-[0.97] transition-transform"
+            className="w-full bg-white/95 backdrop-blur-sm py-4 rounded-2xl text-purple-700 font-bold text-xs uppercase tracking-widest shadow-xl text-center active:scale-[0.97] transition-transform"
           >
             {t('product', 'selectCompanion')}
           </button>
