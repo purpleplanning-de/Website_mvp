@@ -79,9 +79,9 @@ export default function ContactPage() {
         description="Hast du Fragen zu unseren handgefertigten Planern? Kontaktiere uns! Wir helfen dir gerne weiter."
         keywords="kontakt, purple planning, kundenservice, fragen, support"
       />
-      <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000 pt-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000 pt-16">
         {/* Header */}
-        <header className="text-center mb-16 md:mb-20">
+        <header className="text-center mb-24 md:mb-32 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={fontSerif}
-            className={`text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 ${textMain}`}
+            className={`text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 tracking-tight ${textMain}`}
           >
             Schreib uns eine{' '}
             <span className="text-purple-600 italic">Nachricht</span>
@@ -108,7 +108,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={fontSans}
-            className={`text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto ${
+            className={`text-base md:text-lg font-light not-italic leading-relaxed max-w-2xl mx-auto ${
               darkMode ? 'text-gray-300' : 'text-gray-600'
             }`}
           >
@@ -122,7 +122,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16 md:mb-20 max-w-3xl mx-auto"
+          className="mb-24 md:mb-32 max-w-4xl mx-auto"
         >
           <div className="relative rounded-3xl overflow-hidden shadow-xl">
             <img
@@ -139,7 +139,7 @@ export default function ContactPage() {
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-start">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
