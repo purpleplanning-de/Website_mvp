@@ -18,7 +18,8 @@ export const translations = {
     },
     home: {
       quote: 'Ein Ziel ohne Plan ist nur ein Wunsch.',
-      hero: ['Schreibe deine', 'eigene Geschichte'],
+      heroVerbs: ['Schreibe', 'Gestalte', 'Plane'],
+      hero: ['deine', 'eigene Geschichte'],
       pause: 'Manchmal muss man innehalten.',
       pauseText:
         'Hast du dich jemals gefragt, ob du dein Leben lebst oder ob dein Terminkalender dich lebt? Purple Planning ist die Einladung, dir den Raum zurückzuholen, den du verdienst.',
@@ -349,7 +350,8 @@ export const translations = {
     },
     home: {
       quote: 'A goal without a plan is just a wish.',
-      hero: ['Write your', 'own story'],
+      heroVerbs: ['Write', 'Design', 'Plan'],
+      hero: ['your', 'own story'],
       pause: 'Sometimes you have to pause.',
       pauseText:
         'Have you ever wondered whether you live your life or your calendar lives you? Purple Planning is the invitation to reclaim the space you deserve.',
@@ -680,7 +682,8 @@ export const translations = {
     },
     home: {
       quote: 'Ett mål utan en plan är bara en önskan.',
-      hero: ['Skriv din', 'egen historia'],
+      heroVerbs: ['Skriv', 'Forma', 'Planera'],
+      hero: ['din', 'egen historia'],
       pause: 'Ibland måste man pausa.',
       pauseText:
         'Har du någonsin undrat om du lever ditt liv eller om din kalender lever dig? Purple Planning är inbjudan att ta tillbaka det utrymme du förtjänar.',
