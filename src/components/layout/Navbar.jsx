@@ -102,7 +102,7 @@ export default function Navbar() {
                     key={path}
                     onClick={() => navTo(path)}
                     style={fontSans}
-                    className={`text-xs font-semibold tracking-wide uppercase transition-colors relative ${
+                    className={`text-xs font-semibold tracking-wide uppercase transition-colors relative group ${
                       location.pathname === path
                         ? 'text-purple-600'
                         : darkMode
@@ -111,9 +111,11 @@ export default function Navbar() {
                     }`}
                   >
                     {t('nav', key)}
-                    {location.pathname === path && (
-                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-purple-500 rounded-full" />
-                    )}
+                    <span className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-purple-500 rounded-full transition-transform duration-300 origin-left ${
+                      location.pathname === path
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    }`} />
                   </button>
                 ))}
               </div>
