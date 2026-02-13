@@ -92,7 +92,7 @@ export default function BundlePage() {
     'bg-purple-600 text-white py-5 md:py-6 px-12 md:px-16 rounded-2xl font-bold shadow-lg hover:bg-purple-700 hover:shadow-xl active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   return (
-    <div className="max-w-3xl mx-auto px-6 md:px-8 mt-12 md:mt-16 mb-20 md:mb-28 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start pt-16">
+    <div className="max-w-3xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in text-center min-h-[40vh] flex flex-col justify-start">
       {!isResult ? (
         <>
           <p style={fontSans} className={`${textMuted} font-bold uppercase tracking-widest mb-10`}>

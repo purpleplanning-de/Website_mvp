@@ -81,7 +81,7 @@ export default function ContactPage() {
       />
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000">
         {/* Header */}
-        <header className="text-center mb-24 md:mb-32 flex flex-col items-center">
+        <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={fontSerif}
-            className={`text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 tracking-tight ${textMain}`}
+            className={`text-5xl md:text-6xl leading-tight mb-6 ${textMain}`}
           >
             Schreib uns eine{' '}
             <span className="text-purple-600 italic">Nachricht</span>
