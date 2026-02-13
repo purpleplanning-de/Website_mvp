@@ -59,9 +59,9 @@ export default function HomePage() {
       <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
       <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28 flex flex-col items-center">
-        <div className="mb-14 md:mb-20 w-fit mx-auto">
+        <div className="mb-14 md:mb-20">
           <p
-            className={`text-lg md:text-xl lg:text-2xl not-italic font-light leading-relaxed text-center ${
+            className={`text-lg md:text-xl lg:text-2xl not-italic font-light leading-relaxed ${
               darkMode ? 'text-white/85' : 'text-gray-600'
             }`}
             style={{
@@ -86,7 +86,7 @@ export default function HomePage() {
         </div>
         <h1
           style={fontSerif}
-          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight text-center w-fit mx-auto ${textMain}`}
+          className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight ${textMain}`}
         >
           {t('home', 'hero')[0]} <br />
           <span className={`${textMuted} italic`}>{t('home', 'hero')[1]}</span>
@@ -114,13 +114,13 @@ export default function HomePage() {
       <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12 flex flex-col items-center">
         <h2
           style={fontSerif}
-          className={`text-4xl md:text-5xl leading-tight mb-6 text-center w-fit mx-auto ${textMain}`}
+          className={`text-4xl md:text-5xl leading-tight mb-6 ${textMain}`}
         >
           {t('home', 'pause')}
         </h2>
         <p
           style={fontSans}
-          className={`font-light text-base md:text-lg not-italic leading-relaxed mb-8 max-w-2xl mx-auto text-center w-fit ${
+          className={`font-light text-base md:text-lg not-italic leading-relaxed mb-8 max-w-2xl ${
             darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
@@ -140,11 +140,11 @@ export default function HomePage() {
       >
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
-            <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 text-center w-fit mx-auto ${textMain}`}>
+            <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 ${textMain}`}>
               {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
-              className={`max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed text-center w-fit ${
+              className={`max-w-2xl text-base md:text-lg font-light leading-relaxed ${
                 darkMode ? 'text-gray-300' : 'text-gray-500'
               }`}
             >
@@ -199,11 +199,11 @@ export default function HomePage() {
       {/* Popular Products */}
       <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
         <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
-          <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 text-center w-fit mx-auto ${textMain}`}>
+          <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 ${textMain}`}>
             {t('home', 'popular')}
           </h3>
           <p
-            className={`text-base md:text-lg font-light text-center w-fit mx-auto ${
+            className={`text-base md:text-lg font-light ${
               darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >

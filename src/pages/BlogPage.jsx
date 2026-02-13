@@ -18,17 +18,17 @@ export default function BlogPage() {
   const posts = t('blog', 'posts');
 
   return (
-    <div className="max-w-4xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-700 pt-16">
+    <div className="max-w-4xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-700">
       <header className="text-center mb-20 md:mb-28 mt-4 md:mt-8 flex flex-col items-center">
         <div
           style={fontSans}
-          className={`w-fit mx-auto px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+          className={`px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
             darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
           }`}
         >
           {t('blog', 'tagline')}
         </div>
-        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight text-center w-fit mx-auto">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight">
           {t('blog', 'title')}
           <br />
           <span className="text-purple-600">{t('blog', 'titleAccent')}</span>.

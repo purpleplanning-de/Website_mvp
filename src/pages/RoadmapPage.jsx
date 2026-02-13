@@ -8,12 +8,12 @@ export default function RoadmapPage() {
   const { t } = useLanguage();
 
   return (
-    <div className="max-w-5xl mx-auto px-6 md:px-8 py-20 md:py-28 animate-in fade-in text-left pt-16">
+    <div className="max-w-5xl mx-auto px-6 md:px-8 py-20 md:py-28 animate-in fade-in text-left">
       <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
-        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7 text-center w-fit mx-auto">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-7">
           {t('roadmap', 'title')}
         </h2>
-        <p className="opacity-50 font-light max-w-2xl mx-auto text-base md:text-lg text-center">
+        <p className="opacity-50 font-light max-w-2xl text-base md:text-lg">
           {t('roadmap', 'subtitle')}
         </p>
       </header>
