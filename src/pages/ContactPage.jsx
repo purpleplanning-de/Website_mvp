@@ -87,33 +87,32 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             style={fontSans}
-            className={`inline-block px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+            className={`px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
               darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
             }`}
           >
-            Lass uns reden
+            {t('contact', 'tagline')}
           </motion.div>
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={fontSerif}
             className={`text-5xl md:text-6xl leading-tight mb-6 ${textMain}`}
           >
-            Schreib uns eine{' '}
-            <span className="text-purple-600 italic">Nachricht</span>
-          </motion.h1>
+            {t('contact', 'title')}{' '}
+            <span className="text-purple-600">{t('contact', 'titleAccent')}</span>.
+          </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={fontSans}
-            className={`text-base md:text-lg font-light not-italic leading-relaxed max-w-2xl mx-auto ${
-              darkMode ? 'text-gray-300' : 'text-gray-600'
+            className={`text-base md:text-lg font-light leading-relaxed max-w-2xl ${
+              darkMode ? 'text-gray-300' : 'text-gray-500'
             }`}
           >
-            Hast du Fragen zu unseren Produkten, individuelle Wünsche oder einfach nur ein
-            freundliches Hallo? Wir freuen uns von dir zu hören!
+            {t('contact', 'subtitle')}
           </motion.p>
         </header>
 
