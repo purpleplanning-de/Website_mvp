@@ -34,7 +34,7 @@ export default function ContactPage() {
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setStatus({
         type: 'error',
-        message: 'Bitte fülle alle Felder aus.',
+        message: t('contact', 'errorRequired'),
       });
       setIsSubmitting(false);
       return;
@@ -45,7 +45,7 @@ export default function ContactPage() {
     if (!emailRegex.test(formData.email)) {
       setStatus({
         type: 'error',
-        message: 'Bitte gib eine gültige E-Mail-Adresse ein.',
+        message: t('contact', 'errorEmail'),
       });
       setIsSubmitting(false);
       return;
@@ -55,7 +55,7 @@ export default function ContactPage() {
     setTimeout(() => {
       setStatus({
         type: 'success',
-        message: 'Nachricht erfolgreich gesendet! Wir melden uns bald bei dir. 💜',
+        message: t('contact', 'success'),
       });
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitting(false);
@@ -150,7 +150,7 @@ export default function ContactPage() {
               <div>
                 <label htmlFor="name" className={labelStyle}>
                   <User size={14} className="inline mr-2" />
-                  Dein Name
+                  {t('contact', 'nameLabel')}
                 </label>
                 <input
                   type="text"
@@ -158,7 +158,7 @@ export default function ContactPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Max Mustermann"
+                  placeholder={t('contact', 'namePlaceholder')}
                   className={inputBaseStyle}
                   required
                 />
@@ -168,7 +168,7 @@ export default function ContactPage() {
               <div>
                 <label htmlFor="email" className={labelStyle}>
                   <Mail size={14} className="inline mr-2" />
-                  E-Mail Adresse
+                  {t('contact', 'emailLabel')}
                 </label>
                 <input
                   type="email"
@@ -176,7 +176,7 @@ export default function ContactPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="max@beispiel.de"
+                  placeholder={t('contact', 'emailPlaceholder')}
                   className={inputBaseStyle}
                   required
                 />
@@ -186,14 +186,14 @@ export default function ContactPage() {
               <div>
                 <label htmlFor="message" className={labelStyle}>
                   <MessageSquare size={14} className="inline mr-2" />
-                  Deine Nachricht
+                  {t('contact', 'messageLabel')}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Erzähl uns, wie wir dir helfen können..."
+                  placeholder={t('contact', 'messagePlaceholder')}
                   rows={6}
                   className={`${inputBaseStyle} resize-none`}
                   required
@@ -237,11 +237,11 @@ export default function ContactPage() {
                 {isSubmitting ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    Sende...
+                    {t('contact', 'sending')}
                   </>
                 ) : (
                   <>
-                    Nachricht senden <Send size={18} />
+                    {t('contact', 'send')} <Send size={18} />
                   </>
                 )}
               </button>
@@ -262,7 +262,7 @@ export default function ContactPage() {
               }`}
             >
               <h3 style={fontSerif} className={`text-2xl italic mb-6 ${textMain}`}>
-                Weitere Kontaktmöglichkeiten
+                {t('contact', 'otherWays')}
               </h3>
               <div className="space-y-5">
                 <div className="flex items-start gap-4">
@@ -275,7 +275,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-wider mb-1 opacity-50">
-                      E-Mail
+                      {t('contact', 'emailContact')}
                     </p>
                     <a
                       href="mailto:hello@purpleplanning.de"
@@ -301,7 +301,7 @@ export default function ContactPage() {
               }`}
             >
               <h4 style={fontSerif} className={`text-xl italic mb-3 ${textMain}`}>
-                💡 Schnelle Antworten
+                {t('contact', 'quickAnswers')}
               </h4>
               <p
                 style={fontSans}
@@ -309,8 +309,7 @@ export default function ContactPage() {
                   darkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                Viele Fragen werden bereits in unserem Blog oder auf der About-Seite beantwortet.
-                Schau doch mal vorbei!
+                {t('contact', 'quickAnswersText')}
               </p>
             </div>
 
@@ -323,13 +322,13 @@ export default function ContactPage() {
               }`}
             >
               <p className="text-xs uppercase tracking-wider font-semibold mb-2 opacity-40">
-                Antwortzeit
+                {t('contact', 'responseTime')}
               </p>
               <p
                 style={fontSerif}
                 className={`text-lg italic ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}
               >
-                Innerhalb von <span className="text-purple-600 font-bold">24-48 Stunden</span>
+                {t('contact', 'responseValue')} <span className="text-purple-600 font-bold">{t('contact', 'responseHours')}</span>
               </p>
             </div>
           </motion.div>
