@@ -94,7 +94,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Image */}
-      <section className="max-w-4xl mx-auto px-6 md:px-10 mb-32 md:mb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-10 mb-16 md:mb-24">
         <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden shadow-2xl group">
           <img
             src={getImg('1464822759023-fed622ff2c3b')}
@@ -111,7 +111,7 @@ export default function HomePage() {
       </section>
 
       {/* Pause Section */}
-      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-32 md:mb-48 pt-8 md:pt-12 flex flex-col items-center">
+      <section className="max-w-2xl mx-auto px-6 md:px-8 text-center mb-16 md:mb-24 pt-4 md:pt-6 flex flex-col items-center">
         <h2
           style={fontSerif}
           className={`text-4xl md:text-5xl leading-tight mb-6 ${textMain}`}
@@ -134,7 +134,7 @@ export default function HomePage() {
 
       {/* Manifest Section */}
       <section
-        className={`section-spacing mb-32 md:mb-48 ${
+        className={`section-spacing mb-16 md:mb-24 ${
           darkMode ? 'bg-white/[0.02] border-y border-white/[0.04]' : 'bg-purple-50/30'
         }`}
       >
@@ -197,7 +197,7 @@ export default function HomePage() {
       </section>
 
       {/* Popular Products */}
-      <section className="max-w-4xl mx-auto px-6 md:px-8 pb-32 md:pb-48">
+      <section className="max-w-4xl mx-auto px-6 md:px-8 pb-16 md:pb-24">
         <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
           <h3 style={fontSerif} className={`text-4xl md:text-5xl mb-5 ${textMain}`}>
             {t('home', 'popular')}
