@@ -79,7 +79,7 @@ export default function ContactPage() {
         description="Hast du Fragen zu unseren handgefertigten Planern? Kontaktiere uns! Wir helfen dir gerne weiter."
         keywords="kontakt, purple planning, kundenservice, fragen, support"
       />
-      <div className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000 pt-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in duration-1000">
         {/* Header */}
         <header className="text-center mb-24 md:mb-32 flex flex-col items-center">
           <motion.div
