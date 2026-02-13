@@ -220,8 +220,7 @@ export const translations = {
       quickAnswers: 'Schnelle Antworten',
       quickAnswersText: 'Viele Fragen werden bereits in unserem Blog oder auf der About-Seite beantwortet. Schau doch mal vorbei!',
       responseTime: 'Antwortzeit',
-      responseValue: 'Innerhalb von',
-      responseHours: '24-48 Stunden',
+      responseTimeText: 'Innerhalb von %%24-48 Stunden%%',
     },
     roadmap: {
       tagline: 'Was kommt als Nächstes',
@@ -552,8 +551,7 @@ export const translations = {
       quickAnswers: 'Quick Answers',
       quickAnswersText: 'Many questions are already answered on our Blog or About page. Take a look!',
       responseTime: 'Response Time',
-      responseValue: 'Within',
-      responseHours: '24-48 hours',
+      responseTimeText: 'Within %%24-48 hours%%',
     },
     roadmap: {
       tagline: "What's Next",
@@ -884,8 +882,7 @@ export const translations = {
       quickAnswers: 'Snabba Svar',
       quickAnswersText: 'Många frågor besvaras redan på vår Blogg eller Om oss-sida. Ta en titt!',
       responseTime: 'Svarstid',
-      responseValue: 'Inom',
-      responseHours: '24-48 timmar',
+      responseTimeText: 'Inom %%24-48 timmar%%',
     },
     roadmap: {
       tagline: 'Vad kommer härnäst',
