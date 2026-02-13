@@ -1,5 +1,5 @@
 import { Laptop, BookOpen } from 'lucide-react';
-import { fontSerif } from '../data/styles';
+import { fontSerif, fontSans } from '../data/styles';
 import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -10,10 +10,18 @@ export default function RoadmapPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 animate-in fade-in text-left">
       <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
+        <div
+          style={fontSans}
+          className={`px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+            darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
+          }`}
+        >
+          {t('roadmap', 'tagline')}
+        </div>
         <h2 style={fontSerif} className="text-5xl md:text-6xl leading-tight mb-6">
-          {t('roadmap', 'title')}
+          {t('roadmap', 'title')} <span className="text-purple-600">{t('roadmap', 'titleAccent')}</span>.
         </h2>
-        <p className={`font-light max-w-2xl text-base md:text-lg ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>
+        <p className={`font-light max-w-2xl text-base md:text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-500'}`}>
           {t('roadmap', 'subtitle')}
         </p>
       </header>

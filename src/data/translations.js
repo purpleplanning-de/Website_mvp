@@ -72,7 +72,9 @@ export const translations = {
       applyDiscount: 'Rabatt anwenden',
     },
     shop: {
-      title: 'Der Shop',
+      tagline: 'Handgemacht mit Liebe',
+      title: 'Unsere',
+      titleAccent: 'Kollektion',
       subtitle:
         'Jeder Plan ist ein stilles Versprechen an dich selbst. Fülle deine Zeit mit dem, was dich wachsen lässt.',
     },
@@ -196,8 +198,17 @@ export const translations = {
         },
       ],
     },
+    contact: {
+      tagline: 'Lass uns reden',
+      title: 'Schreib uns eine',
+      titleAccent: 'Nachricht',
+      subtitle:
+        'Hast du Fragen zu unseren Produkten, individuelle Wünsche oder einfach nur ein freundliches Hallo? Wir freuen uns von dir zu hören!',
+    },
     roadmap: {
-      title: 'Der Pfad nach Morgen',
+      tagline: 'Was kommt als Nächstes',
+      title: 'Der Pfad nach',
+      titleAccent: 'Morgen',
       subtitle:
         'Wir sind noch lange nicht fertig. Purple Planning wächst mit dir. Hier siehst du, woran wir in unserer Hütte in Borås gerade arbeiten.',
       shortTerm: 'Kurzfristig (Q2 2026)',
@@ -375,7 +386,9 @@ export const translations = {
       applyDiscount: 'Apply discount',
     },
     shop: {
-      title: 'The Shop',
+      tagline: 'Handmade with Love',
+      title: 'Our',
+      titleAccent: 'Collection',
       subtitle:
         'Every plan is a quiet promise to yourself. Fill your time with what helps you grow.',
     },
@@ -499,8 +512,17 @@ export const translations = {
         },
       ],
     },
+    contact: {
+      tagline: "Let's Talk",
+      title: 'Send us a',
+      titleAccent: 'Message',
+      subtitle:
+        "Have questions about our products, custom wishes, or simply a friendly hello? We'd love to hear from you!",
+    },
     roadmap: {
-      title: 'The Path to Tomorrow',
+      tagline: "What's Next",
+      title: 'The Path to',
+      titleAccent: 'Tomorrow',
       subtitle:
         "We're far from done. Purple Planning grows with you. Here you can see what we're working on in our cabin in Borås.",
       shortTerm: 'Short-term (Q2 2026)',
@@ -678,7 +700,9 @@ export const translations = {
       applyDiscount: 'Använd rabatt',
     },
     shop: {
-      title: 'Butiken',
+      tagline: 'Handgjord med Kärlek',
+      title: 'Vår',
+      titleAccent: 'Kollektion',
       subtitle:
         'Varje plan är ett tyst löfte till dig själv. Fyll din tid med det som får dig att växa.',
     },
@@ -802,8 +826,17 @@ export const translations = {
         },
       ],
     },
+    contact: {
+      tagline: 'Hör av dig',
+      title: 'Skicka oss ett',
+      titleAccent: 'Meddelande',
+      subtitle:
+        'Har du frågor om våra produkter, speciella önskemål eller bara vill säga hej? Vi vill gärna höra från dig!',
+    },
     roadmap: {
-      title: 'Vägen till Imorgon',
+      tagline: 'Vad kommer härnäst',
+      title: 'Vägen till',
+      titleAccent: 'Imorgon',
       subtitle:
         'Vi är långt ifrån klara. Purple Planning växer med dig. Här ser du vad vi arbetar med i vår stuga i Borås.',
       shortTerm: 'Kortsiktigt (Q2 2026)',

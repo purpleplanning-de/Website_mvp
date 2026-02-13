@@ -30,7 +30,7 @@ const itemVariants = {
 };
 
 export default function ShopPage() {
-  const { darkMode } = useTheme();
+  const { darkMode, textMain } = useTheme();
   const { t } = useLanguage();
 
   return (
@@ -41,24 +41,39 @@ export default function ShopPage() {
         keywords="planer shop, journal kaufen, handgefertigte planer, bullet journal shop, organizer kaufen"
       />
       <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-20 md:mb-28 flex flex-col items-center"
-      >
-        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-6">
-          {t('shop', 'title')}
-        </h2>
-        <p
+      <header className="text-center mb-20 md:mb-28 flex flex-col items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           style={fontSans}
-          className={`font-light not-italic text-base md:text-lg max-w-lg ${
+          className={`px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 ${
+            darkMode ? 'bg-purple-900/50 text-purple-300' : 'bg-purple-50 text-purple-600'
+          }`}
+        >
+          {t('shop', 'tagline')}
+        </motion.div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          style={fontSerif}
+          className={`text-5xl md:text-6xl leading-tight mb-6 ${textMain}`}
+        >
+          {t('shop', 'title')} <span className="text-purple-600">{t('shop', 'titleAccent')}</span>.
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={fontSans}
+          className={`font-light text-base md:text-lg leading-relaxed max-w-2xl ${
             darkMode ? 'text-gray-300' : 'text-gray-500'
           }`}
         >
           {t('shop', 'subtitle')}
-        </p>
-      </motion.div>
+        </motion.p>
+      </header>
 
       {/* Hero Image */}
       <motion.div
