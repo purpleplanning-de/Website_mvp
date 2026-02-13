@@ -18,7 +18,8 @@ export const translations = {
     },
     home: {
       quote: 'Ein Ziel ohne Plan ist nur ein Wunsch.',
-      hero: ['Schreibe deine', 'eigene Geschichte'],
+      heroVerbs: ['Schreibe', 'Gestalte', 'Plane'],
+      hero: ['deine', 'eigene Geschichte'],
       pause: 'Manchmal muss man innehalten.',
       pauseText:
         'Hast du dich jemals gefragt, ob du dein Leben lebst oder ob dein Terminkalender dich lebt? Purple Planning ist die Einladung, dir den Raum zurückzuholen, den du verdienst.',
@@ -220,8 +221,7 @@ export const translations = {
       quickAnswers: 'Schnelle Antworten',
       quickAnswersText: 'Viele Fragen werden bereits in unserem Blog oder auf der About-Seite beantwortet. Schau doch mal vorbei!',
       responseTime: 'Antwortzeit',
-      responseValue: 'Innerhalb von',
-      responseHours: '24-48 Stunden',
+      responseTimeText: 'Innerhalb von %%24-48 Stunden%%',
     },
     roadmap: {
       tagline: 'Was kommt als Nächstes',
@@ -350,7 +350,8 @@ export const translations = {
     },
     home: {
       quote: 'A goal without a plan is just a wish.',
-      hero: ['Write your', 'own story'],
+      heroVerbs: ['Write', 'Design', 'Plan'],
+      hero: ['your', 'own story'],
       pause: 'Sometimes you have to pause.',
       pauseText:
         'Have you ever wondered whether you live your life or your calendar lives you? Purple Planning is the invitation to reclaim the space you deserve.',
@@ -552,8 +553,7 @@ export const translations = {
       quickAnswers: 'Quick Answers',
       quickAnswersText: 'Many questions are already answered on our Blog or About page. Take a look!',
       responseTime: 'Response Time',
-      responseValue: 'Within',
-      responseHours: '24-48 hours',
+      responseTimeText: 'Within %%24-48 hours%%',
     },
     roadmap: {
       tagline: "What's Next",
@@ -682,7 +682,8 @@ export const translations = {
     },
     home: {
       quote: 'Ett mål utan en plan är bara en önskan.',
-      hero: ['Skriv din', 'egen historia'],
+      heroVerbs: ['Skriv', 'Forma', 'Planera'],
+      hero: ['din', 'egen historia'],
       pause: 'Ibland måste man pausa.',
       pauseText:
         'Har du någonsin undrat om du lever ditt liv eller om din kalender lever dig? Purple Planning är inbjudan att ta tillbaka det utrymme du förtjänar.',
@@ -884,8 +885,7 @@ export const translations = {
       quickAnswers: 'Snabba Svar',
       quickAnswersText: 'Många frågor besvaras redan på vår Blogg eller Om oss-sida. Ta en titt!',
       responseTime: 'Svarstid',
-      responseValue: 'Inom',
-      responseHours: '24-48 timmar',
+      responseTimeText: 'Inom %%24-48 timmar%%',
     },
     roadmap: {
       tagline: 'Vad kommer härnäst',

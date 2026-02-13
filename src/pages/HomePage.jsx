@@ -7,6 +7,7 @@ import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import ProductCard from '../components/ui/ProductCard';
 import SEO from '../components/SEO';
+import { useTypewriter } from '../hooks/useTypewriter';
 
 const MANIFEST_ICONS = [Target, Sparkle, Compass];
 
@@ -38,6 +39,8 @@ export default function HomePage() {
   const { darkMode, textMain, textMuted, cardBg } = useTheme();
   const { t } = useLanguage();
 
+  const heroVerbs = t('home', 'heroVerbs');
+  const typedVerb = useTypewriter(heroVerbs);
   const manifestCards = t('home', 'manifestCards');
 
   const linkButtonStyle = `text-xs uppercase tracking-wide font-semibold border-b pb-2 transition-all inline-flex items-center gap-2 group mx-auto justify-center cursor-pointer ${
@@ -88,7 +91,9 @@ export default function HomePage() {
           style={fontSerif}
           className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight ${textMain}`}
         >
-          {t('home', 'hero')[0]} <br />
+          <span className="text-purple-600">{typedVerb}</span>
+          <span className="inline-block w-[3px] h-[0.75em] bg-purple-600 ml-1 align-baseline animate-pulse" />
+          {' '}{t('home', 'hero')[0]} <br />
           <span className={`${textMuted} italic`}>{t('home', 'hero')[1]}</span>
         </h1>
       </header>

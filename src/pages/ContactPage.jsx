@@ -328,7 +328,11 @@ export default function ContactPage() {
                 style={fontSerif}
                 className={`text-lg italic ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}
               >
-                {t('contact', 'responseValue')} <span className="text-purple-600 font-bold">{t('contact', 'responseHours')}</span>
+                {t('contact', 'responseTimeText').split('%%').map((part, i) =>
+                  i % 2 === 1
+                    ? <span key={i} className="text-purple-600 font-bold">{part}</span>
+                    : part
+                )}
               </p>
             </div>
           </motion.div>
