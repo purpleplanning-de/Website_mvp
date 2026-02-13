@@ -58,7 +58,7 @@ export default function HomePage() {
       />
       <div className="animate-in fade-in duration-1000 pt-16">
       {/* Hero Quote */}
-      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-20 md:mt-32 mb-20 md:mb-28 flex flex-col items-center">
+      <header className="max-w-4xl mx-auto px-6 md:px-8 text-center mt-0 md:mt-8 mb-20 md:mb-28 flex flex-col items-center">
         <div className="mb-14 md:mb-20">
           <p
             className={`text-lg md:text-xl lg:text-2xl not-italic font-light leading-relaxed ${
