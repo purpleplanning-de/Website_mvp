@@ -40,14 +40,14 @@ export default function ShopPage() {
         description="Entdecke unsere komplette Kollektion an handgefertigten Planern, Journalen und Organizern. Minimalistisches Design, höchste Qualität. Jetzt shoppen!"
         keywords="planer shop, journal kaufen, handgefertigte planer, bullet journal shop, organizer kaufen"
       />
-      <div className="max-w-5xl mx-auto px-6 md:px-8 text-center pt-16">
+      <div className="max-w-5xl mx-auto px-6 md:px-8 py-16 md:py-24 text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16 md:mb-20 mt-6 md:mt-12 flex flex-col items-center"
+        className="text-center mb-20 md:mb-28 flex flex-col items-center"
       >
-        <h2 style={fontSerif} className="text-4xl md:text-6xl mb-6">
+        <h2 style={fontSerif} className="text-5xl md:text-6xl mb-6">
           {t('shop', 'title')}
         </h2>
         <p
