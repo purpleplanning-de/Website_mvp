@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useCallback, useContext, useEffect } from 'react';
+import { createContext, useState, useMemo, useCallback, useContext, useEffect, useRef } from 'react';
 import { VALID_CODES } from '../data/discountCodes';
 import { LanguageContext } from './LanguageContext';
 
@@ -10,6 +10,8 @@ const DISCOUNT_STORAGE_KEY = 'purpleplanning_discount';
 
 export function CartProvider({ children }) {
   const { t } = useContext(LanguageContext);
+  const feedbackTimerRef = useRef(null);
+  const discountErrorTimerRef = useRef(null);
 
   // Initialize from localStorage
   const [cart, setCart] = useState(() => {
@@ -54,9 +56,18 @@ export function CartProvider({ children }) {
     }
   }, [appliedDiscount]);
 
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+      if (discountErrorTimerRef.current) clearTimeout(discountErrorTimerRef.current);
+    };
+  }, []);
+
   const showFeedback = useCallback((msg) => {
     setFeedback(msg);
-    setTimeout(() => setFeedback(null), 3000);
+    if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
+    feedbackTimerRef.current = setTimeout(() => setFeedback(null), 3000);
   }, []);
 
   const addToCart = useCallback(
@@ -119,7 +130,8 @@ export function CartProvider({ children }) {
     const upper = discountCode.toUpperCase().trim();
     if (!upper) {
       setDiscountError(true);
-      setTimeout(() => setDiscountError(false), 3000);
+      if (discountErrorTimerRef.current) clearTimeout(discountErrorTimerRef.current);
+      discountErrorTimerRef.current = setTimeout(() => setDiscountError(false), 3000);
       return;
     }
     if (upper in VALID_CODES) {
@@ -131,7 +143,8 @@ export function CartProvider({ children }) {
       showFeedback(t('cart', 'invalidCode'));
       setAppliedDiscount({ code: '', value: 0 });
       setDiscountError(true);
-      setTimeout(() => setDiscountError(false), 3000);
+      if (discountErrorTimerRef.current) clearTimeout(discountErrorTimerRef.current);
+      discountErrorTimerRef.current = setTimeout(() => setDiscountError(false), 3000);
     }
   }, [discountCode, showFeedback, t]);
 

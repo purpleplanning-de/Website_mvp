@@ -56,7 +56,7 @@ export default function ProductCard({ product }) {
           <button
             style={fontSans}
             onClick={handleAdd}
-            className="w-full bg-white/95 backdrop-blur-sm py-4 rounded-2xl text-purple-700 font-bold text-xs uppercase tracking-widest shadow-xl text-center active:scale-[0.97] transition-transform"
+            className="w-full bg-white/95 backdrop-blur-sm py-4 rounded-2xl text-purple-700 font-bold text-xs uppercase tracking-widest shadow-xl text-center active:scale-[0.98] transition-transform"
           >
             {t('product', 'selectCompanion')}
           </button>
