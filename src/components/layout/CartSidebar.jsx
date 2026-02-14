@@ -59,7 +59,7 @@ export default function CartSidebar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm"
             onClick={() => setIsCartOpen(false)}
           />
 
@@ -75,7 +75,7 @@ export default function CartSidebar() {
             }}
             className={`fixed right-0 top-0 h-full w-full max-w-md ${
               darkMode ? 'bg-[#2e1d46] text-white' : 'bg-white text-black'
-            } shadow-2xl z-[101]`}
+            } shadow-2xl z-[121]`}
           >
         <div className="p-8 h-full flex flex-col text-left">
           {/* Header */}
@@ -138,7 +138,7 @@ export default function CartSidebar() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   className={`text-sm mb-8 max-w-xs ${
-                    darkMode ? 'text-gray-400' : 'text-gray-500'
+                    darkMode ? 'text-white/60' : 'text-gray-500'
                   }`}
                 >
                   Entdecke unsere handgefertigten Planer und finde deinen perfekten Begleiter.
@@ -182,7 +182,7 @@ export default function CartSidebar() {
                           {item.name}
                         </h4>
                         <div className="flex items-center gap-2">
-                          <p style={fontSans} className="text-purple-400 font-semibold text-sm">
+                          <p style={fontSans} className={`font-semibold text-sm ${darkMode ? 'text-white' : 'text-purple-600'}`}>
                             {item.price.toFixed(2)} €
                           </p>
                           {appliedDiscount.value > 0 && (
@@ -290,7 +290,7 @@ export default function CartSidebar() {
               </div>
 
               {/* Totals */}
-              <div className="space-y-2 text-sm opacity-70">
+              <div className={`space-y-2 text-sm ${darkMode ? 'text-white/70' : 'text-gray-500'}`}>
                 <div className="flex justify-between">
                   <span>{t('cart', 'subtotal')}</span>
                   <span>{totals.subtotal.toFixed(2)} €</span>
@@ -315,7 +315,7 @@ export default function CartSidebar() {
               </div>
 
               {/* Payment Methods */}
-              <div className="flex justify-center gap-4 opacity-40 grayscale pb-2">
+              <div className={`flex justify-center gap-4 grayscale pb-2 ${darkMode ? 'text-white/40' : 'text-gray-400'}`}>
                 <CreditCard size={20} />
                 <span className="font-bold text-xs border border-current px-1 rounded">
                   PayPal

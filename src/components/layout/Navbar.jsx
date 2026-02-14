@@ -25,7 +25,7 @@ export default function Navbar() {
   const location = useLocation();
   const { darkMode, toggle } = useTheme();
   const { language, setLanguage, t } = useLanguage();
-  const { setIsCartOpen, totals } = useCart();
+  const { isCartOpen, setIsCartOpen, totals } = useCart();
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef(null);
@@ -238,12 +238,14 @@ export default function Navbar() {
 
                 {/* Shopping Cart */}
                 <button
-                  onClick={() => setIsCartOpen(true)}
+                  onClick={() => setIsCartOpen(!isCartOpen)}
                   aria-label={t('nav', 'cart')}
                   className={`relative p-3 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center ${
-                    darkMode
-                      ? 'text-white/40 hover:text-white'
-                      : 'text-gray-400 hover:text-gray-700'
+                    isCartOpen
+                      ? 'text-purple-500'
+                      : darkMode
+                        ? 'text-white/40 hover:text-white'
+                        : 'text-gray-400 hover:text-gray-700'
                   }`}
                 >
                   <ShoppingCart size={20} />
