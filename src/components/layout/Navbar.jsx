@@ -84,11 +84,12 @@ export default function Navbar() {
     <>
       {/* Main Navbar - Fixed at top */}
       <nav
-        className={`fixed top-0 left-0 right-0 h-20 z-[110] ${
+        className={`fixed top-0 left-0 right-0 h-20 z-[110] touch-auto ${
           darkMode
             ? 'bg-[#1a0b2e]/95 border-b border-white/10'
             : 'bg-white/95 shadow-sm'
         } backdrop-blur-lg`}
+        style={{ touchAction: 'manipulation' }}
       >
         <div className="max-w-7xl mx-auto h-full px-6 sm:px-8 lg:px-12">
           {/* Grid Layout: Left | Center | Right */}
