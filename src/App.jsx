@@ -27,9 +27,15 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
+  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+  // Also scroll to top on mount (handles reload/pull-to-refresh)
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = '';
+  }, []);
   return null;
 }
 

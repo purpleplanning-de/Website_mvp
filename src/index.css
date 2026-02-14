@@ -12,6 +12,7 @@
   html {
     scroll-behavior: smooth;
     background-color: #1a0b2e;
+    overscroll-behavior-y: none;
   }
 
   body {
