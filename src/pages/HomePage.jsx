@@ -91,8 +91,8 @@ export default function HomePage() {
           style={fontSerif}
           className={`text-5xl md:text-7xl lg:text-8xl leading-[1.08] tracking-tight ${textMain}`}
         >
-          <span className={darkMode ? 'text-purple-300' : 'text-purple-600'}>{typedVerb}</span>
-          <span className={`inline-block w-[3px] h-[0.75em] ml-1 align-baseline animate-pulse ${darkMode ? 'bg-purple-300' : 'bg-purple-600'}`} />
+          <span className="text-purple-600">{typedVerb}</span>
+          <span className="inline-block w-[3px] h-[0.75em] bg-purple-600 ml-1 align-baseline animate-pulse" />
           {' '}{t('home', 'hero')[0]} <br />
           <span className={`${textMuted} italic`}>{t('home', 'hero')[1]}</span>
         </h1>
@@ -146,7 +146,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-6 md:px-8">
           <div className="text-center mb-20 md:mb-24 flex flex-col items-center">
             <h2 style={fontSerif} className={`text-4xl md:text-5xl mb-6 ${textMain}`}>
-              {t('home', 'manifestTitle')} <span className={darkMode ? 'text-purple-300' : 'text-purple-600'}>{t('home', 'manifestTodo')}</span>
+              {t('home', 'manifestTitle')} <span className="text-purple-600">{t('home', 'manifestTodo')}</span>
             </h2>
             <p
               className={`max-w-2xl text-base md:text-lg font-light leading-relaxed ${
