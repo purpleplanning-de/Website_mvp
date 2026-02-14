@@ -37,7 +37,7 @@ export default function CartSidebar() {
   } = useCart();
 
   const actionButtonStyle =
-    'w-full bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-xl hover:bg-purple-700 active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
+    'w-full bg-purple-600 text-white py-5 rounded-2xl font-bold shadow-xl hover:bg-purple-700 active:scale-[0.98] transition-all text-center flex items-center justify-center gap-2 cursor-pointer';
 
   const goToProduct = (item) => {
     navigate(`/product/${item.id}`);

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WifiOff, Wifi } from 'lucide-react';
 import { fontSans } from '../data/styles';
+import { useLanguage } from '../hooks/useLanguage';
 
 /**
  * OfflineBanner Component
@@ -10,6 +11,7 @@ import { fontSans } from '../data/styles';
  * Uses browser's online/offline events for detection.
  */
 export default function OfflineBanner() {
+  const { t } = useLanguage();
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [wasOffline, setWasOffline] = useState(false);
 
@@ -86,10 +88,10 @@ export default function OfflineBanner() {
                   >
                     ✓
                   </motion.span>
-                  You're back online!
+                  {t('offline', 'backOnline')}
                 </span>
               ) : (
-                'No internet connection. Please check your network.'
+                t('offline', 'noConnection')
               )}
             </p>
 

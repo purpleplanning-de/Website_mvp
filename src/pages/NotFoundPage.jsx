@@ -12,43 +12,18 @@ export default function NotFoundPage() {
   const { t } = useLanguage();
 
   const quickLinks = [
-    {
-      icon: Home,
-      label: 'Startseite',
-      path: '/',
-      description: 'Zurück zur Homepage',
-    },
-    {
-      icon: ShoppingBag,
-      label: 'Shop',
-      path: '/shop',
-      description: 'Unsere Produkte entdecken',
-    },
-    {
-      icon: Sparkle,
-      label: 'System Finder',
-      path: '/bundle',
-      description: 'Dein perfektes System finden',
-    },
-    {
-      icon: BookOpen,
-      label: 'Blog',
-      path: '/blog',
-      description: 'Inspiration & Tipps',
-    },
-    {
-      icon: Mail,
-      label: 'Kontakt',
-      path: '/contact',
-      description: 'Schreib uns eine Nachricht',
-    },
+    { icon: Home, labelKey: 'linkHome', descKey: 'linkHomeDesc', path: '/' },
+    { icon: ShoppingBag, labelKey: 'linkShop', descKey: 'linkShopDesc', path: '/shop' },
+    { icon: Sparkle, labelKey: 'linkBundle', descKey: 'linkBundleDesc', path: '/bundle' },
+    { icon: BookOpen, labelKey: 'linkBlog', descKey: 'linkBlogDesc', path: '/blog' },
+    { icon: Mail, labelKey: 'linkContact', descKey: 'linkContactDesc', path: '/contact' },
   ];
 
   return (
     <>
       <SEO
-        title="404 - Seite nicht gefunden | Purple Planning"
-        description="Diese Seite existiert leider nicht. Finde deinen Weg zurück zu Purple Planning."
+        title={`404 - ${t('notFound', 'seoTitle')}`}
+        description={t('notFound', 'seoDescription')}
       />
       <div className="min-h-[75vh] flex items-center justify-center px-6 pt-24 pb-16">
         <motion.div
@@ -90,8 +65,8 @@ export default function NotFoundPage() {
             style={fontSerif}
             className={`text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 ${textMain}`}
           >
-            Oops! Diese Seite ist{' '}
-            <span className="text-purple-600 italic">verloren gegangen</span>
+            {t('notFound', 'title')}{' '}
+            <span className="text-purple-600 italic">{t('notFound', 'titleAccent')}</span>
           </motion.h1>
 
           {/* Description */}
@@ -104,8 +79,7 @@ export default function NotFoundPage() {
               darkMode ? 'text-gray-300' : 'text-gray-600'
             }`}
           >
-            Die Seite, die du suchst, existiert nicht oder wurde verschoben.
-            Aber keine Sorge – wir helfen dir, den richtigen Weg zu finden! 💜
+            {t('notFound', 'description')}
           </motion.p>
 
           {/* Quick Links Grid */}
@@ -115,7 +89,7 @@ export default function NotFoundPage() {
             transition={{ delay: 0.5 }}
             className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12"
           >
-            {quickLinks.map(({ icon: Icon, label, path, description }, index) => (
+            {quickLinks.map(({ icon: Icon, labelKey, descKey, path }, index) => (
               <motion.button
                 key={path}
                 onClick={() => navigate(path)}
@@ -133,8 +107,8 @@ export default function NotFoundPage() {
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-3 transition-colors ${
                     darkMode
-                      ? 'bg-purple-900/30 text-purple-400 group-hover:bg-purple-900/50'
-                      : 'bg-purple-50 text-purple-600 group-hover:bg-purple-100'
+                      ? 'bg-purple-900/30 text-purple-400'
+                      : 'bg-purple-50 text-purple-600'
                   }`}
                 >
                   <Icon size={20} strokeWidth={1.5} />
@@ -143,14 +117,14 @@ export default function NotFoundPage() {
                   style={fontSerif}
                   className={`text-base md:text-lg italic mb-1 leading-tight ${textMain}`}
                 >
-                  {label}
+                  {t('notFound', labelKey)}
                 </h3>
                 <p
                   className={`text-xs leading-tight hidden md:block ${
                     darkMode ? 'text-gray-500' : 'text-gray-400'
                   }`}
                 >
-                  {description}
+                  {t('notFound', descKey)}
                 </p>
               </motion.button>
             ))}
@@ -169,7 +143,7 @@ export default function NotFoundPage() {
             }`}
           >
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            Zurück zur vorherigen Seite
+            {t('notFound', 'back')}
           </motion.button>
         </motion.div>
       </div>

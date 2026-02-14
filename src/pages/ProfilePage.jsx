@@ -52,7 +52,9 @@ export default function ProfilePage() {
               {label}
             </button>
           ))}
-          <button className="w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-red-400 hover:bg-red-50 hover:text-red-500 transition-all flex items-center gap-2 mt-8">
+          <button className={`w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-red-400 transition-all flex items-center gap-2 mt-8 ${
+            darkMode ? 'hover:bg-red-900/20 hover:text-red-300' : 'hover:bg-red-50 hover:text-red-500'
+          }`}>
             <LogOut size={16} /> {t('profile', 'logout')}
           </button>
         </div>
@@ -180,7 +182,9 @@ export default function ProfilePage() {
                     </div>
                     <div className="text-right">
                       <p className="font-bold text-sm">49,80 €</p>
-                      <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs uppercase font-bold rounded-md">
+                      <span className={`inline-block px-2 py-1 text-xs uppercase font-bold rounded-md ${
+                        darkMode ? 'bg-green-900/30 text-green-400' : 'bg-green-100 text-green-700'
+                      }`}>
                         {t('profile', 'completed')}
                       </span>
                     </div>
@@ -203,7 +207,9 @@ export default function ProfilePage() {
                     : 'border-purple-200 bg-purple-50/30'
                 }`}
               >
-                <span className="absolute top-4 right-4 bg-purple-100 text-purple-700 text-xs font-bold uppercase px-2 py-1 rounded">
+                <span className={`absolute top-4 right-4 text-xs font-bold uppercase px-2 py-1 rounded ${
+                  darkMode ? 'bg-purple-900/40 text-purple-300' : 'bg-purple-100 text-purple-700'
+                }`}>
                   {t('profile', 'default')}
                 </span>
                 <p className="font-bold mb-2">{userData.name}</p>
