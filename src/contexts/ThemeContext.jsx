@@ -33,8 +33,8 @@ export function ThemeProvider({ children }) {
 
   const theme = useMemo(() => {
     const bgMain = darkMode ? 'bg-[#1a0b2e]' : 'bg-[#faf9f6]';
-    const textMain = darkMode ? 'text-[#e9d5ff]' : 'text-gray-900';
-    const textMuted = darkMode ? 'text-[#a78bfa]' : 'text-purple-600';
+    const textMain = darkMode ? 'text-white' : 'text-gray-900';
+    const textMuted = darkMode ? 'text-white/70' : 'text-purple-600';
     const cardBg = darkMode
       ? 'bg-[#2e1d46]/80 border-white/[0.06]'
       : 'bg-white border-purple-100/60';
