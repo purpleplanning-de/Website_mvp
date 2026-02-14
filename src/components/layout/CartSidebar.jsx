@@ -13,7 +13,7 @@ import {
   CheckCircle,
   ShoppingBag,
 } from 'lucide-react';
-import { fontSerif, fontSans } from '../../data/styles';
+import { fontSerif } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
 import { useLanguage } from '../../hooks/useLanguage';
 import { useCart } from '../../hooks/useCart';
@@ -152,7 +152,6 @@ export default function CartSidebar() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={goToShop}
-                  style={fontSans}
                   className="bg-purple-600 text-white px-8 py-4 rounded-2xl font-bold uppercase text-xs tracking-widest hover:bg-purple-700 shadow-lg hover:shadow-xl transition-all flex items-center gap-2"
                 >
                   <Sparkle size={14} />
@@ -182,7 +181,7 @@ export default function CartSidebar() {
                           {item.name}
                         </h4>
                         <div className="flex items-center gap-2">
-                          <p style={fontSans} className={`font-semibold text-sm ${darkMode ? 'text-white' : 'text-purple-600'}`}>
+                          <p className={`font-semibold text-sm ${darkMode ? 'text-white' : 'text-purple-600'}`}>
                             {item.price.toFixed(2)} €
                           </p>
                           {appliedDiscount.value > 0 && (

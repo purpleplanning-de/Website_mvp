@@ -31,9 +31,8 @@ function ScrollToTop() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-  // Also scroll to top on mount (handles reload/pull-to-refresh)
+  // Clear any lingering body overflow on mount (e.g. mobile menu surviving reload)
   useEffect(() => {
-    window.scrollTo(0, 0);
     document.body.style.overflow = '';
   }, []);
   return null;

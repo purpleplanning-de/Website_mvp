@@ -12,24 +12,19 @@
       rel="stylesheet"
     />
   </head>
-  <body style="background-color:#1a0b2e">
+  <body>
     <!-- Force scroll to top on reload & reset state (prevents pull-to-refresh offset) -->
     <script>
-      // Prevent browser from restoring old scroll position
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      // Reset any lingering body styles (e.g. overflow:hidden from mobile menu)
-      document.body.style.overflow = '';
-      // Scroll to top immediately and after layout settles
-      window.scrollTo(0, 0);
-      document.addEventListener('DOMContentLoaded', function() {
+      function resetPageState() {
         window.scrollTo(0, 0);
         document.body.style.overflow = '';
-      });
+      }
+      resetPageState();
+      document.addEventListener('DOMContentLoaded', resetPageState);
       window.addEventListener('load', function() {
-        window.scrollTo(0, 0);
-        document.body.style.overflow = '';
-        // Extra safety: run again after a frame to catch post-render offsets
-        requestAnimationFrame(function() { window.scrollTo(0, 0); });
+        resetPageState();
+        requestAnimationFrame(resetPageState);
       });
     </script>
     <!-- SPA redirect restore (GitHub Pages) -->
