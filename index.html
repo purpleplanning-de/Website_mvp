@@ -19,12 +19,18 @@
       function resetPageState() {
         window.scrollTo(0, 0);
         document.body.style.overflow = '';
+        document.body.style.overscrollBehaviorY = 'contain';
+        document.documentElement.style.overscrollBehaviorY = 'contain';
       }
       resetPageState();
       document.addEventListener('DOMContentLoaded', resetPageState);
       window.addEventListener('load', function() {
         resetPageState();
         requestAnimationFrame(resetPageState);
+      });
+      // Re-enable touch events after any native refresh
+      window.addEventListener('pageshow', function(e) {
+        if (e.persisted) resetPageState();
       });
     </script>
     <!-- SPA redirect restore (GitHub Pages) -->
