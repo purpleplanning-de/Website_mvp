@@ -84,7 +84,7 @@ export default function Navbar() {
     <>
       {/* Main Navbar - Fixed at top */}
       <nav
-        className={`fixed top-0 left-0 right-0 h-20 z-50 ${
+        className={`fixed top-0 left-0 right-0 h-20 z-[110] ${
           darkMode
             ? 'bg-[#1a0b2e]/95 border-b border-white/10'
             : 'bg-white/95 shadow-sm'
@@ -266,7 +266,7 @@ export default function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
-          className={`fixed top-20 left-0 right-0 bottom-0 z-40 ${
+          className={`fixed top-20 left-0 right-0 bottom-0 z-[105] ${
             darkMode ? 'bg-[#1a0b2e]/98' : 'bg-white/98'
           } backdrop-blur-xl animate-in fade-in`}
         >
