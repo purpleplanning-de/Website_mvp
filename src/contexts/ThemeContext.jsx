@@ -19,13 +19,14 @@ export function ThemeProvider({ children }) {
     }
   });
 
-  // Persist theme to localStorage
+  // Persist theme to localStorage and sync html background color
   useEffect(() => {
     try {
       localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(darkMode));
     } catch (error) {
       console.error('Failed to save theme to localStorage:', error);
     }
+    document.documentElement.style.backgroundColor = darkMode ? '#1a0b2e' : '#faf9f6';
   }, [darkMode]);
 
   const toggle = () => setDarkMode((prev) => !prev);

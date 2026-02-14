@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" style="background-color:#1a0b2e">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -12,7 +12,12 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body style="background-color:#1a0b2e;overscroll-behavior-y:none">
+    <!-- Force scroll to top on reload (prevents pull-to-refresh offset) -->
+    <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+    </script>
     <!-- SPA redirect restore (GitHub Pages) -->
     <script>
       (function(){

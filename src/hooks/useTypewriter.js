@@ -42,14 +42,14 @@ export function useTypewriter(words) {
 
       case 'waiting':
         timer = setTimeout(() => {
-          setWordIndex((prev) => (prev + 1) % words.length);
+          setWordIndex((prev) => (words.length ? (prev + 1) % words.length : 0));
           setPhase('typing');
         }, PAUSE_AFTER_DELETED);
         break;
     }
 
     return () => clearTimeout(timer);
-  }, [text, phase, currentWord, words.length]);
+  }, [text, phase, wordIndex, words]);
 
   return text;
 }
