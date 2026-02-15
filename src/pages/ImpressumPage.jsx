@@ -22,7 +22,7 @@ export default function ImpressumPage() {
           <p>E-Mail: hello@purpleplanning.de</p>
         </div>
         <div>
-          <h3 className="font-bold text-lg mb-2">Vertretungsberechtigte Geschäftsführende</h3>
+          <h3 className="font-bold text-lg mb-2">Vertretungsberechtigte Geschäftsführende.</h3>
           <p>
             Michelle [Nachname fehlt -{' '}
             <span className="text-red-600 font-bold">BITTE ERGÄNZEN</span>]
