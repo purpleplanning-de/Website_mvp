@@ -28,3 +28,5 @@ jobs:
           protocol: ftps
           local-dir: ./dist/
           server-dir: /
+          sftp_only: true
+          port: 22
