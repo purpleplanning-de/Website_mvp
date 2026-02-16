@@ -102,7 +102,7 @@ export default function ShopPage() {
         animate="visible"
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-14 mb-24 md:mb-36"
       >
-        {products.map((p, index) => (
+        {products.map((p) => (
           <motion.div key={p.id} variants={itemVariants}>
             <ProductCard product={p} />
           </motion.div>

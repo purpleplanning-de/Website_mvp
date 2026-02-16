@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { fontSans } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
-import { useLanguage } from '../../hooks/useLanguage';
+
 
 export default function Footer() {
   const navigate = useNavigate();
   const { darkMode } = useTheme();
-  const { t } = useLanguage();
-
   return (
     <footer
       id="footer"

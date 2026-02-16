@@ -6,18 +6,18 @@ import { useTheme } from '../hooks/useTheme';
 import { useLanguage } from '../hooks/useLanguage';
 import SEO from '../components/SEO';
 
+const QUICK_LINKS = [
+  { icon: Home, labelKey: 'linkHome', descKey: 'linkHomeDesc', path: '/' },
+  { icon: ShoppingBag, labelKey: 'linkShop', descKey: 'linkShopDesc', path: '/shop' },
+  { icon: Sparkle, labelKey: 'linkBundle', descKey: 'linkBundleDesc', path: '/bundle' },
+  { icon: BookOpen, labelKey: 'linkBlog', descKey: 'linkBlogDesc', path: '/blog' },
+  { icon: Mail, labelKey: 'linkContact', descKey: 'linkContactDesc', path: '/contact' },
+];
+
 export default function NotFoundPage() {
   const navigate = useNavigate();
   const { darkMode, textMain, cardBg } = useTheme();
   const { t } = useLanguage();
-
-  const quickLinks = [
-    { icon: Home, labelKey: 'linkHome', descKey: 'linkHomeDesc', path: '/' },
-    { icon: ShoppingBag, labelKey: 'linkShop', descKey: 'linkShopDesc', path: '/shop' },
-    { icon: Sparkle, labelKey: 'linkBundle', descKey: 'linkBundleDesc', path: '/bundle' },
-    { icon: BookOpen, labelKey: 'linkBlog', descKey: 'linkBlogDesc', path: '/blog' },
-    { icon: Mail, labelKey: 'linkContact', descKey: 'linkContactDesc', path: '/contact' },
-  ];
 
   return (
     <>
@@ -89,7 +89,7 @@ export default function NotFoundPage() {
             transition={{ delay: 0.5 }}
             className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-12"
           >
-            {quickLinks.map(({ icon: Icon, labelKey, descKey, path }, index) => (
+            {QUICK_LINKS.map(({ icon: Icon, labelKey, descKey, path }, index) => (
               <motion.button
                 key={path}
                 onClick={() => navigate(path)}
