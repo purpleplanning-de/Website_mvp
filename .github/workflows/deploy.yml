@@ -1,34 +1,43 @@
-name: Deploy to IONOS (Production)
+name: Staging – Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: [dev]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 22
+          cache: npm
 
-      - name: Install Dependencies
-        run: npm ci
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build:staging
 
-      - name: Build Project
-        run: npm run build
-
-      # SECURITY UPGRADE: Wir nutzen FTPS (Verschlüsseltes FTP)
-      - name: Deploy to IONOS via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      - uses: actions/upload-pages-artifact@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps              # Erzwingt Verschlüsselung
-          local-dir: ./dist/
-          server-dir: /
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
