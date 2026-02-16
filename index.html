@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" style="background-color:#1a0b2e">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -13,14 +13,11 @@
     />
   </head>
   <body>
-    <!-- Force scroll to top on reload & reset state (prevents pull-to-refresh offset) -->
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       function resetPageState() {
         window.scrollTo(0, 0);
         document.body.style.overflow = '';
-        document.body.style.overscrollBehaviorY = 'contain';
-        document.documentElement.style.overscrollBehaviorY = 'contain';
       }
       resetPageState();
       document.addEventListener('DOMContentLoaded', resetPageState);
@@ -28,7 +25,6 @@
         resetPageState();
         requestAnimationFrame(resetPageState);
       });
-      // Re-enable touch events after any native refresh
       window.addEventListener('pageshow', function(e) {
         if (e.persisted) resetPageState();
       });

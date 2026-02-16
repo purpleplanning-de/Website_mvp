@@ -13,6 +13,8 @@ export function useTypewriter(words) {
   const currentWord = words[wordIndex] || '';
 
   useEffect(() => {
+    if (!words.length) return;
+
     let timer;
 
     switch (phase) {
