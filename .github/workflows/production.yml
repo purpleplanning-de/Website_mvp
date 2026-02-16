@@ -19,18 +19,12 @@ jobs:
       - run: npm run lint
       - run: npm run build:production
 
-      # Deploy to IONOS via FTP/SFTP
-      # Requires these GitHub Secrets:
-      #   IONOS_FTP_SERVER   – e.g. access123456.webspace-data.io
-      #   IONOS_FTP_USERNAME – e.g. u12345678
-      #   IONOS_FTP_PASSWORD – your FTP password
-      #   IONOS_FTP_PATH     – e.g. / or /purpleplanning.de/
-      - name: Deploy to IONOS
+      - name: Deploy to IONOS via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.IONOS_FTP_SERVER }}
-          username: ${{ secrets.IONOS_FTP_USERNAME }}
-          password: ${{ secrets.IONOS_FTP_PASSWORD }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
           local-dir: ./dist/
-          server-dir: ${{ secrets.IONOS_FTP_PATH }}
-          dangerous-clean-slate: false
+          server-dir: /

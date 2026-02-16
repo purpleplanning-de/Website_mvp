@@ -4,10 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => {
   // GitHub Pages needs /Website_mvp/ prefix, production (IONOS) uses root /
-  const base = mode === 'staging' ? '/Website_mvp/' : '/';
+  const isStaging = mode === 'staging';
 
   return {
-    base,
+    base: isStaging ? '/Website_mvp/' : '/',
     plugins: [react(), tailwindcss()],
     build: {
       rollupOptions: {
@@ -24,8 +24,8 @@ export default defineConfig(({ mode }) => {
       minify: 'terser',
       terserOptions: {
         compress: {
-          drop_console: true,
-          drop_debugger: true,
+          drop_console: !isStaging,
+          drop_debugger: !isStaging,
         },
       },
     },
