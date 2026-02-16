@@ -1,0 +1,36 @@
+name: Production – Deploy to IONOS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build:production
+
+      # Deploy to IONOS via FTP/SFTP
+      # Requires these GitHub Secrets:
+      #   IONOS_FTP_SERVER   – e.g. access123456.webspace-data.io
+      #   IONOS_FTP_USERNAME – e.g. u12345678
+      #   IONOS_FTP_PASSWORD – your FTP password
+      #   IONOS_FTP_PATH     – e.g. / or /purpleplanning.de/
+      - name: Deploy to IONOS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.IONOS_FTP_SERVER }}
+          username: ${{ secrets.IONOS_FTP_USERNAME }}
+          password: ${{ secrets.IONOS_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.IONOS_FTP_PATH }}
+          dangerous-clean-slate: false

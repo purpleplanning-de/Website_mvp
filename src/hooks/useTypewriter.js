@@ -22,7 +22,7 @@ export function useTypewriter(words) {
             setText(currentWord.slice(0, text.length + 1));
           }, TYPING_SPEED);
         } else {
-          setPhase('pausing');
+          timer = setTimeout(() => setPhase('pausing'), 0);
         }
         break;
 
@@ -36,7 +36,7 @@ export function useTypewriter(words) {
             setText(text.slice(0, -1));
           }, DELETING_SPEED);
         } else {
-          setPhase('waiting');
+          timer = setTimeout(() => setPhase('waiting'), 0);
         }
         break;
 
@@ -49,7 +49,7 @@ export function useTypewriter(words) {
     }
 
     return () => clearTimeout(timer);
-  }, [text, phase, wordIndex, words]);
+  }, [text, phase, wordIndex, words, currentWord]);
 
   return text;
 }

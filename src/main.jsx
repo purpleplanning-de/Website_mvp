@@ -14,7 +14,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>
       <HelmetProvider>
-        <BrowserRouter basename="/Website_mvp">
+        <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <ThemeProvider>
             <LanguageProvider>
               <CartProvider>

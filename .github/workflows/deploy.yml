@@ -1,9 +1,8 @@
-name: Deploy to GitHub Pages
+name: Staging – Deploy to GitHub Pages
 
 on:
-  workflow_dispatch:    # Manuell auslösbar über GitHub UI
   push:
-    branches: [main]   # Automatisch bei Push auf main
+    branches: [dev]
 
 permissions:
   contents: read
@@ -12,7 +11,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -26,7 +25,8 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npm run build
+      - run: npm run lint
+      - run: npm run build:staging
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -8,7 +8,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import SEO from '../components/SEO';
 
 export default function ContactPage() {
-  const { darkMode, textMain, cardBg, borderColor } = useTheme();
+  const { darkMode, textMain, cardBg } = useTheme();
   const { t } = useLanguage();
 
   const [formData, setFormData] = useState({
