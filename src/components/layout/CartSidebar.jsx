@@ -244,7 +244,7 @@ export default function CartSidebar() {
                       placeholder={t('cart', 'discountPlaceholder')}
                       value={discountCode}
                       onChange={(e) => setDiscountCode(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && applyDiscount()}
+                      onKeyDown={(e) => e.key === 'Enter' && applyDiscount()}
                       aria-invalid={discountError ? 'true' : 'false'}
                       aria-describedby="discount-error"
                       className={`w-full px-4 py-3 pr-10 rounded-xl text-sm outline-none border-2 transition-all uppercase tracking-wider font-bold min-h-[44px] ${
