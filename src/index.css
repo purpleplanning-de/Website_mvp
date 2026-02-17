@@ -131,11 +131,6 @@
   to { opacity: 1; }
 }
 
-@keyframes slide-in-from-bottom-4 {
-  from { transform: translateY(1rem); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
 @keyframes slide-in-from-bottom-8 {
   from { transform: translateY(2rem); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
@@ -144,11 +139,6 @@
 @keyframes slide-in-from-top-2 {
   from { transform: translateY(-0.5rem); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes scale-in {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
 }
 
 @layer components {
@@ -161,10 +151,6 @@
     animation: fade-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
 
-  .slide-in-from-bottom-4 {
-    animation: slide-in-from-bottom-4 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
-  }
-
   .slide-in-from-bottom-8 {
     animation: slide-in-from-bottom-8 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
@@ -173,14 +159,10 @@
     animation: slide-in-from-top-2 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
 
-  .scale-in {
-    animation: scale-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
-  }
-
   /* Reduced Motion Support */
   @media (prefers-reduced-motion: reduce) {
-    .animate-in, .fade-in, .slide-in-from-bottom-4,
-    .slide-in-from-bottom-8, .slide-in-from-top-2, .scale-in {
+    .animate-in, .fade-in,
+    .slide-in-from-bottom-8, .slide-in-from-top-2 {
       animation: none;
       opacity: 1;
       transform: none;
@@ -190,23 +172,6 @@
   /* Consistent section spacing with fluid values - 8px grid system */
   .section-spacing {
     padding-block: clamp(3rem, 8vw, 6rem);
-  }
-
-  .section-spacing-sm {
-    padding-block: clamp(2rem, 4vw, 3rem);
-  }
-
-  .section-spacing-lg {
-    padding-block: clamp(4rem, 10vw, 8rem);
-  }
-
-  /* Consistent margin utilities */
-  .mb-section {
-    margin-bottom: clamp(2rem, 6vw, 4rem);
-  }
-
-  .mt-section {
-    margin-top: clamp(2rem, 6vw, 4rem);
   }
 
   /* Card hover lift effect */
