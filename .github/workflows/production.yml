@@ -29,5 +29,3 @@ jobs:
           port: 21
           local-dir: ./dist/
           server-dir: /
-          sftp_only: true
-          port: 22
