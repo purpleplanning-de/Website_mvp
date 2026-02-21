@@ -20,12 +20,14 @@ jobs:
       - run: npm run build:production
 
       - name: Deploy to IONOS via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps-legacy
-          port: 990
+          protocol: ftps
+          port: 21
+          security: loose
+          timeout: 60000
           local-dir: ./dist/
           server-dir: /
