@@ -49,10 +49,12 @@ Nach jedem Pull Request oder wenn an einem bestehenden PR gearbeitet wird, **aut
    | MANUELL | Entwickler-Review nötig, Vorschlag machen |
    | IGNORIEREN | Nicht relevant für dieses Projekt |
 
-4. **Umsetzung**: Basierend auf der Bewertung:
+5. **Bewertung als PR-Kommentar dokumentieren** (PFLICHT – siehe Abschnitt "Dokumentationspflicht")
+6. **Umsetzung**: Basierend auf der Bewertung:
    - **SOFORT**: Direkt umsetzen ohne Rückfrage
    - **MANUELL**: Dem Entwickler die Bewertung zeigen und auf Entscheidung warten
    - **IGNORIEREN**: Kurz begründen, warum der Kommentar nicht relevant ist
+7. **Umsetzungs-Update posten**: Nach Abschluss aller Änderungen den PR-Kommentar aktualisieren oder einen Folge-Kommentar mit dem Umsetzungsstatus posten
 
 ### Schnellbefehl
 
@@ -89,6 +91,102 @@ Für jeden Gemini-Kommentar diese Struktur ausgeben:
    Begründung:    <warum diese Bewertung – besonders wenn sie von Geminis Einschätzung abweicht>
    Aktion:        <was wird gemacht oder warum nicht>
 ```
+
+### Dokumentationspflicht – PR-Kommentar als Audit-Trail
+
+**Nach jeder Gemini-Review-Prüfung MUSS ein PR-Kommentar gepostet werden.** Dies ist keine optionale Empfehlung – ohne diesen Kommentar gilt die Prüfung als nicht durchgeführt.
+
+#### Warum
+
+- **Nachvollziehbarkeit**: Jede Bewertung ist im PR-Verlauf permanent sichtbar
+- **Beurteilbarkeit**: Das Team sieht Claude Codes Einschätzung vs. Geminis Einschätzung
+- **Änderbarkeit**: Das Team kann auf den Kommentar antworten und Entscheidungen korrigieren
+- **Audit-Trail**: Wer hat was wann bewertet und warum – alles an einem Ort
+
+#### Format des PR-Kommentars
+
+```markdown
+## 🔍 Gemini Review – Bewertung durch Claude Code
+
+**PR:** #<number> | **Datum:** <YYYY-MM-DD> | **Geprüfte Kommentare:** <n>
+
+### Bewertungsübersicht
+
+| # | Datei | Gemini sagt | Eigene Analyse | Kritikalität | Umsetzung | Aktion |
+|---|-------|------------|----------------|-------------|-----------|--------|
+| 1 | `src/example.jsx:42` | "Missing error handling" | Interner Code, kein externer Input | NIEDRIG | NEIN | IGNORIEREN |
+| 2 | `src/api.js:15` | "XSS vulnerability" | Bestätigt – user input nicht escaped | KRITISCH | JA | SOFORT |
+
+### Detailbewertungen
+
+<details>
+<summary>1. src/example.jsx:42 – IGNORIEREN</summary>
+
+- **Gemini sagt:** "Missing error handling for async operation"
+- **Eigene Analyse:** Funktion wird nur intern aufgerufen, Input ist immer validiert. Fehlerbehandlung hier wäre Over-Engineering.
+- **Kritikalität:** NIEDRIG
+- **Begründung:** Falsch-positiv. Gemini berücksichtigt den Aufrufkontext nicht.
+</details>
+
+<details>
+<summary>2. src/api.js:15 – SOFORT UMGESETZT</summary>
+
+- **Gemini sagt:** "Potential XSS vulnerability in user input rendering"
+- **Eigene Analyse:** Bestätigt. User-Input wird ohne Sanitization in innerHTML gesetzt.
+- **Kritikalität:** KRITISCH
+- **Begründung:** Echte Sicherheitslücke, sofort gefixt.
+- **Commit:** `abc1234` – Input wird jetzt über textContent gesetzt
+</details>
+
+### Umsetzungsstatus
+
+- [x] `src/api.js:15` – XSS gefixt (commit `abc1234`)
+- [ ] ~~`src/example.jsx:42` – Ignoriert (falsch-positiv)~~
+
+### Zusammenfassung
+
+| Kategorie | Anzahl |
+|-----------|--------|
+| KRITISCH → SOFORT | 1 |
+| HOCH → MANUELL | 0 |
+| IGNORIERT | 1 |
+| **Gesamt geprüft** | **2** |
+```
+
+#### Kommentar posten via gh CLI
+
+```bash
+gh pr comment <PR_NUMBER> --body "$(cat <<'EOF'
+## 🔍 Gemini Review – Bewertung durch Claude Code
+...
+EOF
+)"
+```
+
+#### Umsetzungs-Update
+
+Nach Abschluss aller Änderungen **einen Folge-Kommentar** posten mit dem finalen Status:
+
+```markdown
+## ✅ Gemini Review – Umsetzung abgeschlossen
+
+**Alle SOFORT-Items wurden umgesetzt:**
+- `src/api.js:15` – XSS gefixt (commit `abc1234`)
+
+**MANUELL-Items warten auf Review:**
+- (keine)
+
+**IGNORIERT (mit Begründung):**
+- `src/example.jsx:42` – Falsch-positiv, siehe Bewertung oben
+```
+
+#### Regeln für die Dokumentation
+
+- **Kommentar IMMER posten** – auch wenn alle Gemini-Kommentare ignoriert werden
+- **Vor der Umsetzung posten** – damit das Team die Bewertung sehen kann, bevor Code geändert wird
+- **Nach der Umsetzung updaten** – finalen Status mit Commit-Referenzen posten
+- **Keine stille Umsetzung** – selbst SOFORT-Items müssen dokumentiert werden, auch wenn sie ohne Rückfrage umgesetzt werden
+- **Commit-Messages referenzieren** – Jeder Fix-Commit enthält `[gemini-review]` im Message-Prefix
 
 ### Regeln
 
