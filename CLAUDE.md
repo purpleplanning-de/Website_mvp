@@ -202,6 +202,44 @@ Gemini-Kommentare **IGNORIEREN**, wenn sie:
 - Auf Patterns bestehen, die für ein MVP nicht relevant sind
 - Falsch-positive Warnungen sind (z.B. bei absichtlichem Design)
 
+## Pull Request Workflow
+
+Nach Abschluss der Arbeit **immer** einen Pull Request via `gh pr create` erstellen. Niemals nur pushen und den PR dem Entwickler überlassen.
+
+### Standard-Ablauf
+
+1. **Commit** mit detaillierter Message (was + warum)
+2. **Push** auf den Feature-Branch
+3. **PR erstellen** via `gh pr create` mit strukturierter Beschreibung
+
+### PR-Format
+
+```bash
+gh pr create --base dev --title "<kurzer Titel, max 70 Zeichen>" --body "$(cat <<'EOF'
+## Summary
+- <1-3 Bullet Points: was wurde geändert und warum>
+
+## Changes
+- <Liste der wichtigsten Änderungen mit Dateireferenzen>
+
+## Test plan
+- [ ] <wie kann die Änderung getestet/verifiziert werden>
+
+<session-link>
+EOF
+)"
+```
+
+### Regeln
+
+- **Base-Branch**: Immer `dev`, außer explizit anders angegeben
+- **Titel**: Kurz, prägnant, max 70 Zeichen – beschreibt das "Was"
+- **Summary**: 1-3 Sätze – beschreibt das "Warum"
+- **Changes**: Konkrete Dateien und Änderungen auflisten
+- **Test plan**: Wie der Entwickler die Änderung überprüfen kann
+- **Sprache**: PR-Titel und Beschreibung auf Englisch (Code-Konvention)
+- **Kein PR ohne Beschreibung**: Wenn `gh pr create` fehlschlägt, dem Entwickler Bescheid geben – niemals einen leeren PR erstellen
+
 ## Projekt-Kontext
 
 - **Tech Stack**: React 19, Vite 7, Tailwind CSS 4, Framer Motion
