@@ -1,0 +1,103 @@
+name: Gemini Review Summary
+
+# Triggert, wenn ein PR-Review eingereicht wird oder ein Kommentar erstellt wird
+on:
+  pull_request_review:
+    types: [submitted]
+  issue_comment:
+    types: [created]
+
+jobs:
+  summarize-gemini-review:
+    # Nur ausführen, wenn der Kommentar von Gemini Code Assist kommt
+    if: >-
+      (github.event_name == 'pull_request_review' &&
+       github.event.review.user.login == 'gemini-code-assist[bot]') ||
+      (github.event_name == 'issue_comment' &&
+       github.event.comment.user.login == 'gemini-code-assist[bot]' &&
+       github.event.issue.pull_request)
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Gemini-Kommentare sammeln
+        id: collect
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=""
+
+          if [[ "${{ github.event_name }}" == "pull_request_review" ]]; then
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+          else
+            PR_NUMBER="${{ github.event.issue.number }}"
+          fi
+
+          echo "pr_number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+          # Alle Gemini-Inline-Kommentare für diesen PR sammeln
+          INLINE=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}/comments" \
+            --jq '[.[] | select(.user.login == "gemini-code-assist[bot]")] | length')
+
+          # Alle Gemini-Reviews für diesen PR sammeln
+          REVIEWS=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}/reviews" \
+            --jq '[.[] | select(.user.login == "gemini-code-assist[bot]")] | length')
+
+          echo "inline_count=$INLINE" >> "$GITHUB_OUTPUT"
+          echo "review_count=$REVIEWS" >> "$GITHUB_OUTPUT"
+          echo "total_count=$((INLINE + REVIEWS))" >> "$GITHUB_OUTPUT"
+
+      - name: Label hinzufügen
+        if: steps.collect.outputs.total_count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Label erstellen (falls noch nicht vorhanden)
+          gh label create "gemini-review" \
+            --description "Hat Gemini Code Assist Review-Kommentare" \
+            --color "7B68EE" \
+            --repo "${{ github.repository }}" 2>/dev/null || true
+
+          # Label zum PR hinzufügen
+          gh pr edit "${{ steps.collect.outputs.pr_number }}" \
+            --add-label "gemini-review"
+
+      - name: Zusammenfassung als Kommentar
+        if: >-
+          github.event_name == 'pull_request_review' &&
+          steps.collect.outputs.total_count != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ steps.collect.outputs.pr_number }}"
+
+          # Inline-Kommentare als Markdown-Liste formatieren
+          DETAILS=$(gh api "repos/${{ github.repository }}/pulls/${PR_NUMBER}/comments" \
+            --jq '[.[] | select(.user.login == "gemini-code-assist[bot]")] |
+              map("- **\(.path)**" + if .line then " (Zeile \(.line))" else "" end +
+              ": " + (.body | split("\n")[0] | if length > 120 then .[:120] + "..." else . end)) |
+              join("\n")' 2>/dev/null || echo "Keine Details verfügbar")
+
+          BODY=$(cat <<EOF
+          ## 🤖 Gemini Code Assist Review-Zusammenfassung
+
+          | Typ | Anzahl |
+          |-----|--------|
+          | Reviews | ${{ steps.collect.outputs.review_count }} |
+          | Inline-Kommentare | ${{ steps.collect.outputs.inline_count }} |
+          | **Gesamt** | **${{ steps.collect.outputs.total_count }}** |
+
+          ### Inline-Kommentare
+          ${DETAILS}
+
+          ---
+          *Bitte mit Claude Code prüfen: \`./scripts/check-gemini-reviews.sh ${PR_NUMBER}\`*
+          EOF
+          )
+
+          gh pr comment "$PR_NUMBER" --body "$BODY"
