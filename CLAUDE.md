@@ -2,13 +2,30 @@
 
 ## Gemini Code Assist Reviews
 
-Nach jedem Pull Request oder wenn an einem bestehenden PR gearbeitet wird, **automatisch** die Gemini Code Assist Kommentare prüfen:
+Nach jedem Pull Request oder wenn an einem bestehenden PR gearbeitet wird, **automatisch** die Gemini Code Assist Kommentare prüfen.
+
+### Wichtig: Eigenständige Bewertung
+
+**Gemini Code Assist ist NICHT der Richter.** Claude Code bewertet jeden Kommentar eigenständig:
+
+- **Nicht blind übernehmen**: Geminis Einschätzung (z.B. "critical", "high severity") ist nur ein Hinweis, keine Wahrheit
+- **Eigene Analyse**: Den betroffenen Code selbst lesen und den Kontext des Projekts berücksichtigen
+- **Verifizieren statt vertrauen**: Prüfe ob das gemeldete Problem tatsächlich existiert
+- **Falsch-Positive erkennen**: Gemini irrt sich regelmäßig – besonders bei projektspezifischen Patterns, absichtlichen Designentscheidungen und MVP-Trade-offs
+- **Kontext schlägt Theorie**: Ein theoretisches Problem, das in diesem Projekt nicht auftreten kann, ist NIEDRIG – egal was Gemini sagt
+
+**Beispiele für typische Gemini-Fehleinschätzungen:**
+- Warnt vor "missing error handling" bei internem Code, der keine externen Inputs verarbeitet
+- Schlägt Abstraktion vor, obwohl der Code nur einmal verwendet wird
+- Markiert "security issue" bei Code, der nur im Build-Prozess läuft (nicht zur Laufzeit)
+- Fordert TypeScript-Patterns in einem reinen JavaScript-Projekt
 
 ### Workflow
 
 1. **Kommentare abrufen**: Nutze `gh pr view <PR_NUMBER> --comments` und `gh api repos/{owner}/{repo}/pulls/{pr}/reviews` um alle Review-Kommentare zu lesen
 2. **Gemini-Kommentare filtern**: Achte auf Kommentare von `gemini-code-assist[bot]` oder `gemini-code-assist`
-3. **Bewertung erstellen**: Für jeden Gemini-Kommentar drei Dimensionen bewerten:
+3. **Code selbst lesen**: Für jeden Kommentar den betroffenen Code öffnen und den Kontext verstehen
+4. **Eigenständige Bewertung erstellen**: Für jeden Gemini-Kommentar drei Dimensionen bewerten (basierend auf eigener Analyse, NICHT auf Geminis Einschätzung):
 
    **Kritikalität:**
    | Stufe | Bedeutung | Beispiele |
@@ -64,10 +81,12 @@ Für jeden Gemini-Kommentar diese Struktur ausgeben:
 
 ```
 📝 Datei: <path> (Zeile <n>)
+   Gemini sagt:   <Geminis Einschätzung zusammengefasst>
+   Eigene Analyse: <was Claude Code nach eigener Prüfung des Codes feststellt>
    Kritikalität:  KRITISCH | HOCH | MITTEL | NIEDRIG
    Umsetzung:     JA | OPTIONAL | NEIN
    Auto-Fix:      SOFORT | MANUELL | IGNORIEREN
-   Begründung:    <kurze Erklärung>
+   Begründung:    <warum diese Bewertung – besonders wenn sie von Geminis Einschätzung abweicht>
    Aktion:        <was wird gemacht oder warum nicht>
 ```
 
