@@ -4,7 +4,15 @@
 
 # ----- SPA Routing -----
 # Serves index.html for all non-file requests (React Router handles routing)
-FallbackResource /index.html
+# Uses mod_rewrite instead of FallbackResource for IONOS shared hosting compatibility
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
 
 # ----- Security Headers -----
 <IfModule mod_headers.c>
