@@ -29,5 +29,5 @@ jobs:
       - name: Deploy to IONOS
         run: |
           tar -czf /tmp/deploy.tar.gz -C dist .
-          scp -i ~/.ssh/deploy_key /tmp/deploy.tar.gz ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/deploy.tar.gz
-          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'rm -rf /dist && tar -xzf /deploy.tar.gz -C / && rm /deploy.tar.gz'
+          scp -i ~/.ssh/deploy_key /tmp/deploy.tar.gz ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/deploy.tar.gz
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'rm -rf ~/dist && tar -xzf ~/deploy.tar.gz -C ~/ && rm ~/deploy.tar.gz'
