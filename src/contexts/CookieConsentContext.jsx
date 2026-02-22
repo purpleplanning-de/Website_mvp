@@ -15,7 +15,7 @@ export function CookieConsentProvider({ children }) {
     try {
       const saved = localStorage.getItem(CONSENT_STORAGE_KEY);
       if (saved) return JSON.parse(saved);
-    } catch {}
+    } catch { /* localStorage unavailable */ }
     return null;
   });
 
@@ -25,7 +25,7 @@ export function CookieConsentProvider({ children }) {
     if (consent) {
       try {
         localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consent));
-      } catch {}
+      } catch { /* localStorage unavailable */ }
     }
   }, [consent]);
 
@@ -47,7 +47,7 @@ export function CookieConsentProvider({ children }) {
   const resetConsent = useCallback(() => {
     try {
       localStorage.removeItem(CONSENT_STORAGE_KEY);
-    } catch {}
+    } catch { /* localStorage unavailable */ }
     setConsent(null);
     setBannerVisible(true);
   }, []);
