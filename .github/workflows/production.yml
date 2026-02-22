@@ -19,12 +19,63 @@ jobs:
       - run: npm run lint
       - run: npm run build:production
 
-      - name: Deploy to IONOS via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          server: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          local_path: ./dist/
-          remote_path: /
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Diagnose server environment
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
+            echo "=== PWD ==="
+            pwd
+            echo "=== HOME DIRECTORY CONTENTS ==="
+            ls -la
+            echo "=== CHECK FOR HTDOCS ==="
+            ls -la htdocs/ 2>/dev/null || echo "No htdocs/ directory"
+            echo "=== CHECK FOR WWW ==="
+            ls -la www/ 2>/dev/null || echo "No www/ directory"
+            echo "=== CHECK FOR PUBLIC_HTML ==="
+            ls -la public_html/ 2>/dev/null || echo "No public_html/ directory"
+            echo "=== CURRENT .HTACCESS ==="
+            cat .htaccess 2>/dev/null || echo "No .htaccess in home"
+            echo "=== HTDOCS .HTACCESS ==="
+            cat htdocs/.htaccess 2>/dev/null || echo "No .htaccess in htdocs"
+            echo "=== CHECK INDEX.HTML LOCATION ==="
+            find . -name "index.html" -maxdepth 2 2>/dev/null
+            echo "=== FILE PERMISSIONS ==="
+            stat -c "%a %n" index.html 2>/dev/null || echo "No index.html in home"
+            stat -c "%a %n" htdocs/index.html 2>/dev/null || echo "No index.html in htdocs"
+            echo "=== ERROR LOG (if accessible) ==="
+            cat logs/error.log 2>/dev/null | tail -20 || echo "No logs/error.log accessible"
+            cat error.log 2>/dev/null | tail -20 || echo "No error.log accessible"
+          '
+
+      - name: Deploy to IONOS
+        run: |
+          tar -czf /tmp/deploy.tar.gz -C dist .
+          scp -i ~/.ssh/deploy_key /tmp/deploy.tar.gz ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:deploy.tar.gz
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
+            mkdir -p htdocs
+            cd htdocs
+            rm -rf assets
+            tar xzf ~/deploy.tar.gz
+            rm ~/deploy.tar.gz
+          '
+
+      - name: Verify deployment
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
+            echo "=== POST-DEPLOY: PWD ==="
+            pwd
+            echo "=== POST-DEPLOY: HTDOCS CONTENTS ==="
+            ls -la htdocs/
+            echo "=== POST-DEPLOY: INDEX.HTML EXISTS? ==="
+            head -5 htdocs/index.html 2>/dev/null || echo "No index.html found!"
+            echo "=== POST-DEPLOY: .HTACCESS ==="
+            cat htdocs/.htaccess 2>/dev/null || echo "No .htaccess found!"
+            echo "=== POST-DEPLOY: ASSETS DIR ==="
+            ls -la htdocs/assets/ 2>/dev/null || echo "No assets/ directory"
+          '
