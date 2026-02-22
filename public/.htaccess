@@ -4,7 +4,13 @@
 
 # ----- SPA Routing -----
 # Serves index.html for all non-file requests (React Router handles routing)
-# Uses mod_rewrite instead of FallbackResource for IONOS shared hosting compatibility
+
+# Fallback: serve index.html on any 404 (works without mod_rewrite)
+# If mod_rewrite is active, it rewrites before a 404 occurs, so this never fires.
+# If mod_rewrite is disabled (common on IONOS shared hosting), this catches the 404.
+ErrorDocument 404 /index.html
+
+# Preferred: mod_rewrite for clean 200 status responses
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
