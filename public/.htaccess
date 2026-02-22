@@ -1,14 +1,3 @@
 # SPA routing for Apache (IONOS)
-# Redirects all non-file requests to index.html
-
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-
-  # If the requested file or directory exists, serve it directly
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-
-  # Otherwise, serve index.html (let React Router handle it)
-  RewriteRule ^ index.html [QSA,L]
-</IfModule>
+# Serves index.html for all non-file requests (React Router handles routing)
+FallbackResource /index.html
