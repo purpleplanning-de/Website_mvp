@@ -1,3 +1,70 @@
-# SPA routing for Apache (IONOS)
+# ================================================
+# PurplePlanning – Apache Configuration (IONOS)
+# ================================================
+
+# ----- SPA Routing -----
 # Serves index.html for all non-file requests (React Router handles routing)
 FallbackResource /index.html
+
+# ----- Security Headers -----
+<IfModule mod_headers.c>
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # XSS Protection (legacy browsers)
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy – send origin only on cross-origin
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions Policy – disable unused browser features
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+
+  # Content Security Policy
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; frame-ancestors 'self';"
+
+  # HSTS – enforce HTTPS (1 year)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+</IfModule>
+
+# ----- Compression (mod_deflate) -----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE text/xml
+</IfModule>
+
+# ----- Browser Caching (mod_expires) -----
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML – no cache (SPA always fresh)
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # CSS & JS – 1 year (Vite hashes filenames)
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # Images – 1 month
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/avif "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  # Fonts – 1 year
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+</IfModule>

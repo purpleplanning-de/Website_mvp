@@ -45,6 +45,12 @@ export default function Footer() {
             >
               Datenschutz
             </button>
+            <button
+              onClick={() => navigate('/agb')}
+              className="hover:text-purple-600 hover:opacity-100 transition-all"
+            >
+              AGB
+            </button>
           </div>
 
           {/* Copyright */}

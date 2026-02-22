@@ -11,6 +11,7 @@ import FeedbackToast from './components/ui/FeedbackToast';
 import OfflineBanner from './components/OfflineBanner';
 import ErrorBoundary from './components/ErrorBoundary';
 import LoadingSpinner from './components/LoadingSpinner';
+import CookieBanner from './components/CookieBanner';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const ShopPage = lazy(() => import('./pages/ShopPage'));
@@ -23,6 +24,7 @@ const RoadmapPage = lazy(() => import('./pages/RoadmapPage'));
 const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'));
+const AGBPage = lazy(() => import('./pages/AGBPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function ScrollToTop() {
@@ -108,6 +110,7 @@ export default function App() {
                 <Route path="/profile" element={<PageWrapper><ProfilePage /></PageWrapper>} />
                 <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
                 <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
+                <Route path="/agb" element={<PageWrapper><AGBPage /></PageWrapper>} />
                 <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
               </Routes>
             </Suspense>
@@ -117,6 +120,7 @@ export default function App() {
 
       <Footer />
       <FeedbackToast />
+      <CookieBanner />
     </div>
   );
 }

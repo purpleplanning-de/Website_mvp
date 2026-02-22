@@ -51,8 +51,8 @@ export default function ProductCard({ product }) {
         >
           0{product.id}
         </span>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
-        <div className="absolute bottom-0 left-0 right-0 p-7 opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-500 z-30">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 z-20" />
+        <div className="absolute bottom-0 left-0 right-0 p-7 md:opacity-0 md:group-hover:opacity-100 md:translate-y-3 md:group-hover:translate-y-0 transition-all duration-500 z-30">
           <button
             style={fontSans}
             onClick={handleAdd}
