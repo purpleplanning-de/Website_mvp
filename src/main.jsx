@@ -9,6 +9,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { CartProvider } from './contexts/CartContext';
 import { UserProvider } from './contexts/UserContext';
+import { CookieConsentProvider } from './contexts/CookieConsentContext';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,11 +18,13 @@ createRoot(document.getElementById('root')).render(
         <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <ThemeProvider>
             <LanguageProvider>
-              <CartProvider>
-                <UserProvider>
-                  <App />
-                </UserProvider>
-              </CartProvider>
+              <CookieConsentProvider>
+                <CartProvider>
+                  <UserProvider>
+                    <App />
+                  </UserProvider>
+                </CartProvider>
+              </CookieConsentProvider>
             </LanguageProvider>
           </ThemeProvider>
         </BrowserRouter>
