@@ -19,15 +19,12 @@ jobs:
       - run: npm run lint
       - run: npm run build:production
 
-      - name: Deploy to IONOS via FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      - name: Deploy to IONOS via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
-          security: loose
-          timeout: 60000
-          local-dir: ./dist/
-          server-dir: /
+          local_path: ./dist/
+          remote_path: /
