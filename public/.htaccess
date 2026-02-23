@@ -2,6 +2,12 @@
 # PurplePlanning – Apache Configuration (IONOS)
 # ================================================
 
+# ----- Basic Auth (Beta Access) -----
+AuthType Basic
+AuthName "Purple Planning Beta - Bitte einloggen"
+AuthUserFile /kunden/homepages/28/d4298787019/htdocs/.htpasswd
+Require valid-user
+
 # ----- SPA Routing (Battle-tested for IONOS shared hosting) -----
 # Serves index.html for all non-file requests (React Router handles routing)
 
