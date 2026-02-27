@@ -1,6 +1,8 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useMemo, useEffect } from 'react';
 
 export const UserContext = createContext(null);
+
+const USER_STORAGE_KEY = 'purpleplanning_user';
 
 const LEVELS = [
   { name: 'Reisender', min: 0, benefit: 'Zugang zu Standard-Downloads' },
@@ -27,16 +29,35 @@ function computeLevel(points) {
   return { current, next, progressPercent, pointsToNext, actualIdx };
 }
 
+const DEFAULT_USER = {
+  name: 'Sarah Planner',
+  email: 'sarah@purpleplanning.de',
+  address: 'Musterstraße 12, 10115 Berlin',
+  newsletter: true,
+  points: 150,
+};
+
 export function UserProvider({ children }) {
-  const [userData, setUserData] = useState({
-    name: 'Sarah Planner',
-    email: 'sarah@purpleplanning.de',
-    address: 'Musterstraße 12, 10115 Berlin',
-    newsletter: true,
-    points: 150,
+  const [userData, setUserData] = useState(() => {
+    try {
+      const saved = localStorage.getItem(USER_STORAGE_KEY);
+      return saved ? { ...DEFAULT_USER, ...JSON.parse(saved) } : DEFAULT_USER;
+    } catch {
+      return DEFAULT_USER;
+    }
   });
 
-  const levelInfo = computeLevel(userData.points);
+  // Änderungen in localStorage persistieren
+  useEffect(() => {
+    try {
+      localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData));
+    } catch (error) {
+      console.error('Failed to save user data to localStorage:', error);
+    }
+  }, [userData]);
+
+  // useMemo verhindert unnötige Neuberechnungen bei unabhängigen State-Änderungen
+  const levelInfo = useMemo(() => computeLevel(userData.points), [userData.points]);
 
   return (
     <UserContext.Provider value={{ userData, setUserData, levelInfo, levels: LEVELS }}>
