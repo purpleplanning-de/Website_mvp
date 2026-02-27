@@ -11,6 +11,16 @@ import { CartProvider } from './contexts/CartContext';
 import { UserProvider } from './contexts/UserContext';
 import { CookieConsentProvider } from './contexts/CookieConsentContext';
 
+// Globale Fehler-Handler: fangen alles, was ErrorBoundary nicht sieht
+// (async Fehler, Event-Handler, Fehler außerhalb des React-Trees).
+// Hier lässt sich später Sentry.captureException() einsetzen.
+window.addEventListener('error', (event) => {
+  console.error('[Global Error]', event.error ?? event.message);
+});
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('[Unhandled Promise Rejection]', event.reason);
+});
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ErrorBoundary>

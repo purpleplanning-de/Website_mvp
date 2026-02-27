@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Send, Mail, MessageSquare, User, CheckCircle2, AlertCircle } from 'lucide-react';
 import { fontSerif, fontSans } from '../data/styles';
@@ -19,6 +19,9 @@ export default function ContactPage() {
 
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Ref als synchroner Guard gegen Doppelklick — React State allein ist kein zuverlässiger Schutz,
+  // da State-Updates gebatcht werden und zwei schnelle Klicks beide handleSubmit aufrufen können.
+  const isSubmittingRef = useRef(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,6 +30,8 @@ export default function ContactPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmittingRef.current) return;
+    isSubmittingRef.current = true;
     setIsSubmitting(true);
     setStatus({ type: '', message: '' });
 
@@ -37,6 +42,7 @@ export default function ContactPage() {
         message: t('contact', 'errorRequired'),
       });
       setIsSubmitting(false);
+      isSubmittingRef.current = false;
       return;
     }
 
@@ -48,6 +54,7 @@ export default function ContactPage() {
         message: t('contact', 'errorEmail'),
       });
       setIsSubmitting(false);
+      isSubmittingRef.current = false;
       return;
     }
 
@@ -59,6 +66,7 @@ export default function ContactPage() {
       });
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitting(false);
+      isSubmittingRef.current = false;
     }, 1500);
   };
 

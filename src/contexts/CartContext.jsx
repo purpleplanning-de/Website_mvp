@@ -1,6 +1,10 @@
 import { createContext, useState, useMemo, useCallback, useContext, useEffect, useRef } from 'react';
 import { VALID_CODES } from '../data/discountCodes';
+import { products } from '../data/products';
 import { LanguageContext } from './LanguageContext';
+
+// Baut ein schnelles ID→Preis-Lookup aus der Produktliste (Wahrheitsquelle für Preise)
+const PRODUCT_PRICE_MAP = Object.fromEntries(products.map((p) => [p.id, p.price]));
 
 export const CartContext = createContext(null);
 
@@ -13,11 +17,20 @@ export function CartProvider({ children }) {
   const feedbackTimerRef = useRef(null);
   const discountErrorTimerRef = useRef(null);
 
-  // Initialize from localStorage
+  // Initialize from localStorage — Preise werden gegen products.js revalidiert,
+  // damit manipulierte localStorage-Einträge keine falschen Preise einschleusen können.
   const [cart, setCart] = useState(() => {
     try {
       const saved = localStorage.getItem(CART_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
+      if (!saved) return [];
+      const parsed = JSON.parse(saved);
+      return parsed
+        .filter((item) => item.id && PRODUCT_PRICE_MAP[item.id] !== undefined)
+        .map((item) => ({
+          ...item,
+          price: PRODUCT_PRICE_MAP[item.id], // Preis immer aus products.js, nie aus Storage
+          qty: Math.max(1, Math.floor(item.qty || 1)),
+        }));
     } catch {
       return [];
     }
@@ -29,7 +42,11 @@ export function CartProvider({ children }) {
   const [appliedDiscount, setAppliedDiscount] = useState(() => {
     try {
       const saved = localStorage.getItem(DISCOUNT_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : { code: '', value: 0 };
+      if (!saved) return { code: '', value: 0 };
+      const parsed = JSON.parse(saved);
+      // Discount-Code gegen VALID_CODES revalidieren — verhindert Injection beliebiger Rabatte
+      const isValid = parsed.code && parsed.code in VALID_CODES;
+      return isValid ? { code: parsed.code, value: VALID_CODES[parsed.code] } : { code: '', value: 0 };
     } catch {
       return { code: '', value: 0 };
     }
@@ -92,19 +109,23 @@ export function CartProvider({ children }) {
       setCart((prev) => {
         let next = [...prev];
         bundleProducts.forEach((p) => {
+          // Preis aus products.js sicherstellen, auch bei Bundle-Items
+          const validatedPrice = PRODUCT_PRICE_MAP[p.id] ?? p.price;
           const existing = next.find((item) => item.id === p.id);
           if (existing) {
             next = next.map((item) =>
               item.id === p.id ? { ...item, qty: item.qty + 1 } : item,
             );
           } else {
-            next.push({ ...p, qty: 1 });
+            next.push({ ...p, price: validatedPrice, qty: 1 });
           }
         });
         return next;
       });
+      // Bundle-Rabatt auf maximal 50% clampen — verhindert absurde Werte durch fehlerhafte Aufrufe
+      const clampedPercent = Math.min(Math.max(discountPercent, 0), 50);
       setDiscountCode(code);
-      setAppliedDiscount({ code, value: discountPercent / 100 });
+      setAppliedDiscount({ code, value: clampedPercent / 100 });
       showFeedback(t('cart', 'bundleAdded'));
       setIsCartOpen(true);
     },
@@ -173,6 +194,7 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeFromCart,
         applyDiscount,
+        showFeedback,
         totals,
       }}
     >
