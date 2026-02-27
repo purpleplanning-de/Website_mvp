@@ -4,11 +4,15 @@ import { fontSerif, fontSans } from '../data/styles';
 import { useTheme } from '../hooks/useTheme';
 import { useUser } from '../hooks/useUser';
 import { useLanguage } from '../hooks/useLanguage';
+import { useCart } from '../hooks/useCart';
 
 export default function ProfilePage() {
   const { darkMode, cardBg } = useTheme();
   const { userData, setUserData, levelInfo, levels } = useUser();
   const { t } = useLanguage();
+  const { showFeedback } = useCart();
+
+  const showComingSoon = () => showFeedback('Funktion kommt bald!');
   const [activeTab, setActiveTab] = useState('overview');
 
   const { current: currentLevel, next: nextLevel, progressPercent, pointsToNext } = levelInfo;
@@ -52,9 +56,12 @@ export default function ProfilePage() {
               {label}
             </button>
           ))}
-          <button className={`w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-red-400 transition-all flex items-center gap-2 mt-8 ${
-            darkMode ? 'hover:bg-red-900/20 hover:text-red-300' : 'hover:bg-red-50 hover:text-red-500'
-          }`}>
+          <button
+            onClick={showComingSoon}
+            className={`w-full text-left px-6 py-4 rounded-2xl text-sm font-bold uppercase tracking-widest text-red-400 transition-all flex items-center gap-2 mt-8 ${
+              darkMode ? 'hover:bg-red-900/20 hover:text-red-300' : 'hover:bg-red-50 hover:text-red-500'
+            }`}
+          >
             <LogOut size={16} /> {t('profile', 'logout')}
           </button>
         </div>
@@ -216,15 +223,15 @@ export default function ProfilePage() {
                 <p className="text-sm opacity-70">{userData.address}</p>
                 <p className="text-sm opacity-70">{t('profile', 'country')}</p>
                 <div className="mt-4 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="text-xs font-bold text-purple-500 hover:underline">
+                  <button onClick={showComingSoon} className="text-xs font-bold text-purple-500 hover:underline">
                     {t('profile', 'edit')}
                   </button>
-                  <button className="text-xs font-bold text-red-400 hover:underline">
+                  <button onClick={showComingSoon} className="text-xs font-bold text-red-400 hover:underline">
                     {t('profile', 'delete')}
                   </button>
                 </div>
               </div>
-              <button className="mt-6 border border-dashed rounded-2xl w-full py-4 text-sm font-bold uppercase tracking-widest hover:border-purple-300 hover:text-purple-500 transition-all opacity-60 hover:opacity-100">
+              <button onClick={showComingSoon} className="mt-6 border border-dashed rounded-2xl w-full py-4 text-sm font-bold uppercase tracking-widest hover:border-purple-300 hover:text-purple-500 transition-all opacity-60 hover:opacity-100">
                 {t('profile', 'newAddress')}
               </button>
             </div>
@@ -243,7 +250,8 @@ export default function ProfilePage() {
                   </label>
                   <input
                     type="text"
-                    defaultValue={userData.name}
+                    value={userData.name}
+                    onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))}
                     className={`w-full border rounded-xl px-4 py-3 text-sm focus:border-purple-500 outline-none ${
                       darkMode ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
                     }`}
@@ -255,7 +263,8 @@ export default function ProfilePage() {
                   </label>
                   <input
                     type="email"
-                    defaultValue={userData.email}
+                    value={userData.email}
+                    onChange={(e) => setUserData((prev) => ({ ...prev, email: e.target.value }))}
                     className={`w-full border rounded-xl px-4 py-3 text-sm focus:border-purple-500 outline-none ${
                       darkMode ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
                     }`}
@@ -263,7 +272,7 @@ export default function ProfilePage() {
                 </div>
                 <div className={`pt-6 border-t ${darkMode ? 'border-white/10' : 'border-gray-100'}`}>
                   <h4 className="font-bold text-sm mb-4">{t('profile', 'passwordSecurity')}</h4>
-                  <button className="text-purple-500 text-xs font-bold uppercase tracking-widest border border-purple-500/30 px-4 py-2 rounded-lg hover:bg-purple-500/10 transition-colors">
+                  <button onClick={showComingSoon} className="text-purple-500 text-xs font-bold uppercase tracking-widest border border-purple-500/30 px-4 py-2 rounded-lg hover:bg-purple-500/10 transition-colors">
                     {t('profile', 'changePassword')}
                   </button>
                 </div>

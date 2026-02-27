@@ -57,6 +57,7 @@ export const translations = {
     cart: {
       title: 'Warenkorb',
       empty: 'Dein Korb wartet auf Visionen',
+      emptySubtitle: 'Entdecke unsere handgefertigten Planer und finde deinen perfekten Begleiter.',
       checkout: 'Zur Kasse',
       browse: 'Jetzt stöbern',
       discountPlaceholder: 'Rabattcode',
@@ -436,6 +437,7 @@ export const translations = {
     cart: {
       title: 'Cart',
       empty: 'Your cart awaits visions',
+      emptySubtitle: 'Discover our handcrafted planners and find your perfect companion.',
       checkout: 'Checkout',
       browse: 'Browse now',
       discountPlaceholder: 'Discount code',
@@ -815,6 +817,7 @@ export const translations = {
     cart: {
       title: 'Varukorg',
       empty: 'Din korg väntar på visioner',
+      emptySubtitle: 'Upptäck våra handgjorda planerare och hitta din perfekta följeslagare.',
       checkout: 'Till kassan',
       browse: 'Bläddra nu',
       discountPlaceholder: 'Rabattkod',
