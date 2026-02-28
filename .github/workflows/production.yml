@@ -38,6 +38,14 @@ jobs:
             rm ~/deploy.tar.gz
           '
 
+      - name: Create .htpasswd for Beta Auth
+        if: ${{ secrets.HTPASSWD_CONTENT != '' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "
+            echo '${{ secrets.HTPASSWD_CONTENT }}' > ~/.htpasswd
+            chmod 644 ~/.htpasswd
+          "
+
       - name: Verify deployment
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
