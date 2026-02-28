@@ -38,19 +38,6 @@ jobs:
             rm ~/deploy.tar.gz
           '
 
-      - name: Create .htpasswd for Beta Auth
-        env:
-          HTPASSWD_CONTENT: ${{ secrets.HTPASSWD_CONTENT }}
-        run: |
-          if [ -n "$HTPASSWD_CONTENT" ]; then
-            ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "
-              printf '%s\n' '$HTPASSWD_CONTENT' > ~/.htpasswd
-              chmod 644 ~/.htpasswd
-            "
-          else
-            echo "HTPASSWD_CONTENT not set – skipping .htpasswd creation"
-          fi
-
       - name: Verify deployment
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} '
