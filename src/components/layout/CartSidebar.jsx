@@ -12,6 +12,7 @@ import {
   AlertCircle,
   CheckCircle,
   ShoppingBag,
+  Loader,
 } from 'lucide-react';
 import { fontSerif } from '../../data/styles';
 import { useTheme } from '../../hooks/useTheme';
@@ -33,6 +34,9 @@ export default function CartSidebar() {
     updateQuantity,
     removeFromCart,
     applyDiscount,
+    checkout,
+    checkoutLoading,
+    checkoutError,
     totals,
   } = useCart();
 
@@ -324,9 +328,27 @@ export default function CartSidebar() {
                 </span>
               </div>
 
-              <button className={actionButtonStyle}>
-                {t('cart', 'checkout')} <ArrowRight size={18} />
+              <button
+                className={`${actionButtonStyle} ${checkoutLoading ? 'opacity-70 cursor-wait' : ''}`}
+                onClick={checkout}
+                disabled={checkoutLoading || cart.length === 0}
+              >
+                {checkoutLoading ? (
+                  <>
+                    {t('cart', 'processing')} <Loader size={18} className="animate-spin" />
+                  </>
+                ) : (
+                  <>
+                    {t('cart', 'checkout')} <ArrowRight size={18} />
+                  </>
+                )}
               </button>
+              {checkoutError && (
+                <p className="text-red-500 text-sm text-center mt-2 flex items-center justify-center gap-1">
+                  <AlertCircle size={14} />
+                  {checkoutError}
+                </p>
+              )}
             </div>
           )}
         </div>

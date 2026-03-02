@@ -23,6 +23,10 @@ ErrorDocument 404 /index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Pass API requests through to PHP (don't rewrite to index.html)
+  RewriteRule ^api/ - [L]
+
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ /index.html [QSA,L]
@@ -49,7 +53,7 @@ ErrorDocument 404 /index.html
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
 
   # Content Security Policy
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://formspree.io; frame-ancestors 'self';"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://images.unsplash.com; connect-src 'self' https://formspree.io; frame-ancestors 'self';"
 
   # HSTS – enforce HTTPS (1 year)
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
