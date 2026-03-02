@@ -75,6 +75,14 @@ export const translations = {
       quantity: 'Menge',
       remove: 'Entfernen',
       applyDiscount: 'Rabatt anwenden',
+      processing: 'Wird verarbeitet…',
+      checkoutError: 'Checkout konnte nicht gestartet werden. Bitte versuche es erneut.',
+    },
+    checkout: {
+      successTitle: 'Vielen Dank für deine Bestellung!',
+      successMessage: 'Du erhältst in Kürze eine E-Mail mit deinen Download-Links.',
+      downloadHint: 'Digitaler Download — sofort verfügbar',
+      backToShop: 'Weiter stöbern',
     },
     shop: {
       tagline: 'Handgemacht mit Liebe',
@@ -454,6 +462,14 @@ export const translations = {
       quantity: 'Quantity',
       remove: 'Remove',
       applyDiscount: 'Apply discount',
+      processing: 'Processing…',
+      checkoutError: 'Checkout could not be started. Please try again.',
+    },
+    checkout: {
+      successTitle: 'Thank you for your order!',
+      successMessage: 'You will receive an email with your download links shortly.',
+      downloadHint: 'Digital download — available instantly',
+      backToShop: 'Continue browsing',
     },
     shop: {
       tagline: 'Handmade with Love',
@@ -833,6 +849,14 @@ export const translations = {
       quantity: 'Antal',
       remove: 'Ta bort',
       applyDiscount: 'Använd rabatt',
+      processing: 'Bearbetar…',
+      checkoutError: 'Kassan kunde inte startas. Försök igen.',
+    },
+    checkout: {
+      successTitle: 'Tack för din beställning!',
+      successMessage: 'Du får snart ett e-postmeddelande med dina nedladdningslänkar.',
+      downloadHint: 'Digital nedladdning — tillgänglig direkt',
+      backToShop: 'Fortsätt bläddra',
     },
     shop: {
       tagline: 'Handgjord med Kärlek',

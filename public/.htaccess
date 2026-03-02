@@ -23,6 +23,10 @@ ErrorDocument 404 /index.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Pass API requests through to PHP (don't rewrite to index.html)
+  RewriteRule ^api/ - [L]
+
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.*)$ /index.html [QSA,L]

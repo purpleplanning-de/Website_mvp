@@ -25,6 +25,7 @@ const ProfilePage = lazy(() => import('./pages/ProfilePage'));
 const ImpressumPage = lazy(() => import('./pages/ImpressumPage'));
 const DatenschutzPage = lazy(() => import('./pages/DatenschutzPage'));
 const AGBPage = lazy(() => import('./pages/AGBPage'));
+const CheckoutSuccessPage = lazy(() => import('./pages/CheckoutSuccessPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 function ScrollToTop() {
@@ -111,6 +112,7 @@ export default function App() {
                 <Route path="/impressum" element={<PageWrapper><ImpressumPage /></PageWrapper>} />
                 <Route path="/datenschutz" element={<PageWrapper><DatenschutzPage /></PageWrapper>} />
                 <Route path="/agb" element={<PageWrapper><AGBPage /></PageWrapper>} />
+                <Route path="/checkout/success" element={<PageWrapper><CheckoutSuccessPage /></PageWrapper>} />
                 <Route path="*" element={<PageWrapper><NotFoundPage /></PageWrapper>} />
               </Routes>
             </Suspense>

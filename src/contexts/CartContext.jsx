@@ -37,6 +37,8 @@ export function CartProvider({ children }) {
 
   const [feedback, setFeedback] = useState(null);
   const [discountError, setDiscountError] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
 
   // Persist cart to localStorage
   useEffect(() => {
@@ -148,6 +150,40 @@ export function CartProvider({ children }) {
     }
   }, [discountCode, showFeedback, t]);
 
+  const clearCart = useCallback(() => {
+    setCart([]);
+    setAppliedDiscount({ code: '', value: 0 });
+    setDiscountCode('');
+    setCheckoutError(null);
+  }, []);
+
+  const checkout = useCallback(async () => {
+    setCheckoutLoading(true);
+    setCheckoutError(null);
+
+    try {
+      const response = await fetch('/api/checkout.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map(item => ({ id: item.id, qty: item.qty })),
+          discount_code: appliedDiscount.code || null,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Checkout failed');
+      }
+
+      const { checkout_url } = await response.json();
+      window.location.href = checkout_url;
+    } catch {
+      setCheckoutError(t('cart', 'checkoutError'));
+    } finally {
+      setCheckoutLoading(false);
+    }
+  }, [cart, appliedDiscount.code, t]);
+
   const totals = useMemo(() => {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const discount = subtotal * appliedDiscount.value;
@@ -173,6 +209,10 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeFromCart,
         applyDiscount,
+        checkout,
+        checkoutLoading,
+        checkoutError,
+        clearCart,
         totals,
       }}
     >

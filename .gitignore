@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Lemon Squeezy API credentials (deploy manually to IONOS)
+public/api/config.php
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
