@@ -198,7 +198,8 @@ export function CartProvider({ children }) {
 
       const { checkout_url } = await response.json();
       window.location.href = checkout_url;
-    } catch {
+    } catch (err) {
+      console.error('Checkout error:', err);
       setCheckoutError(t('cart', 'checkoutError'));
     } finally {
       setCheckoutLoading(false);

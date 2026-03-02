@@ -7,11 +7,20 @@
 
 header('Content-Type: application/json');
 
-$config = require __DIR__ . '/config.php';
+$configFile = __DIR__ . '/config.php';
+if (!file_exists($configFile)) {
+    http_response_code(500);
+    error_log('FATAL: config.php is missing at ' . $configFile);
+    echo json_encode(['error' => 'Internal server error']);
+    exit;
+}
+$config = require $configFile;
 
-// CORS
+// CORS — validate origin against allowlist (also used for redirect_url)
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$validatedOrigin = null;
 if (in_array($origin, $config['allowed_origins'], true)) {
+    $validatedOrigin = $origin;
     header("Access-Control-Allow-Origin: $origin");
 }
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -69,7 +78,7 @@ $checkoutData = [
                 'logo' => true,
             ],
             'product_options' => [
-                'redirect_url' => ($origin ?: 'https://purpleplanning.de') . '/checkout/success',
+                'redirect_url' => ($validatedOrigin ?? 'https://purpleplanning.de') . '/checkout/success',
             ],
         ],
         'relationships' => [
@@ -110,12 +119,14 @@ curl_close($ch);
 
 if ($curlError) {
     http_response_code(502);
+    error_log('Lemon Squeezy cURL error: ' . $curlError);
     echo json_encode(['error' => 'Payment service unavailable']);
     exit;
 }
 
 if ($httpCode !== 201) {
     http_response_code(502);
+    error_log("Lemon Squeezy API error. HTTP $httpCode. Response: $response");
     echo json_encode(['error' => 'Checkout creation failed']);
     exit;
 }
