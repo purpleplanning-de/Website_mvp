@@ -12,13 +12,16 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    this.setState({
-      error,
-      errorInfo,
-    });
+    this.setState({ error, errorInfo });
 
-    // Log to error reporting service (Sentry, etc.)
+    // Konsole immer loggen
     console.error('Error Boundary caught:', error, errorInfo);
+
+    // Optionaler onError-Prop: hier lässt sich Sentry einstecken ohne die Boundary zu ändern.
+    // Beispiel in main.jsx: <ErrorBoundary onError={(e, info) => Sentry.captureException(e, { extra: info })}>
+    if (typeof this.props.onError === 'function') {
+      this.props.onError(error, errorInfo);
+    }
   }
 
   render() {

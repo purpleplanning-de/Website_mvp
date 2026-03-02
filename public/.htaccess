@@ -6,7 +6,7 @@
 # Note: .htpasswd must be at this IONOS path with permissions 644
 AuthType Basic
 AuthName "Purple Planning Beta - Bitte einloggen"
-AuthUserFile /kunden/homepages/28/d4298787019/.htpasswd
+AuthUserFile /kunden/homepages/28/d4298787019/htdocs/.htpasswd
 Require valid-user
 
 # ----- SPA Routing (Battle-tested for IONOS shared hosting) -----

@@ -145,7 +145,7 @@ export default function CartSidebar() {
                     darkMode ? 'text-white/60' : 'text-gray-500'
                   }`}
                 >
-                  Entdecke unsere handgefertigten Planer und finde deinen perfekten Begleiter.
+                  {t('cart', 'emptySubtitle')}
                 </motion.p>
 
                 {/* CTA Button */}
