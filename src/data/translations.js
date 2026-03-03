@@ -78,6 +78,7 @@ export const translations = {
       applyDiscount: 'Rabatt anwenden',
       processing: 'Wird verarbeitet…',
       checkoutError: 'Checkout konnte nicht gestartet werden. Bitte versuche es erneut.',
+      checkoutSuccess: 'Kauf erfolgreich! Vielen Dank für deine Bestellung.',
     },
     checkout: {
       successTitle: 'Vielen Dank für deine Bestellung!',
@@ -466,6 +467,7 @@ export const translations = {
       applyDiscount: 'Apply discount',
       processing: 'Processing…',
       checkoutError: 'Checkout could not be started. Please try again.',
+      checkoutSuccess: 'Purchase successful! Thank you for your order.',
     },
     checkout: {
       successTitle: 'Thank you for your order!',
@@ -854,6 +856,7 @@ export const translations = {
       applyDiscount: 'Använd rabatt',
       processing: 'Bearbetar…',
       checkoutError: 'Kassan kunde inte startas. Försök igen.',
+      checkoutSuccess: 'Köpet lyckades! Tack för din beställning.',
     },
     checkout: {
       successTitle: 'Tack för din beställning!',
