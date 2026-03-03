@@ -9,8 +9,8 @@ import { useCart } from '../../hooks/useCart';
 const NAV_LINKS = [
   { path: '/shop', key: 'shop' },
   { path: '/bundle', key: 'systems' },
-  { path: '/about', key: 'about' },
   { path: '/blog', key: 'blog' },
+  { path: '/about', key: 'about' },
   { path: '/contact', key: 'contact' },
 ];
 
