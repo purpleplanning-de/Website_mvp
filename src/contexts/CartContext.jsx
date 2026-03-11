@@ -6,6 +6,11 @@ import { LanguageContext } from './LanguageContext';
 // Baut ein schnelles ID→Preis-Lookup aus der Produktliste (Wahrheitsquelle für Preise)
 const PRODUCT_PRICE_MAP = Object.fromEntries(products.map((p) => [p.id, p.price]));
 
+// Lemon Squeezy Test-Checkout-URL (Overlay, Option B — ohne Backend)
+// TODO: Für Produktion durch Backend-Flow (checkout.php) ersetzen
+const LS_CHECKOUT_URL =
+  'https://purpleplanning.lemonsqueezy.com/checkout/buy/48de2136-44f6-440c-867d-a3563dbfcd2f';
+
 export const CartContext = createContext(null);
 
 // LocalStorage keys
@@ -54,6 +59,8 @@ export function CartProvider({ children }) {
 
   const [feedback, setFeedback] = useState(null);
   const [discountError, setDiscountError] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
 
   // Persist cart to localStorage
   useEffect(() => {
@@ -79,6 +86,13 @@ export function CartProvider({ children }) {
       if (feedbackTimerRef.current) clearTimeout(feedbackTimerRef.current);
       if (discountErrorTimerRef.current) clearTimeout(discountErrorTimerRef.current);
     };
+  }, []);
+
+  // Lemon Squeezy SDK initialisieren (lemon.js wird per Script-Tag in index.html geladen)
+  useEffect(() => {
+    if (typeof window.createLemonSqueezy === 'function') {
+      window.createLemonSqueezy();
+    }
   }, []);
 
   const showFeedback = useCallback((msg) => {
@@ -169,6 +183,55 @@ export function CartProvider({ children }) {
     }
   }, [discountCode, showFeedback, t]);
 
+  const clearCart = useCallback(() => {
+    setCart([]);
+    setAppliedDiscount({ code: '', value: 0 });
+    setDiscountCode('');
+    setCheckoutError(null);
+  }, []);
+
+  // Lemon Squeezy Overlay-Events verarbeiten (Success / Closed)
+  useEffect(() => {
+    function handleLSEvent({ event }) {
+      if (event === 'Checkout.Success') {
+        clearCart();
+        setIsCartOpen(false);
+        setCheckoutLoading(false);
+        showFeedback(t('cart', 'checkoutSuccess'));
+      }
+      if (event === 'Checkout.Closed') {
+        setCheckoutLoading(false);
+      }
+    }
+
+    window.LemonSqueezy?.Setup?.({ eventHandler: handleLSEvent });
+  }, [clearCart, showFeedback, t]);
+
+  const checkout = useCallback(() => {
+    setCheckoutLoading(true);
+    setCheckoutError(null);
+
+    try {
+      // Checkout-URL zusammenbauen (mit optionalem Discount-Code)
+      let url = LS_CHECKOUT_URL;
+      if (appliedDiscount.code) {
+        url += `?discount=${encodeURIComponent(appliedDiscount.code)}`;
+      }
+
+      // Overlay öffnen (lemon.js muss geladen sein)
+      if (window.LemonSqueezy?.Url?.Open) {
+        window.LemonSqueezy.Url.Open(url);
+      } else {
+        // Fallback: Direkter Redirect wenn lemon.js nicht geladen (z.B. Ad-Blocker)
+        window.location.href = url + (url.includes('?') ? '&' : '?') + 'embed=1';
+      }
+    } catch (err) {
+      console.error('Checkout error:', err);
+      setCheckoutError(t('cart', 'checkoutError'));
+      setCheckoutLoading(false);
+    }
+  }, [appliedDiscount.code, t]);
+
   const totals = useMemo(() => {
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
     const discount = subtotal * appliedDiscount.value;
@@ -194,7 +257,10 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeFromCart,
         applyDiscount,
-        showFeedback,
+        checkout,
+        checkoutLoading,
+        checkoutError,
+        clearCart,
         totals,
       }}
     >
