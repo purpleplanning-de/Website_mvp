@@ -240,13 +240,9 @@ EOF
 - **Sprache**: PR-Titel und Beschreibung auf Englisch (Code-Konvention)
 - **Kein PR ohne Beschreibung**: Wenn `gh pr create` fehlschlägt, dem Entwickler Bescheid geben – niemals einen leeren PR erstellen
 
-## Sicherheits-TODOs
-
-- [ ] **SSH Deploy Key rotieren**: Der aktuelle `SSH_PRIVATE_KEY` (GitHub Secret) wurde in einer Claude Code Session generiert. Bei nächster Gelegenheit am Rechner mit `ssh-keygen -t ed25519` lokal neu erstellen und in GitHub + IONOS austauschen. (Erstellt: 2026-02-21)
-
 ## Projekt-Kontext
 
 - **Tech Stack**: React 19, Vite 7, Tailwind CSS 4, Framer Motion
 - **Sprachen**: DE / EN / SE (i18n via LanguageContext)
-- **Environments**: Staging (GitHub Pages) / Production (IONOS via FTPS)
+- **Environments**: Staging (GitHub Pages) / Production (Hosting via FTPS)
 - **Branches**: `main` (Produktion), `dev` (Staging)
